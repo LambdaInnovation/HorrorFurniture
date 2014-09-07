@@ -129,7 +129,8 @@ public class HFClientProps {
 		TEX_OILLAMP[] = {
 			r("leon:textures/models/oillamp0.png"),
 			r("leon:textures/models/oillamp1.png")
-		};
+		},
+		TEX_HANGER = r("leon:textures/models/hanger.png");
 		
 	public static IModelCustom
 		MDL_CABINET = AdvancedModelLoader.loadModel(r("leon:models/cabinet.obj")),
@@ -161,7 +162,8 @@ public class HFClientProps {
 		MDL_SCHAIR = AdvancedModelLoader.loadModel(r("leon:models/schair.obj")),
 		MDL_BED = AdvancedModelLoader.loadModel(r("leon:models/bed.obj")),
 		MDL_TVSHELF = AdvancedModelLoader.loadModel(r("leon:models/tvshelf.obj")),
-		MDL_OILLAMP = AdvancedModelLoader.loadModel(r("leon:models/oillamp.obj"));
+		MDL_OILLAMP = AdvancedModelLoader.loadModel(r("leon:models/oillamp.obj")),
+		MDL_HANGER = AdvancedModelLoader.loadModel(r("leon:models/hanger.obj"));
 	
 	private static ResourceLocation r(String s) {
 		return new ResourceLocation(s);
