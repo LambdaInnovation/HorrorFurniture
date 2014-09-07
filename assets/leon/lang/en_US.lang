@@ -1,0 +1,40 @@
+#English Language File 2014/8/5 for debugging
+#Items
+#(non-items)
+
+#Block
+tile.cabinet0.name=Cabinet A
+tile.cabinet1.name=Cabinet B
+tile.cabinet2.name=Cabinet C
+tile.cabinet3.name=Cabinet D
+tile.cabinet4.name=Cabinet E
+tile.shelf0.name=Shelf A
+tile.shelf1.name=Shelf B
+tile.shelf2.name=Shelf C
+tile.sofa0.name=Sofa Big
+tile.sofa1.name=Sofa Medium
+tile.sofa2.name=Sofa Small
+tile.bathtub.name=Bath Tub
+tile.bathtubb.name=Bath Tub(Bloody)
+tile.tv.name=TV
+tile.tvb.name=TV(Bloody)
+tile.sink.name=Sink
+tile.sinkb.name=Sink(Bloody)
+tile.chair.name=Chair
+tile.chairb.name=Chair(Bloody)
+tile.desk.name=Desk
+tile.deskb.name=Desk(Bloody)
+tile.lamp.name=Lamp
+tile.lampb.name=Lamp(Bloody)
+tile.lampl.name=Large Lamp
+tile.lamplb.name=Large Lamp(Bloody)
+tile.desky.name=Yellow Desk
+tile.deskyb.name=Yellow Desk(Bloody)
+tile.deskf.name=Desk(With Fabric)
+tile.mirror0.name=Mirror
+tile.mirror1.name=Mirror(Blood1)
+tile.mirror2.name=Mirror(Blood2)
+tile.mirror3.name=Mirror(Blood3)
+
+#CreativeTabs
+itemGroup.Furnitures=Furnitures

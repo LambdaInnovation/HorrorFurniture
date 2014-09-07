@@ -1,0 +1,17 @@
+#简体中文语言文件 2014/8/22 for debugging
+#物品
+#(non-items)
+
+#方块
+tile.cupboard_a.name=橱柜 A
+tile.cupboard_b.name=橱柜 B
+tile.cupboard_c.name=橱柜 C
+tile.shelf_a.name=搁板 A
+tile.shelf_b.name=搁板 B
+tile.shelf_c.name=搁板 C
+tile.sofa_a.name=沙发 (大)
+tile.sofa_b.name=沙发 (中)
+tile.sofa_c.name=沙发 (小)
+
+#创造模式物品栏
+itemGroup.Furnitures=家具
