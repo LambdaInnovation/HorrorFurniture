@@ -89,11 +89,16 @@ public class BlockBathtub extends BlockDirectionedMulti {
     {
     	ItemStack stack = pl.getCurrentEquippedItem();
     	if(stack == null) return false;
-    	if(stack.getItem() == Items.water_bucket) {
-    		Tile te = (Tile) world.getTileEntity(x, y, z);
+    	Tile te = (Tile) world.getTileEntity(x, y, z);
+    	if(!te.watered && stack.getItem() == Items.water_bucket) {
     		te.watered = true;
     		if(!pl.capabilities.isCreativeMode)
     			pl.setCurrentItemOrArmor(0, new ItemStack(Items.bucket));
+    		return true;
+    	} else if(te.watered && stack.getItem() == Items.bucket) {
+    		te.watered = false;
+    		if(!pl.capabilities.isCreativeMode)
+    			pl.setCurrentItemOrArmor(0, new ItemStack(Items.water_bucket));
     		return true;
     	}
         return false;

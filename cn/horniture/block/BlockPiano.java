@@ -12,6 +12,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
+import cn.horniture.HorrorFurniture;
 import cn.liutils.api.block.BlockDirectionedMulti;
 
 /**
@@ -29,6 +30,9 @@ public class BlockPiano extends BlockDirectionedMulti {
 	 */
 	public BlockPiano() {
 		super(Material.iron);
+		setCreativeTab(HorrorFurniture.cct);
+		setBlockName("hf_piano");
+		setBlockTextureName("leon:piano");
 	}
 
 	/* (non-Javadoc)
@@ -61,8 +65,8 @@ public class BlockPiano extends BlockDirectionedMulti {
 		list.add(new SubBlockPos(1, 0, 0, 1));
 		list.add(new SubBlockPos(1, 0, 1, 2));
 		list.add(new SubBlockPos(0, 0, 1, 3));
-		list.add(new SubBlockPos(0, 1, 1, 4));
-		list.add(new SubBlockPos(1, 1, 1, 5));
+		list.add(new SubBlockPos(0, 1, 0, 4));
+		list.add(new SubBlockPos(1, 1, 0, 5));
 	}
 
 }

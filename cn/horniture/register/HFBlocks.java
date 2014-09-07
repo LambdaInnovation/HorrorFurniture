@@ -50,7 +50,8 @@ public class HFBlocks {
 		bed[],
 		tvshelf,
 		oillamp[],
-		hanger;
+		hanger,
+		piano;
 	
 	public static void init() {
 		
@@ -173,6 +174,9 @@ public class HFBlocks {
 		hanger = new BlockHanger();
 		GameRegistry.registerBlock(hanger, "hf_hanger");
 		
+		piano = new BlockPiano();
+		GameRegistry.registerBlock(piano, "hf_piano");
+		
 		GameRegistry.registerBlock(bathtub, "hf_bathtub");
 		GameRegistry.registerBlock(bathtub_b, "hf_bathtub_b");
 		GameRegistry.registerBlock(tv, "hf_tv");
@@ -208,6 +212,7 @@ public class HFBlocks {
 		GameRegistry.registerTileEntity(BlockTVShelf.Tile.class, "hf_tvshelf");
 		GameRegistry.registerTileEntity(BlockOilLamp.Tile.class, "hf_oillamp");
 		GameRegistry.registerTileEntity(BlockHanger.Tile.class, "hf_hanger");
+		GameRegistry.registerTileEntity(BlockPiano.Tile.class, "hf_piano");
 	}
 	
 }

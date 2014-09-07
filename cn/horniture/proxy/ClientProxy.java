@@ -55,6 +55,7 @@ public class ClientProxy extends Proxy {
 		ClientRegistry.bindTileEntitySpecialRenderer(BlockTVShelf.Tile.class, new RenderTVShelf());
 		ClientRegistry.bindTileEntitySpecialRenderer(BlockOilLamp.Tile.class, new RenderOilLamp());
 		ClientRegistry.bindTileEntitySpecialRenderer(BlockHanger.Tile.class, new RenderHanger());
+		ClientRegistry.bindTileEntitySpecialRenderer(BlockPiano.Tile.class, new RenderPiano());
 		
 		ClientRegistry.bindTileEntitySpecialRenderer(BlockSofaSmall.Tile.class,
 				new RenderTileModelSided(new TileEntityModelCustom(HFClientProps.MDL_SOFA[0])).setScale(0.01F));

@@ -16,6 +16,9 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
@@ -29,7 +32,7 @@ import cn.liutils.api.block.BlockDirectionedMulti;
 public class BlockSink extends BlockDirectionedMulti {
 	
 	public static class Tile extends TileEntity {
-		
+		public boolean watered;
 	}
 	
 	public final boolean isBlooded;
@@ -66,5 +69,24 @@ public class BlockSink extends BlockDirectionedMulti {
 	@Override
 	public void addSubBlocks(List<SubBlockPos> list) {
 	}
+	
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer pl, int side, float a, float b, float c)
+    {
+    	ItemStack stack = pl.getCurrentEquippedItem();
+    	if(stack == null) return false;
+    	Tile te = (Tile) world.getTileEntity(x, y, z);
+    	if(!te.watered && stack.getItem() == Items.water_bucket) {
+    		te.watered = true;
+    		if(!pl.capabilities.isCreativeMode)
+    			pl.setCurrentItemOrArmor(0, new ItemStack(Items.bucket));
+    		return true;
+    	} else if(te.watered && stack.getItem() == Items.bucket) {
+    		te.watered = false;
+    		if(!pl.capabilities.isCreativeMode)
+    			pl.setCurrentItemOrArmor(0, new ItemStack(Items.water_bucket));
+    		return true;
+    	}
+        return false;
+    }
 
 }
