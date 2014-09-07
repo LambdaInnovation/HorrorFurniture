@@ -1,17 +1,70 @@
-#简体中文语言文件 2014/8/22 for debugging
+#简体中文语言文件 2014/9/7 by KSkun
 #物品
 #(non-items)
 
 #方块
-tile.cupboard_a.name=橱柜 A
-tile.cupboard_b.name=橱柜 B
-tile.cupboard_c.name=橱柜 C
-tile.shelf_a.name=搁板 A
-tile.shelf_b.name=搁板 B
-tile.shelf_c.name=搁板 C
-tile.sofa_a.name=沙发 (大)
-tile.sofa_b.name=沙发 (中)
-tile.sofa_c.name=沙发 (小)
+tile.cabinet0.name=橱柜 A
+tile.cabinet1.name=橱柜 B
+tile.cabinet2.name=橱柜 C
+tile.cabinet3.name=橱柜 D
+tile.cabinet4.name=橱柜 E
+tile.shelf0.name=搁板 A
+tile.shelf1.name=搁板 B
+tile.shelf2.name=搁板 C
+tile.hf_sofas0.name=沙发 1 小
+tile.sofam0.name=沙发 1 中
+tile.sofal0.name=沙发 1 大
+tile.hf_sofas1.name=沙发 2 小
+tile.sofam1.name=沙发 2 中
+tile.sofal1.name=沙发 2 大
+tile.hf_sofas2.name=沙发 3 小
+tile.sofam2.name=沙发 3 中
+tile.sofal2.name=沙发 3 大
+tile.bathtub.name=浴缸
+tile.bathtubb.name=带血的浴缸
+tile.tv.name=电视
+tile.tvb.name=带血的电视
+tile.sink.name=水池
+tile.sinkb.name=带血的水池
+tile.chair0.name=椅子 2
+tile.chair1.name=带血的椅子 2
+tile.chair2.name=椅子 1
+tile.chair3.name=带血的椅子 1
+tile.desk0.name=桌子 2
+tile.desk1.name=带血的桌子 2
+tile.desk2.name=桌子 3
+tile.desk3.name=桌子 1
+tile.desk4.name=带血的桌子 1
+tile.lamp.name=台灯
+tile.lampb.name=带血的台灯
+tile.lampl.name=大台灯
+tile.lamplb.name=带血的大台灯
+tile.hf_wdesk0.name=书桌
+tile.hf_wdesk1.name=带血的书桌
+tile.hf_ksink0.name=厨房水池
+tile.hf_ksink1.name=带血的厨房水池
+tile.hf_clock0.name=钟
+tile.hf_clock1.name=带血的钟
+tile.hf_kshelf0.name=厨房搁板 1
+tile.hf_kshelf1.name=带血的厨房搁板 1
+tile.hf_kshelf2.name=厨房搁板 2
+tile.hf_kshelf3.name=带血的厨房搁板 2
+tile.hf_tshelf0.name=圆搁板 1
+tile.hf_tshelf1.name=带血的圆搁板 1
+tile.hf_tshelf2.name=圆搁板 2
+tile.hf_tshelf3.name=带血的圆搁板 2
+tile.hf_ksshelf0.name=小厨房搁板 1
+tile.hf_ksshelf1.name=小厨房搁板 2
+tile.hf_ksshelf2.name=带血的小厨房搁板 2
+tile.hf_ksshelf0.name=小椅子 1
+tile.hf_ksshelf1.name=小椅子 2
+tile.hf_ksshelf2.name=带血的小椅子 2
+tile.hf_bed0.name=床
+tile.hf_bed1.name=带血的床
+tile.hf_tvshelf.name=电视柜
+tile.hf_oillamp0.name=煤油灯
+tile.hf_hanger.name=挂钩
+tile.hf_fileshelf.name=文件柜
 
 #创造模式物品栏
-itemGroup.Furnitures=家具
+itemGroup.horniture=恐怖的家具
