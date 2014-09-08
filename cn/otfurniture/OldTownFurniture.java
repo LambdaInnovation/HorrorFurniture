@@ -1,0 +1,116 @@
+/**
+ * Copyright (C) Lambda-Innovation, 2013-2014
+ * This code is open-source. Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ * 1. Redistributions of source code must retain the above copyright notice, this
+ *    list of conditions and the following disclaimer. 
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ *    this list of conditions and the following disclaimer in the documentation
+ *    and/or other materials provided with the distribution.
+ */
+package cn.otfurniture;
+
+import org.apache.logging.log4j.Logger;
+
+import cn.otfurniture.entity.EntitySittable;
+import cn.otfurniture.event.OTEventListener;
+import cn.otfurniture.event.OTTickEventListener;
+import cn.otfurniture.network.MsgContentUpdate;
+import cn.otfurniture.network.MsgOpenGui;
+import cn.otfurniture.network.MsgStateUpdate;
+import cn.otfurniture.proxy.Proxy;
+import cn.otfurniture.register.HFBlocks;
+import cn.otfurniture.register.HFItems;
+import net.minecraft.command.CommandHandler;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraftforge.common.MinecraftForge;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.FMLLog;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import cpw.mods.fml.common.registry.EntityRegistry;
+import cpw.mods.fml.relauncher.Side;
+
+/**
+ * @author WeAthFolD
+ *
+ */
+@Mod(modid = "otfurniture", name = "The Old Town Furniture", version = OldTownFurniture.VERSION)
+public class OldTownFurniture {
+	
+	public static final String VERSION = "0.0.1";
+
+	@Instance("otfurniture")
+	public static OldTownFurniture INSTANCE;
+	
+	@SidedProxy(
+		serverSide = "cn.otfurniture.proxy.Psroxy",
+		clientSide = "cn.otfurniture.proxy.ClientProxy")
+	private static Proxy proxy;
+	
+	public static CreativeTabs cct;
+	
+	public static Logger log = FMLLog.getLogger();
+	
+	public static SimpleNetworkWrapper netHandler = NetworkRegistry.INSTANCE.newSimpleChannel("otfurniture");
+	
+	@EventHandler()
+	public void preInit(FMLPreInitializationEvent event) {
+
+		log.info("Starting LIUtils " + VERSION);
+		log.info("Copyright (c) Lambda Innovation & The Ancient Stone, 2013-2014");
+		log.info("http://www.lambdacraft.cn");
+		
+		cct = new CreativeTabs("otfurniture") {
+
+			@Override
+			public Item getTabIconItem() {
+				return Item.getItemFromBlock(HFBlocks.tv);
+			}
+			
+		};
+		NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, new OTGuiHandler());
+		
+		MinecraftForge.EVENT_BUS.register(new OTEventListener());
+		FMLCommonHandler.instance().bus().register(new OTTickEventListener());
+		
+		netHandler.registerMessage(MsgStateUpdate.Handler.class, MsgStateUpdate.class, 0, Side.CLIENT);
+		netHandler.registerMessage(MsgOpenGui.Handler.class, MsgOpenGui.class, 1, Side.CLIENT);
+		netHandler.registerMessage(MsgOpenGui.Request.Handler.class, MsgOpenGui.Request.class, 2, Side.SERVER);
+		netHandler.registerMessage(MsgContentUpdate.Handler.class, MsgContentUpdate.class, 3, Side.SERVER);
+		proxy.preInit();
+		HFBlocks.init();
+		HFItems.init();
+	}
+	
+	@EventHandler()
+	public void init(FMLInitializationEvent Init) {
+		proxy.init();
+		EntityRegistry.registerModEntity(EntitySittable.class, "sittable", 0, INSTANCE, 16, 16, false);
+	}
+	
+	@EventHandler()
+	public void postInit(FMLPostInitializationEvent event) {
+		proxy.postInit();
+	}
+	
+	@EventHandler()
+	public void serverStarting(FMLServerStartingEvent event) {
+		CommandHandler cm = (CommandHandler) event.getServer().getCommandManager();
+		proxy.commandInit(cm);
+	}
+	
+	public static OTTickEventListener getTickEventListener() {
+		return proxy.tickEvents;
+	}
+
+}
