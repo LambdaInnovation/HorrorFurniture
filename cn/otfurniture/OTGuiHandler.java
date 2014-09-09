@@ -11,11 +11,13 @@ import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
 
 /**
+ * OTF的GUIFactory.
  * @author WeAthFolD
  */
 public class OTGuiHandler implements IGuiHandler {
 	
-	public static String queue = "";
+	//当前操作方块的调查内容。用来解决从服务器发包的问题
+	public static String currentContent = "";
 
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world,
@@ -26,8 +28,7 @@ public class OTGuiHandler implements IGuiHandler {
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world,
 			int x, int y, int z) {
-		System.out.println(ID);
-		return ID == 0 ? new GuiInvestigate(queue) : new GuiModify(x, y, z, queue);
+		return ID == 0 ? new GuiInvestigate(currentContent) : new GuiModify(x, y, z, currentContent);
 	}
 
 }

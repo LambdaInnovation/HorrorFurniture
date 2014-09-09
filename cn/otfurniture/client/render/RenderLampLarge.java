@@ -26,9 +26,6 @@ import cn.otfurniture.proxy.HFClientProps;
  */
 public class RenderLampLarge extends RenderTileModelSided {
 
-	/**
-	 * @param mdl
-	 */
 	public RenderLampLarge() {
 		super(new TileEntityModelCustom(HFClientProps.MDL_LAMPL));
 	}
@@ -36,7 +33,7 @@ public class RenderLampLarge extends RenderTileModelSided {
 	@Override
 	public void renderTileEntityAt(TileEntity var1, double var2, double var4,
 			double var6, float var8) {
-		RenderUtils.loadTexture(HFClientProps.TEX_LAMPL[((BlockLampLarge)var1.getBlockType()).id]);
+		RenderUtils.loadTexture(this.getTexture(var1));
 		GL11.glDisable(GL11.GL_CULL_FACE);
 		super.renderTileEntityAt(var1, var2, var4, var6, var8);
 		GL11.glEnable(GL11.GL_CULL_FACE);

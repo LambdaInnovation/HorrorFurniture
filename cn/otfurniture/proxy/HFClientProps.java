@@ -34,8 +34,10 @@ public class HFClientProps {
 			r("leon:textures/models/sofa1.png"),
 			r("leon:textures/models/sofa0.png")
 		},
-		TEX_BATHTUB = r("leon:textures/models/bathtub0.png"),
-		TEX_BATHTUB_B = r("leon:textures/models/bathtub1.png"),
+		TEX_BATHTUB[] = { 
+			r("leon:textures/models/bathtub0.png"),
+			r("leon:textures/models/bathtub1.png")
+		},
 		TEX_MIRROR = r("leon:textures/models/mirror0.png"),
 		TEX_MIRROR_B[] = {
 			r("leon:textures/models/mirror1.png"),
@@ -58,13 +60,16 @@ public class HFClientProps {
 			r("leon:textures/models/tvb2.png"),
 			r("leon:textures/models/tvb3.png"),
 		},
-		TEX_SINK = r("leon:textures/models/sink.png"),
-		TEX_SINK_B = r("leon:textures/models/sinkb.png"),
-		
-		TEX_LAMP = r("leon:textures/models/lamp.png"),
-		TEX_LAMPB =	r("leon:textures/models/lampb.png"),
-		TEX_LAMPO = r("leon:textures/models/lampo.png"),
-		TEX_LAMPOB = r("leon:textures/models/lampob.png"),
+		TEX_SINK[] = {
+			r("leon:textures/models/sink.png"),
+			r("leon:textures/models/sinkb.png")
+		},
+		TEX_LAMP[] = {
+			r("leon:textures/models/lamp.png"),
+			r("leon:textures/models/lampo.png"),
+			r("leon:textures/models/lampb.png"),
+			r("leon:textures/models/lampob.png")
+		},
 		TEX_FSHELF = r("leon:textures/models/fshelf.png"),
 		TEX_LAMPL[] = {
 			r("leon:textures/models/lampl.png"),

@@ -48,14 +48,14 @@ public class BlockTV extends BlockDirectionedMulti {
 		}
 	}
 	
-	public boolean isBlooded;
+	public final int id;
 
-	public BlockTV(boolean b) {
+	public BlockTV(int i) {
 		super(Material.iron);
 		setCreativeTab(OldTownFurniture.cct);
-		isBlooded = b;
-		setBlockName(b ? "tvb" : "tv");
-		setBlockTextureName("leon:" + (b ? "tvb" : "tv"));
+		id = i;
+		setBlockName(i == 1 ? "tvb" : "tv");
+		setBlockTextureName("leon:" + (i == 1 ? "tvb" : "tv"));
 	}
 
 	@Override

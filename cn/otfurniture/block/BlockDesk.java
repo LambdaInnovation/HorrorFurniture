@@ -15,16 +15,18 @@ import java.util.List;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import cn.liutils.api.block.BlockDirectionedMulti;
 import cn.otfurniture.OldTownFurniture;
+import cn.otfurniture.proxy.HFClientProps;
 
 /**
  * @author WeAthFolD
  *
  */
-public class BlockDesk extends BlockDirectionedMulti {
+public class BlockDesk extends BlockDirectionedMulti implements ITextureProvider {
 	
 	public static class Tile extends TileEntity {
 		
@@ -53,6 +55,11 @@ public class BlockDesk extends BlockDirectionedMulti {
 	@Override
 	public void addSubBlocks(List<SubBlockPos> list) {
 		list.add(new SubBlockPos(1, 0, 0, 1));
+	}
+
+	@Override
+	public ResourceLocation getTexture() {
+		return HFClientProps.TEX_DESK[id];
 	}
 
 }

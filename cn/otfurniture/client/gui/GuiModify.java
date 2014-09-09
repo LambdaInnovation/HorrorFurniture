@@ -24,7 +24,7 @@ public class GuiModify extends GuiScreen {
 	int x, y, z;
 	String[] contents = new String[maxLines];
 	
-	public static final int maxLines = 6, charPerLine = 30;
+	public static final int maxLines = 6, charPerLine = 40;
 	int editLine = 0;
 	
 	float xSize = 256F, ySize = 90F;

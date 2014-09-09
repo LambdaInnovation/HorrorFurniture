@@ -33,24 +33,12 @@ import cn.otfurniture.proxy.HFClientProps;
 
 /**
  * @author WeAthFolD
- *
  */
 public class RenderSink extends RenderTileModelSided {
 
-	/**
-	 * @param mdl
-	 */
 	public RenderSink() {
 		super(new TileEntityModelCustom(HFClientProps.MDL_SINK));
-	}
-	
-	@Override
-	public void renderTileEntityAt(TileEntity var1, double var2, double var4,
-			double var6, float var8) {
-		BlockSink sink = (BlockSink) var1.getBlockType();
-		RenderUtils.loadTexture(sink.isBlooded ? HFClientProps.TEX_SINK_B : HFClientProps.TEX_SINK);
 		this.scale = 0.016F;
-		super.renderTileEntityAt(var1, var2, var4, var6, var8);
 	}
 	
 	protected void renderAtOrigin(TileEntity te) {
@@ -81,7 +69,7 @@ public class RenderSink extends RenderTileModelSided {
 		        float f = (float)(l >> 16 & 255) / 255.0F;
 		        float f1 = (float)(l >> 8 & 255) / 255.0F;
 		        float f2 = (float)(l & 255) / 255.0F;
-				if(block.isBlooded)
+				if(block.id == 1)
 					GL11.glColor4f(.8F, 0F, 0F, 1F);
 				else GL11.glColor4f(f, f1, f2, 1.0F);
 				t.startDrawingQuads();
@@ -92,7 +80,7 @@ public class RenderSink extends RenderTileModelSided {
 				t.draw();
 			}
 			GL11.glColor4f(1F, 1F, 1F, 1F);
-			RenderUtils.loadTexture(block.isBlooded ? HFClientProps.TEX_BATHTUB_B : HFClientProps.TEX_BATHTUB);
+			RenderUtils.loadTexture(this.getTexture(te));
 			GL11.glScalef(scale, scale, scale);
 			theModel.render(te, 0F, 0F);
 		} GL11.glPopMatrix();

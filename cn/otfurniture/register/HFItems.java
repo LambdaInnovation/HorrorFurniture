@@ -8,8 +8,8 @@ import net.minecraft.item.Item;
 import cpw.mods.fml.common.registry.GameRegistry;
 
 /**
+ * 物品统一注册
  * @author WeathFolD
- *
  */
 public class HFItems {
 
@@ -17,7 +17,7 @@ public class HFItems {
 		setter;
 	
 	public static void init() {
-		setter = new ItemWand();
+		setter = new ItemSetter();
 		
 		GameRegistry.registerItem(setter, "hf_setter");
 	}

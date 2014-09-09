@@ -36,7 +36,7 @@ public class OTTickEventListener {
 		if(++tick0 > updtFreq) {
 			tick0 = 0;
 			
-			MovingObjectPosition pos = player.rayTrace(3.5, 0.0F);
+			MovingObjectPosition pos = Investigator.trace(player);
 			boolean b = false;
 			if(pos != null && pos.typeOfHit == MovingObjectType.BLOCK) {
 				Block block = player.worldObj.getBlock(pos.blockX, pos.blockY, pos.blockZ);
@@ -44,7 +44,6 @@ public class OTTickEventListener {
 				if(Investigator.INSTANCE.canInvestigate(player.worldObj, pos.blockX, pos.blockY, pos.blockZ))
 					b = true;
 			}
-			System.out.println(b);
 			OldTownFurniture.netHandler.sendTo(new MsgStateUpdate(b), (EntityPlayerMP) player);
 		}
 	}

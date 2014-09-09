@@ -15,16 +15,12 @@ import cn.otfurniture.event.OTTickEventListener;
 import net.minecraft.command.CommandHandler;
 
 /**
+ * 一般的加载代理
  * @author WeAthFolD
- *
  */
 public class Proxy {
 	
-	public OTTickEventListener tickEvents = new OTTickEventListener();
-	
-	public void preInit() {
-		FMLCommonHandler.instance().bus().register(tickEvents);
-	}
+	public void preInit() {}
 
 	public void init() {}
 	

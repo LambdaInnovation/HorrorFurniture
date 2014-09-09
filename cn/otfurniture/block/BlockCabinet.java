@@ -25,16 +25,18 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import cn.liutils.api.block.BlockDirectionedMulti;
 import cn.otfurniture.OldTownFurniture;
+import cn.otfurniture.proxy.HFClientProps;
 
 /**
  * @author WeAthFolD
  *
  */
-public class BlockCabinet extends BlockDirectionedMulti {
+public class BlockCabinet extends BlockDirectionedMulti implements ITextureProvider {
 	
 	public static class Tile extends TileEntityChest {
 	    @SideOnly(Side.CLIENT)
@@ -116,5 +118,10 @@ public class BlockCabinet extends BlockDirectionedMulti {
         //Return the inventory
         return new InventoryLargeChest("container.chestDouble", (IInventory)t, (TileEntityChest)t2);
     }
+
+	@Override
+	public ResourceLocation getTexture() {
+		return HFClientProps.TEX_CABINET[id];
+	}
 
 }

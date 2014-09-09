@@ -27,6 +27,7 @@ public class InvestData extends WorldSavedData {
 	}
 	
 	public Map<BlockPos, String> getMap() {
+		this.setDirty(true);
 		return dataMap;
 	}
 
@@ -35,7 +36,7 @@ public class InvestData extends WorldSavedData {
 		System.out.println("ReadFromNBT called");
 		for(int i = 0; ; i++) {
 			int[] arr = nbt.getIntArray("crd" + i);
-			if(arr == null) break;
+			if(arr == null || arr.length == 0) break;
 			String str = nbt.getString("con" + i);
 			dataMap.put(new BlockPos(arr[0], arr[1], arr[2]), str);
 		}
@@ -45,15 +46,11 @@ public class InvestData extends WorldSavedData {
 	public void writeToNBT(NBTTagCompound nbt) {
 		int i = 0;
 		System.out.println("WriteToNBT called");
+		nbt = new NBTTagCompound();
 		for(Map.Entry<BlockPos, String> entry : dataMap.entrySet()) {
 			nbt.setIntArray("crd" + i, new int[] { entry.getKey().x, entry.getKey().y, entry.getKey().z});
 			nbt.setString("con" + i, entry.getValue());
 			i++;
-		} 
-		
-		int[] crds;
-		while((crds = nbt.getIntArray("crd" + i)) != null) {
-			nbt.setIntArray("crd" + i, null);
 		}
 	}
 

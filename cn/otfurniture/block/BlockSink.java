@@ -20,32 +20,34 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import cn.liutils.api.block.BlockDirectionedMulti;
 import cn.otfurniture.OldTownFurniture;
+import cn.otfurniture.proxy.HFClientProps;
 
 /**
  * @author WeAthFolD
  *
  */
-public class BlockSink extends BlockDirectionedMulti {
+public class BlockSink extends BlockDirectionedMulti implements ITextureProvider {
 	
 	public static class Tile extends TileEntity {
 		public boolean watered;
 	}
 	
-	public final boolean isBlooded;
+	public final int id;
 
 	/**
 	 * @param mat
 	 */
-	public BlockSink(boolean b) {
+	public BlockSink(int i) {
 		super(Material.rock);
-		isBlooded = b;
+		id = i;
 		setCreativeTab(OldTownFurniture.cct);
-		setBlockName(b ? "sinkb" : "sink");
-		setBlockTextureName(b ? "leon:sinkb" : "leon:sink");
+		setBlockName(id == 1 ? "sinkb" : "sink");
+		setBlockTextureName(id == 1 ? "leon:sinkb" : "leon:sink");
 	}
 
 	/* (non-Javadoc)
@@ -88,5 +90,10 @@ public class BlockSink extends BlockDirectionedMulti {
     	}
         return false;
     }
+
+	@Override
+	public ResourceLocation getTexture() {
+		return HFClientProps.TEX_SINK[id];
+	}
 
 }

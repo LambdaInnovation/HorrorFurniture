@@ -77,7 +77,7 @@ public class MsgOpenGui implements IMessage {
 
 		@Override
 		public IMessage onMessage(MsgOpenGui msg, MessageContext ctx) {
-			OTGuiHandler.queue = msg.content;
+			OTGuiHandler.currentContent = msg.content;
 			EntityPlayer player = Minecraft.getMinecraft().thePlayer;
 			System.out.println("Now we are opening GUI");
 			if(player != null)
@@ -112,7 +112,7 @@ public class MsgOpenGui implements IMessage {
 			@Override
 			public IMessage onMessage(Request message, MessageContext ctx) {
 				EntityPlayerMP player = ctx.getServerHandler().playerEntity;
-				MovingObjectPosition pos = player.rayTrace(3.0, 1F);
+				MovingObjectPosition pos = Investigator.trace(player);
 				if(pos != null && pos.typeOfHit == MovingObjectType.BLOCK) {
 					String str = Investigator.INSTANCE.getMessage(player.worldObj,
 							pos.blockX, pos.blockY, pos.blockZ);

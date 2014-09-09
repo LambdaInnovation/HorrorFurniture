@@ -42,7 +42,7 @@ public class RenderTV extends RenderTileModelSided {
 		scale = 0.01F;
 		Tile t = (Tile) te;
 		ResourceLocation tex;
-		if(b.isBlooded) {
+		if(b.id == 1) {
 			if(t.isOpen) {
 				int ind = t.openedTick / 2;
 				if(ind < 4) tex = HFClientProps.TEX_TVB_ANIM[ind];
@@ -64,6 +64,7 @@ public class RenderTV extends RenderTileModelSided {
 			RenderUtils.loadTexture(tex);
 			GL11.glRotatef(180F, 0F, 1F, 0F);
 			theModel.render(te, 0F, 0F);
+			
 		} GL11.glPopMatrix();
 	}
 

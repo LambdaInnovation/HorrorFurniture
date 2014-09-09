@@ -37,9 +37,9 @@ public class BlockOilLamp extends BlockDirectionedMulti implements
 	/**
 	 * @param mat
 	 */
-	public BlockOilLamp(boolean b) {
+	public BlockOilLamp(int i) {
 		super(Material.iron);
-		lit = b ? 1 : 0;
+		lit = i;
 		if(lit == 1) this.setLightLevel(2.0F);
 		this.useRotation = false;
 		setCreativeTab(OldTownFurniture.cct);

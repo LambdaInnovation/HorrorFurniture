@@ -16,14 +16,20 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 
 /**
+ * 可以坐上去的方块使用的TileEntity
  * @author WeAthFolD
- *
  */
 public class TileSittable extends TileEntity {
 	
-	private EntitySittable ent = null;
-	
+	/**
+	 * Y位移值，注意默认位置在方块的中央（0.5F）
+	 */
 	protected float offsetY = 0.0F;
+	
+	/**
+	 * 内部管理的Invisible Entity
+	 */
+	private EntitySittable ent = null;
 	
 	public TileSittable() {
 	}
@@ -47,6 +53,7 @@ public class TileSittable extends TileEntity {
 	@Override
     public void invalidate()
     {
+		//把玩家丢下来
 		if(ent != null) {
 			if(ent.mountedPlayer != null)
 				ent.mountedPlayer.mountEntity((Entity) null);

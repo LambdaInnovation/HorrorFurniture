@@ -14,6 +14,7 @@ import java.util.List;
 
 import cn.liutils.core.proxy.LIClientProps;
 import cn.otfurniture.OldTownFurniture;
+import cn.otfurniture.proxy.HFClientProps;
 import cn.otfurniture.register.HFBlocks;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -25,24 +26,27 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
 /**
  * @author WeAthFolD
  *
  */
-public class BlockLamp extends Block implements ITileEntityProvider {
+public class BlockLamp extends Block implements ITileEntityProvider, ITextureProvider {
 
+	public final int id;
 	public final boolean isLit, isBloody;
 	
 	public static class Tile extends TileEntity {
 		
 	}
 	
-	public BlockLamp(boolean lit, boolean bloody) {
+	public BlockLamp(int id) {
 		super(Material.wood);
-		isLit = lit;
-		isBloody = bloody;
+		this.id = id;
+		isLit = (id & 1) != 0;
+		isBloody = (id & 2) != 0;
 		String s = "lamp" + (isBloody ? "b" : "");
 		setBlockName(s);
 		setBlockTextureName("leon:" + s);
@@ -75,23 +79,24 @@ public class BlockLamp extends Block implements ITileEntityProvider {
 	}
 	
     @SideOnly(Side.CLIENT)
-    public void getSubBlocks(Item p_149666_1_, CreativeTabs p_149666_2_, List p_149666_3_)
+    public void getSubBlocks(Item item, CreativeTabs ct, List list)
     {
-        if(!isLit) super.getSubBlocks(p_149666_1_, p_149666_2_, p_149666_3_);
+        if(!isLit) super.getSubBlocks(item, ct, list);
     }
     
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int w, float a, float b, float c)
     {
     	world.setBlock(x, y, z, getReversal());
         return true;
     }
     
-    Block[] reversal;
     private Block getReversal() {
-    	if(reversal == null)
-    		reversal = new Block[] { HFBlocks.lamp[1], HFBlocks.lamp[0], HFBlocks.lamp_b[1], HFBlocks.lamp_b[0] };
-    	int jd = (isBloody ? 1 : 0) << 1 | (isLit ? 1 : 0);
-    	return reversal[jd];
+    	return HFBlocks.lamp[isLit ? id - 1 : id + 1];
     }
+
+	@Override
+	public ResourceLocation getTexture() {
+		return HFClientProps.TEX_LAMP[id];
+	}
 
 }

@@ -41,26 +41,44 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.relauncher.Side;
 
 /**
+ * Mod主类
  * @author WeAthFolD
- *
  */
 @Mod(modid = "otfurniture", name = "The Old Town Furniture", version = OldTownFurniture.VERSION)
 public class OldTownFurniture {
 	
+	/**
+	 * 公共版本号
+	 */
 	public static final String VERSION = "0.0.1";
 
+	/**
+	 * 静态单例
+	 */
 	@Instance("otfurniture")
 	public static OldTownFurniture INSTANCE;
 	
+	/**
+	 * 加载代理
+	 */
 	@SidedProxy(
 		serverSide = "cn.otfurniture.proxy.Psroxy",
 		clientSide = "cn.otfurniture.proxy.ClientProxy")
 	private static Proxy proxy;
 	
+	/**
+	 * 创造栏
+	 */
 	public static CreativeTabs cct;
 	
+	/**
+	 * 日志文件
+	 */
 	public static Logger log = FMLLog.getLogger();
 	
+	/**
+	 * 网络channel handler。
+	 */
 	public static SimpleNetworkWrapper netHandler = NetworkRegistry.INSTANCE.newSimpleChannel("otfurniture");
 	
 	@EventHandler()
@@ -74,28 +92,36 @@ public class OldTownFurniture {
 
 			@Override
 			public Item getTabIconItem() {
-				return Item.getItemFromBlock(HFBlocks.tv);
+				return Item.getItemFromBlock(HFBlocks.tv[1]);
 			}
 			
 		};
+		
 		NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, new OTGuiHandler());
 		
+		//events
 		MinecraftForge.EVENT_BUS.register(new OTEventListener());
 		FMLCommonHandler.instance().bus().register(new OTTickEventListener());
 		
+		//Network
 		netHandler.registerMessage(MsgStateUpdate.Handler.class, MsgStateUpdate.class, 0, Side.CLIENT);
 		netHandler.registerMessage(MsgOpenGui.Handler.class, MsgOpenGui.class, 1, Side.CLIENT);
 		netHandler.registerMessage(MsgOpenGui.Request.Handler.class, MsgOpenGui.Request.class, 2, Side.SERVER);
 		netHandler.registerMessage(MsgContentUpdate.Handler.class, MsgContentUpdate.class, 3, Side.SERVER);
-		proxy.preInit();
+		
+		//Blocks and Items
 		HFBlocks.init();
 		HFItems.init();
+		
+		proxy.preInit();
 	}
 	
 	@EventHandler()
 	public void init(FMLInitializationEvent Init) {
-		proxy.init();
+		//Entities
 		EntityRegistry.registerModEntity(EntitySittable.class, "sittable", 0, INSTANCE, 16, 16, false);
+		
+		proxy.init();
 	}
 	
 	@EventHandler()
@@ -106,11 +132,8 @@ public class OldTownFurniture {
 	@EventHandler()
 	public void serverStarting(FMLServerStartingEvent event) {
 		CommandHandler cm = (CommandHandler) event.getServer().getCommandManager();
+		//Commands
 		proxy.commandInit(cm);
-	}
-	
-	public static OTTickEventListener getTickEventListener() {
-		return proxy.tickEvents;
 	}
 
 }

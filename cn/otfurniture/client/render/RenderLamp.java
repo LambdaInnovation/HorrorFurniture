@@ -30,7 +30,6 @@ public class RenderLamp extends TileEntitySpecialRenderer {
 	private ITileEntityModel mdl = new TileEntityModelCustom(HFClientProps.MDL_LAMP);
 
 	public RenderLamp() {
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -39,16 +38,7 @@ public class RenderLamp extends TileEntitySpecialRenderer {
 		GL11.glDisable(GL11.GL_CULL_FACE);
 		GL11.glPushMatrix(); {
 			
-			ResourceLocation tex;
-			BlockLamp lamp = (BlockLamp) var1.getBlockType();
-			if(lamp.isBloody) {
-				if(lamp.isLit) tex = HFClientProps.TEX_LAMPOB;
-				else tex = HFClientProps.TEX_LAMPB;
-			} else {
-				if(lamp.isLit) tex = HFClientProps.TEX_LAMPO;
-				else tex = HFClientProps.TEX_LAMP;
-			}
-			RenderUtils.loadTexture(tex);
+			RenderUtils.loadTexture(((BlockLamp)var1.getBlockType()).getTexture());
 			
 			GL11.glTranslated(var2 + .5, var4, var6 + .5);
 			GL11.glScalef(0.06F, 0.06F, 0.06F);

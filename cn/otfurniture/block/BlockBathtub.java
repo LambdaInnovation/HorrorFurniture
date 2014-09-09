@@ -21,16 +21,18 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import cn.liutils.api.block.BlockDirectionedMulti;
 import cn.otfurniture.OldTownFurniture;
+import cn.otfurniture.proxy.HFClientProps;
 
 /**
  * @author WeAthFolD
  *
  */
-public class BlockBathtub extends BlockDirectionedMulti {
+public class BlockBathtub extends BlockDirectionedMulti implements ITextureProvider {
 	
 	public static class Tile extends TileEntity {
 		public boolean watered = false;
@@ -50,18 +52,18 @@ public class BlockBathtub extends BlockDirectionedMulti {
 	    }
 	}
 	
-	public final boolean isBloody;
+	public final int id;
 
 	/**
 	 * @param mat
 	 */
-	public BlockBathtub(boolean b) {
+	public BlockBathtub(int i) {
 		super(Material.rock);
+		id = i;
 		setCreativeTab(OldTownFurniture.cct);
-		setHardness(-1F);
-		setBlockName("bathtub" + (b ? "b" : ""));
-		setBlockTextureName("leon:bathtub" + (b ? "b" : ""));
-		isBloody = b;
+		setHardness(2F);
+		setBlockName("bathtub" + (id == 1 ? "b" : ""));
+		setBlockTextureName("leon:bathtub" + (id == 1 ? "b" : ""));
 	}
 
 	/* (non-Javadoc)
@@ -89,13 +91,14 @@ public class BlockBathtub extends BlockDirectionedMulti {
     {
     	ItemStack stack = pl.getCurrentEquippedItem();
     	if(stack == null) return false;
+    	
     	Tile te = (Tile) world.getTileEntity(x, y, z);
-    	if(!te.watered && stack.getItem() == Items.water_bucket) {
+    	if(!te.watered && stack.getItem() == Items.water_bucket) { //倒水
     		te.watered = true;
     		if(!pl.capabilities.isCreativeMode)
     			pl.setCurrentItemOrArmor(0, new ItemStack(Items.bucket));
     		return true;
-    	} else if(te.watered && stack.getItem() == Items.bucket) {
+    	} else if(te.watered && stack.getItem() == Items.bucket) { //取水
     		te.watered = false;
     		if(!pl.capabilities.isCreativeMode)
     			pl.setCurrentItemOrArmor(0, new ItemStack(Items.water_bucket));
@@ -103,5 +106,10 @@ public class BlockBathtub extends BlockDirectionedMulti {
     	}
         return false;
     }
+
+	@Override
+	public ResourceLocation getTexture() {
+		return HFClientProps.TEX_BATHTUB[id];
+	}
 
 }

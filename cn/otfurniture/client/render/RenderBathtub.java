@@ -61,7 +61,7 @@ public class RenderBathtub extends RenderTileModelSided {
 			
 			GL11.glRotatef(rotations[meta], 0F, 1F, 0F);
 			
-			if(((Tile)te).watered){
+			if(((Tile)te).watered){ //绘制水（血）
 				IIcon i = BlockLiquid.getLiquidIcon("water_still");
 				ResourceLocation rs = Minecraft.getMinecraft().getTextureManager().getResourceLocation(0);
 				if(rs != null)
@@ -82,7 +82,7 @@ public class RenderBathtub extends RenderTileModelSided {
 		        float f = (float)(l >> 16 & 255) / 255.0F;
 		        float f1 = (float)(l >> 8 & 255) / 255.0F;
 		        float f2 = (float)(l & 255) / 255.0F;
-				if(block.isBloody)
+				if(block.id == 1)
 					GL11.glColor4f(.8F, 0F, 0F, 1F);
 				else GL11.glColor4f(f, f1, f2, 1.0F);
 				t.startDrawingQuads();
@@ -97,7 +97,8 @@ public class RenderBathtub extends RenderTileModelSided {
 				t.draw();
 			}
 			GL11.glColor4f(1F, 1F, 1F, 1F);
-			RenderUtils.loadTexture(block.isBloody ? HFClientProps.TEX_BATHTUB_B : HFClientProps.TEX_BATHTUB);
+			
+			RenderUtils.loadTexture(this.getTexture(te));
 			GL11.glScalef(scale, scale, scale);
 			theModel.render(te, 0F, 0F);
 		} GL11.glPopMatrix();

@@ -8,10 +8,14 @@ import java.util.Map;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldSavedData;
 import net.minecraft.world.WorldServer;
 import cn.liutils.api.util.BlockPos;
+import cn.liutils.api.util.Motion3D;
 
 /**
  * @author WeAthFolD
@@ -64,6 +68,13 @@ public class Investigator {
 		} else {
 			throw new UnsupportedOperationException("Can't load the datamap in client!");
 		}
+	}
+	
+	public static MovingObjectPosition trace(EntityPlayer player) {
+		Motion3D mo = new Motion3D(player, true);
+		Vec3 v1 = mo.getPosVec(player.worldObj),
+				v2 = mo.move(3.5).getPosVec(player.worldObj);
+		return player.worldObj.rayTraceBlocks(v1, v2);
 	}
 
 }
