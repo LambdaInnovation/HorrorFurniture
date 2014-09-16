@@ -13,15 +13,14 @@ package cn.otfurniture.block;
 import java.util.List;
 
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import cn.liutils.api.block.BlockDirectionedMulti;
+import cn.liutils.api.client.ITextureProvider;
 import cn.otfurniture.OldTownFurniture;
-import cn.otfurniture.proxy.HFClientProps;
-
+import cn.otfurniture.proxy.OFClientProps;
 /**
  * @author WeAthFolD
  *
@@ -59,7 +58,7 @@ public class BlockDesk extends BlockDirectionedMulti implements ITextureProvider
 
 	@Override
 	public ResourceLocation getTexture() {
-		return HFClientProps.TEX_DESK[id];
+		return OFClientProps.TEX_DESK[id];
 	}
 
 }

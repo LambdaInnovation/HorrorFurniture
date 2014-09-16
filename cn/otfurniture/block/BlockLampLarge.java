@@ -12,8 +12,6 @@ package cn.otfurniture.block;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -24,9 +22,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import cn.liutils.api.block.BlockDirectionedMulti;
+import cn.liutils.api.client.ITextureProvider;
 import cn.otfurniture.OldTownFurniture;
-import cn.otfurniture.proxy.HFClientProps;
-import cn.otfurniture.register.HFBlocks;
+import cn.otfurniture.proxy.OFClientProps;
+import cn.otfurniture.register.OFBlocks;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * @author WeAthFolD
@@ -100,7 +101,7 @@ public class BlockLampLarge extends BlockDirectionedMulti implements ITexturePro
 	
 	private static final int[] revs = { 1, 0, 3, 2 };
 	private Block getReverse() {
-		return HFBlocks.lampl[revs[id]];
+		return OFBlocks.lampl[revs[id]];
 	}
 	
     @SideOnly(Side.CLIENT)
@@ -111,7 +112,7 @@ public class BlockLampLarge extends BlockDirectionedMulti implements ITexturePro
 
 	@Override
 	public ResourceLocation getTexture() {
-		return HFClientProps.TEX_LAMPL[id];
+		return OFClientProps.TEX_LAMPL[id];
 	}
 
 }

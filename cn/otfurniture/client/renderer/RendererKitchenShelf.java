@@ -8,41 +8,24 @@
  *    this list of conditions and the following disclaimer in the documentation
  *    and/or other materials provided with the distribution.
  */
-package cn.otfurniture.client.render;
+package cn.otfurniture.client.renderer;
 
 import net.minecraft.tileentity.TileEntity;
 import cn.liutils.api.client.model.ITileEntityModel;
 import cn.liutils.api.client.model.TileEntityModelCustom;
 import cn.liutils.api.client.render.RenderTileModelSided;
-import cn.otfurniture.block.BlockShelf;
-import cn.otfurniture.proxy.HFClientProps;
+import cn.otfurniture.proxy.OFClientProps;
 
 /**
  * @author WeAthFolD
- *
  */
-public class RenderShelf extends RenderTileModelSided {
+public class RendererKitchenShelf extends RenderTileModelSided {
 
-	public static ITileEntityModel mdls[] = {
-		new TileEntityModelCustom(HFClientProps.MDL_SHELF[0]),
-		new TileEntityModelCustom(HFClientProps.MDL_SHELF[1]),
-		new TileEntityModelCustom(HFClientProps.MDL_SHELF[2])
-	};
-	
-	/**
-	 * @param mdl
-	 */
-	public RenderShelf() {
-		super(mdls[0]);
-		this.setModelTexture(HFClientProps.TEX_SHELF);
-		setScale(0.03F);
+	public RendererKitchenShelf() {
+		super(new TileEntityModelCustom(OFClientProps.MDL_KSHELF));
+		for(int i = 0; i < 4; i++) //Rotation fix
+			this.rotations[i] += 90;
+		setScale(0.1F);
 	}
 	
-	@Override
-	public void renderTileEntityAt(TileEntity var1, double var2, double var4,
-			double var6, float var8) {
-		theModel = mdls[((BlockShelf)var1.getBlockType()).id];
-		super.renderTileEntityAt(var1, var2, var4, var6, var8);
-	}
-
 }

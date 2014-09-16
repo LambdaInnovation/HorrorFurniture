@@ -1,5 +1,12 @@
 /**
- * 
+ * Copyright (C) Lambda-Innovation, 2013-2014
+ * This code is open-source. Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ * 1. Redistributions of source code must retain the above copyright notice, this
+ *    list of conditions and the following disclaimer. 
+ * 2. Redistributions in binary form must reproduce the above copyright notice,
+ *    this list of conditions and the following disclaimer in the documentation
+ *    and/or other materials provided with the distribution.
  */
 package cn.otfurniture.network;
 
@@ -11,22 +18,23 @@ import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 /**
- * @author FolD
+ * 调查
+ * @author WeAthFolD
  *
  */
-public class MsgContentUpdate implements IMessage {
+public class MsgInvsContentUpdate implements IMessage {
 	
 	String content;
 	int x, y, z;
 
-	public MsgContentUpdate(int a, int b, int c, String str) {
+	public MsgInvsContentUpdate(int a, int b, int c, String str) {
 		content = str;
 		x = a;
 		y = b;
 		z = c;
 	}
 	
-	public MsgContentUpdate() {}
+	public MsgInvsContentUpdate() {}
 
 	@Override
 	public void fromBytes(ByteBuf buf) {
@@ -44,10 +52,10 @@ public class MsgContentUpdate implements IMessage {
 		ByteBufUtils.writeUTF8String(buf, content);
 	}
 	
-	public static class Handler implements IMessageHandler<MsgContentUpdate, IMessage> {
+	public static class Handler implements IMessageHandler<MsgInvsContentUpdate, IMessage> {
 
 		@Override
-		public IMessage onMessage(MsgContentUpdate msg, MessageContext ctx) {
+		public IMessage onMessage(MsgInvsContentUpdate msg, MessageContext ctx) {
 			Investigator.INSTANCE.modifyMessage(ctx.getServerHandler().playerEntity.worldObj,
 					msg.x, msg.y, msg.z, msg.content);
 			return null;

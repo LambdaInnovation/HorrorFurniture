@@ -12,15 +12,7 @@ package cn.otfurniture.block;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import cn.liutils.api.block.BlockDirectionedMulti;
-import cn.otfurniture.OldTownFurniture;
-import cn.otfurniture.proxy.HFClientProps;
-import cn.otfurniture.tile.TileSittable;
-import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
@@ -28,6 +20,13 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import cn.liutils.api.block.BlockDirectionedMulti;
+import cn.liutils.api.client.ITextureProvider;
+import cn.otfurniture.OldTownFurniture;
+import cn.otfurniture.proxy.OFClientProps;
+import cn.otfurniture.tile.TileSittable;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * @author WeAthFolD
@@ -88,7 +87,7 @@ public class BlockSofaSmall extends BlockDirectionedMulti implements ITexturePro
 
 	@Override
 	public ResourceLocation getTexture() {
-		return HFClientProps.TEX_SOFA[id];
+		return OFClientProps.TEX_SOFA[id];
 	}
 
 }

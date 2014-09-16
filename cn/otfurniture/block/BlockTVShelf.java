@@ -14,7 +14,8 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import cn.liutils.api.block.BlockDirectionedMulti;
 import cn.otfurniture.OldTownFurniture;
-import cn.otfurniture.proxy.HFClientProps;
+import cn.otfurniture.proxy.OFClientProps;
+import cn.liutils.api.client.ITextureProvider;
 
 /**
  * @author FolD
@@ -42,7 +43,7 @@ public class BlockTVShelf extends BlockDirectionedMulti implements
 	@Override
 	@SideOnly(Side.CLIENT)
 	public ResourceLocation getTexture() {
-		return HFClientProps.TEX_TVSHELF;
+		return OFClientProps.TEX_TVSHELF;
 	}
 
 	@Override

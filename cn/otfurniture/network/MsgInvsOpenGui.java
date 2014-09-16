@@ -8,7 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
-import cn.otfurniture.OTGuiHandler;
+import cn.otfurniture.OFGuiHandler;
 import cn.otfurniture.OldTownFurniture;
 import cn.otfurniture.investigate.Investigator;
 import io.netty.buffer.ByteBuf;
@@ -18,10 +18,11 @@ import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 /**
+ * 
  * @author WeAthFolD
  *
  */
-public class MsgOpenGui implements IMessage {
+public class MsgInvsOpenGui implements IMessage {
 	
 	public String content;
 	public int type;
@@ -30,12 +31,12 @@ public class MsgOpenGui implements IMessage {
 	/**
 	 * 
 	 */
-	public MsgOpenGui(String str) {
+	public MsgInvsOpenGui(String str) {
 		content = str;
 		type = 0;
 	}
 	
-	public MsgOpenGui(String str, int x, int y, int z) {
+	public MsgInvsOpenGui(String str, int x, int y, int z) {
 		content = str;
 		type = 1;
 		this.x = x;
@@ -43,7 +44,7 @@ public class MsgOpenGui implements IMessage {
 		this.z = z;
 	}
 	
-	public MsgOpenGui() {}
+	public MsgInvsOpenGui() {}
 
 	/* (non-Javadoc)
 	 * @see cpw.mods.fml.common.network.simpleimpl.IMessage#fromBytes(io.netty.buffer.ByteBuf)
@@ -73,11 +74,11 @@ public class MsgOpenGui implements IMessage {
 		ByteBufUtils.writeUTF8String(buf, content);
 	}
 	
-	public static class Handler implements IMessageHandler<MsgOpenGui, IMessage> {
+	public static class Handler implements IMessageHandler<MsgInvsOpenGui, IMessage> {
 
 		@Override
-		public IMessage onMessage(MsgOpenGui msg, MessageContext ctx) {
-			OTGuiHandler.currentContent = msg.content;
+		public IMessage onMessage(MsgInvsOpenGui msg, MessageContext ctx) {
+			OFGuiHandler.currentContent = msg.content;
 			EntityPlayer player = Minecraft.getMinecraft().thePlayer;
 			System.out.println("Now we are opening GUI");
 			if(player != null)
@@ -117,10 +118,10 @@ public class MsgOpenGui implements IMessage {
 					String str = Investigator.INSTANCE.getMessage(player.worldObj,
 							pos.blockX, pos.blockY, pos.blockZ);
 					if(message.id == 1) {
-						OldTownFurniture.netHandler.sendTo(new MsgOpenGui(str == null ? "" : str, pos.blockX, pos.blockY, pos.blockZ), ctx.getServerHandler().playerEntity);
+						OldTownFurniture.netHandler.sendTo(new MsgInvsOpenGui(str == null ? "" : str, pos.blockX, pos.blockY, pos.blockZ), ctx.getServerHandler().playerEntity);
 					} else {
 						if(str != null)
-							OldTownFurniture.netHandler.sendTo(new MsgOpenGui(str), ctx.getServerHandler().playerEntity);
+							OldTownFurniture.netHandler.sendTo(new MsgInvsOpenGui(str), ctx.getServerHandler().playerEntity);
 						else System.out.println("Attempted inv, but didn't find the matching block");
 					}
 				}

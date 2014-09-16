@@ -10,18 +10,12 @@
  */
 package cn.otfurniture.block;
 
-import static net.minecraftforge.common.util.ForgeDirection.DOWN;
-
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryLargeChest;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.AxisAlignedBB;
@@ -29,8 +23,11 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import cn.liutils.api.block.BlockDirectionedMulti;
+import cn.liutils.api.client.ITextureProvider;
 import cn.otfurniture.OldTownFurniture;
-import cn.otfurniture.proxy.HFClientProps;
+import cn.otfurniture.proxy.OFClientProps;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * @author WeAthFolD
@@ -121,7 +118,7 @@ public class BlockCabinet extends BlockDirectionedMulti implements ITextureProvi
 
 	@Override
 	public ResourceLocation getTexture() {
-		return HFClientProps.TEX_CABINET[id];
+		return OFClientProps.TEX_CABINET[id];
 	}
 
 }

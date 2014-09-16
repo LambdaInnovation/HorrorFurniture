@@ -13,7 +13,8 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import cn.liutils.api.block.BlockDirectionedMulti;
 import cn.otfurniture.OldTownFurniture;
-import cn.otfurniture.proxy.HFClientProps;
+import cn.otfurniture.proxy.OFClientProps;
+import cn.liutils.api.client.ITextureProvider;
 
 /**
  * @author FolD
@@ -64,7 +65,7 @@ public class BlockTShelf extends BlockDirectionedMulti implements ITextureProvid
 
 	@Override
 	public ResourceLocation getTexture() {
-		return HFClientProps.TEX_TSHELF[id];
+		return OFClientProps.TEX_TSHELF[id];
 	}
 
 }

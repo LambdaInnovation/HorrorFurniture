@@ -8,44 +8,38 @@
  *    this list of conditions and the following disclaimer in the documentation
  *    and/or other materials provided with the distribution.
  */
-package cn.otfurniture.client.render;
+package cn.otfurniture.client.renderer;
 
-import org.lwjgl.opengl.GL11;
-
+import net.minecraft.tileentity.TileEntity;
 import cn.liutils.api.client.model.ITileEntityModel;
 import cn.liutils.api.client.model.TileEntityModelCustom;
-import cn.liutils.api.client.util.RenderUtils;
-import cn.otfurniture.block.BlockLamp;
-import cn.otfurniture.proxy.HFClientProps;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
+import cn.liutils.api.client.render.RenderTileModelSided;
+import cn.otfurniture.block.BlockShelf;
+import cn.otfurniture.proxy.OFClientProps;
 
 /**
  * @author WeAthFolD
  *
  */
-public class RenderLamp extends TileEntitySpecialRenderer {
+public class RendererShelf extends RenderTileModelSided {
+
+	public static ITileEntityModel mdls[] = {
+		new TileEntityModelCustom(OFClientProps.MDL_SHELF[0]),
+		new TileEntityModelCustom(OFClientProps.MDL_SHELF[1]),
+		new TileEntityModelCustom(OFClientProps.MDL_SHELF[2])
+	};
 	
-	private ITileEntityModel mdl = new TileEntityModelCustom(HFClientProps.MDL_LAMP);
-
-	public RenderLamp() {
+	public RendererShelf() {
+		super(null);
+		setModelTexture(OFClientProps.TEX_SHELF);
+		setScale(0.03F);
 	}
-
+	
 	@Override
 	public void renderTileEntityAt(TileEntity var1, double var2, double var4,
 			double var6, float var8) {
-		GL11.glDisable(GL11.GL_CULL_FACE);
-		GL11.glPushMatrix(); {
-			
-			RenderUtils.loadTexture(((BlockLamp)var1.getBlockType()).getTexture());
-			
-			GL11.glTranslated(var2 + .5, var4, var6 + .5);
-			GL11.glScalef(0.06F, 0.06F, 0.06F);
-			mdl.render(var1, 0F, 0F);
-			
-		} GL11.glPopMatrix();
-		GL11.glEnable(GL11.GL_CULL_FACE);
+		theModel = mdls[((BlockShelf)var1.getBlockType()).id];
+		super.renderTileEntityAt(var1, var2, var4, var6, var8);
 	}
 
 }

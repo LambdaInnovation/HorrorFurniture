@@ -18,7 +18,7 @@ import net.minecraftforge.client.model.IModelCustom;
  * @author WeAthFolD
  *
  */
-public class HFClientProps {
+public class OFClientProps {
 	
 	public static ResourceLocation 
 		TEX_CABINET[] = {
@@ -77,14 +77,12 @@ public class HFClientProps {
 			r("leon:textures/models/lamplb.png"),
 			r("leon:textures/models/lamplob.png")
 		},
-		
 		TEX_CHAIR[] = {
 			r("leon:textures/models/chair.png"),
 		 	r("leon:textures/models/chairb.png"),
 		 	r("leon:textures/models/chairy.png"),
 		 	r("leon:textures/models/chairyb.png")
 		},
-		
 		TEX_DESK[] = {
 			r("leon:textures/models/desk.png"),
 			r("leon:textures/models/deskb.png"),
@@ -138,7 +136,9 @@ public class HFClientProps {
 		TEX_HANGER = r("leon:textures/models/hanger.png"),
 		TEX_PIANO = r("leon:textures/models/piano.png"),
 		TEX_GUI_LEN = r("leon:textures/gui/scope.png"),
-		TEX_GUI_DIALOGUE = r("leon:textures/gui/dialogue.png");
+		TEX_GUI_DIALOGUE = r("leon:textures/gui/dialogue.png"),
+		TEX_CANDLE_HOLDER = r("leon:textures/models/cholder.png"),
+		TEX_WINE = r("leon:textures/models/wine.png");
 		
 	public static IModelCustom
 		MDL_CABINET = AdvancedModelLoader.loadModel(r("leon:models/cabinet.obj")),

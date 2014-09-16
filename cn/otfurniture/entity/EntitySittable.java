@@ -17,8 +17,8 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
 /**
+ * TileSittable的支持实体~
  * @author WeAthFolD
- *
  */
 public class EntitySittable extends Entity {
 	

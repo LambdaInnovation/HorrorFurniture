@@ -10,21 +10,22 @@
  */
 package cn.otfurniture;
 
+import net.minecraft.command.CommandHandler;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraftforge.common.MinecraftForge;
+
 import org.apache.logging.log4j.Logger;
 
 import cn.otfurniture.entity.EntitySittable;
 import cn.otfurniture.event.OTEventListener;
 import cn.otfurniture.event.OTTickEventListener;
-import cn.otfurniture.network.MsgContentUpdate;
-import cn.otfurniture.network.MsgOpenGui;
-import cn.otfurniture.network.MsgStateUpdate;
+import cn.otfurniture.network.MsgInvsContentUpdate;
+import cn.otfurniture.network.MsgInvsOpenGui;
+import cn.otfurniture.network.MsgInvsStateUpdate;
 import cn.otfurniture.proxy.Proxy;
-import cn.otfurniture.register.HFBlocks;
-import cn.otfurniture.register.HFItems;
-import net.minecraft.command.CommandHandler;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
-import net.minecraftforge.common.MinecraftForge;
+import cn.otfurniture.register.OFBlocks;
+import cn.otfurniture.register.OFItems;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
@@ -92,26 +93,26 @@ public class OldTownFurniture {
 
 			@Override
 			public Item getTabIconItem() {
-				return Item.getItemFromBlock(HFBlocks.tv[1]);
+				return Item.getItemFromBlock(OFBlocks.tv[1]);
 			}
 			
 		};
 		
-		NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, new OTGuiHandler());
+		NetworkRegistry.INSTANCE.registerGuiHandler(INSTANCE, new OFGuiHandler());
 		
 		//events
 		MinecraftForge.EVENT_BUS.register(new OTEventListener());
 		FMLCommonHandler.instance().bus().register(new OTTickEventListener());
 		
 		//Network
-		netHandler.registerMessage(MsgStateUpdate.Handler.class, MsgStateUpdate.class, 0, Side.CLIENT);
-		netHandler.registerMessage(MsgOpenGui.Handler.class, MsgOpenGui.class, 1, Side.CLIENT);
-		netHandler.registerMessage(MsgOpenGui.Request.Handler.class, MsgOpenGui.Request.class, 2, Side.SERVER);
-		netHandler.registerMessage(MsgContentUpdate.Handler.class, MsgContentUpdate.class, 3, Side.SERVER);
+		netHandler.registerMessage(MsgInvsStateUpdate.Handler.class, MsgInvsStateUpdate.class, 0, Side.CLIENT);
+		netHandler.registerMessage(MsgInvsOpenGui.Handler.class, MsgInvsOpenGui.class, 1, Side.CLIENT);
+		netHandler.registerMessage(MsgInvsOpenGui.Request.Handler.class, MsgInvsOpenGui.Request.class, 2, Side.SERVER);
+		netHandler.registerMessage(MsgInvsContentUpdate.Handler.class, MsgInvsContentUpdate.class, 3, Side.SERVER);
 		
 		//Blocks and Items
-		HFBlocks.init();
-		HFItems.init();
+		OFBlocks.init();
+		OFItems.init();
 		
 		proxy.preInit();
 	}

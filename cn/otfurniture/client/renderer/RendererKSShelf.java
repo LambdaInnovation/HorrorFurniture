@@ -8,35 +8,24 @@
  *    this list of conditions and the following disclaimer in the documentation
  *    and/or other materials provided with the distribution.
  */
-package cn.otfurniture.client.render;
+package cn.otfurniture.client.renderer;
 
-import org.lwjgl.opengl.GL11;
-
-import net.minecraft.tileentity.TileEntity;
 import cn.liutils.api.client.model.ITileEntityModel;
 import cn.liutils.api.client.model.TileEntityModelCustom;
 import cn.liutils.api.client.render.RenderTileModelSided;
-import cn.liutils.api.client.util.RenderUtils;
-import cn.otfurniture.block.BlockLampLarge;
-import cn.otfurniture.proxy.HFClientProps;
+import cn.otfurniture.proxy.OFClientProps;
 
 /**
  * @author WeAthFolD
  *
  */
-public class RenderLampLarge extends RenderTileModelSided {
+public class RendererKSShelf extends RenderTileModelSided {
 
-	public RenderLampLarge() {
-		super(new TileEntityModelCustom(HFClientProps.MDL_LAMPL));
-	}
-	
-	@Override
-	public void renderTileEntityAt(TileEntity var1, double var2, double var4,
-			double var6, float var8) {
-		RenderUtils.loadTexture(this.getTexture(var1));
-		GL11.glDisable(GL11.GL_CULL_FACE);
-		super.renderTileEntityAt(var1, var2, var4, var6, var8);
-		GL11.glEnable(GL11.GL_CULL_FACE);
+	public RendererKSShelf() {
+		super(new TileEntityModelCustom(OFClientProps.MDL_KSSHELF));
+		setScale(0.1F);
+		for(int i = 0; i < 4; i++)
+			this.rotations[i] += 90;
 	}
 
 }

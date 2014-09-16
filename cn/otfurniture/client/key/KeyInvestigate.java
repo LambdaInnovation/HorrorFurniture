@@ -5,17 +5,12 @@ package cn.otfurniture.client.key;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.MovingObjectPosition.MovingObjectType;
-import net.minecraft.world.World;
 import cn.liutils.api.client.key.IKeyHandler;
 import cn.otfurniture.OldTownFurniture;
-import cn.otfurniture.investigate.Investigator;
-import cn.otfurniture.network.MsgOpenGui;
+import cn.otfurniture.network.MsgInsvOpenGui;
 
 /**
- * @author FolD
- *
+ * @author WeAthFolD
  */
 public class KeyInvestigate implements IKeyHandler {
 
@@ -24,7 +19,8 @@ public class KeyInvestigate implements IKeyHandler {
 		if(tickEnd) return;
 		EntityPlayer player = Minecraft.getMinecraft().thePlayer;
 		if(player == null) return;
-		OldTownFurniture.netHandler.sendToServer(new MsgOpenGui.Request(0));
+		//向服务端发送操作请求
+		OldTownFurniture.netHandler.sendToServer(new MsgInsvOpenGui.Request(0));
 	}
 
 	@Override

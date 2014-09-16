@@ -19,7 +19,7 @@ import net.minecraft.block.Block;
  * @author WeAthFolD
  *
  */
-public class HFBlocks {
+public class OFBlocks {
 
 	public static Block
 		cabinet[],
@@ -46,7 +46,10 @@ public class HFBlocks {
 		tvshelf,
 		oillamp[],
 		hanger,
-		piano;
+		piano,
+		cholder,
+		cholderl,
+		wine;
 	
 	public static void init() {
 		//方块初始化和注册
@@ -75,6 +78,9 @@ public class HFBlocks {
 		oillamp = reg(BlockOilLamp.class, 2, "hf_oillamp");
 		hanger = reg(BlockHanger.class, "hf_hanger");
 		piano = reg(BlockPiano.class, "hf_piano");
+		cholder = reg(BlockCandleHolderSmall.class, "hf_candleholder");
+		cholderl = reg(BlockCandleHolderLarge.class, "hf_candleholderl");
+		wine = reg(BlockWine.class, "hf_wine");
 		
 		//TileEntity注册
 		GameRegistry.registerTileEntity(BlockCabinet.Tile.class, "hf_tile_cabinet");
@@ -101,6 +107,9 @@ public class HFBlocks {
 		GameRegistry.registerTileEntity(BlockOilLamp.Tile.class, "hf_oillamp");
 		GameRegistry.registerTileEntity(BlockHanger.Tile.class, "hf_hanger");
 		GameRegistry.registerTileEntity(BlockPiano.Tile.class, "hf_piano");
+		GameRegistry.registerTileEntity(BlockCandleHolderSmall.Tile.class, "hf_cholder");
+		GameRegistry.registerTileEntity(BlockCandleHolderLarge.Tile.class, "hf_cholderl");
+		GameRegistry.registerTileEntity(BlockWine.Tile.class, "hf_wine");
 	}
 	
 	private static Block[] reg(Class<? extends Block> cl, int cnt, String key) {

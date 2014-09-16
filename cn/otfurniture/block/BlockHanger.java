@@ -5,24 +5,15 @@ package cn.otfurniture.block;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import cn.liutils.api.block.BlockDirectionedMulti;
-import cn.liutils.api.block.BlockDirectionedMulti.SubBlockPos;
+import cn.liutils.api.client.ITextureProvider;
 import cn.otfurniture.OldTownFurniture;
-import cn.otfurniture.block.BlockOilLamp.Tile;
-import cn.otfurniture.proxy.HFClientProps;
-import cn.otfurniture.register.HFBlocks;
-
+import cn.otfurniture.proxy.OFClientProps;
 /**
  * @author FolD
  *
@@ -53,7 +44,7 @@ public class BlockHanger extends BlockDirectionedMulti implements ITextureProvid
 	
 	@Override
 	public ResourceLocation getTexture() {
-		return HFClientProps.TEX_HANGER;
+		return OFClientProps.TEX_HANGER;
 	}
 	
 	@Override

@@ -12,10 +12,7 @@ package cn.otfurniture.block;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -25,8 +22,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import cn.liutils.api.block.BlockDirectionedMulti;
+import cn.liutils.api.client.ITextureProvider;
 import cn.otfurniture.OldTownFurniture;
-import cn.otfurniture.proxy.HFClientProps;
+import cn.otfurniture.proxy.OFClientProps;
 
 /**
  * @author WeAthFolD
@@ -109,7 +107,7 @@ public class BlockBathtub extends BlockDirectionedMulti implements ITextureProvi
 
 	@Override
 	public ResourceLocation getTexture() {
-		return HFClientProps.TEX_BATHTUB[id];
+		return OFClientProps.TEX_BATHTUB[id];
 	}
 
 }

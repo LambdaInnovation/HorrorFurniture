@@ -11,7 +11,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
  * 物品统一注册
  * @author WeathFolD
  */
-public class HFItems {
+public class OFItems {
 
 	public static Item
 		setter;

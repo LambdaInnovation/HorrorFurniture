@@ -14,7 +14,7 @@ import cpw.mods.fml.common.network.IGuiHandler;
  * OTF的GUIFactory.
  * @author WeAthFolD
  */
-public class OTGuiHandler implements IGuiHandler {
+public class OFGuiHandler implements IGuiHandler {
 	
 	//当前操作方块的调查内容。用来解决从服务器发包的问题
 	public static String currentContent = "";

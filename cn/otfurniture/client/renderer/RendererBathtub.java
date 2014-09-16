@@ -8,7 +8,7 @@
  *    this list of conditions and the following disclaimer in the documentation
  *    and/or other materials provided with the distribution.
  */
-package cn.otfurniture.client.render;
+package cn.otfurniture.client.renderer;
 
 import org.lwjgl.opengl.GL11;
 
@@ -26,19 +26,16 @@ import cn.liutils.api.client.render.Vertex;
 import cn.liutils.api.client.util.RenderUtils;
 import cn.otfurniture.block.BlockBathtub;
 import cn.otfurniture.block.BlockBathtub.Tile;
-import cn.otfurniture.proxy.HFClientProps;
+import cn.otfurniture.proxy.OFClientProps;
 
 /**
+ * 浴缸的渲染
  * @author WeAthFolD
- *
  */
-public class RenderBathtub extends RenderTileModelSided {
+public class RendererBathtub extends RenderTileModelSided {
 
-	/**
-	 * @param mdl
-	 */
-	public RenderBathtub() {
-		super(new TileEntityModelCustom(HFClientProps.MDL_BATHTUB));
+	public RendererBathtub() {
+		super(new TileEntityModelCustom(OFClientProps.MDL_BATHTUB));
 		this.setScale(0.01F);
 	}
 	
@@ -46,13 +43,13 @@ public class RenderBathtub extends RenderTileModelSided {
 	public void renderTileEntityAt(TileEntity var1, double var2, double var4,
 			double var6, float var8) {
 		this.scale = 0.00935F;
-		
 		super.renderTileEntityAt(var1, var2, var4, var6, var8);
 	}
 	
 	protected void renderAtOrigin(TileEntity te) {
-		if(te.getBlockMetadata() >> 2 != 0) return;
 		int meta = te.getBlockMetadata();
+		if(meta >> 2 != 0) return;
+		
 		float waterHeight = 0.4F;
 		BlockBathtub block = (BlockBathtub) te.getBlockType();
 		//GL11.glEnable(GL11.GL_BLEND);

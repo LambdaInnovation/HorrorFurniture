@@ -14,15 +14,15 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
  * @author FolD
  *
  */
-public class MsgStateUpdate implements IMessage {
+public class MsgInvsStateUpdate implements IMessage {
 	
 	boolean canInvestigate;
 
-	public MsgStateUpdate(boolean b) {
+	public MsgInvsStateUpdate(boolean b) {
 		canInvestigate = b;
 	}
 	
-	public MsgStateUpdate() { }
+	public MsgInvsStateUpdate() { }
 
 	@Override
 	public void fromBytes(ByteBuf buf) {
@@ -34,10 +34,10 @@ public class MsgStateUpdate implements IMessage {
 		buf.writeBoolean(canInvestigate);
 	}
 	
-	public static class Handler implements IMessageHandler<MsgStateUpdate, IMessage> {
+	public static class Handler implements IMessageHandler<MsgInvsStateUpdate, IMessage> {
 
 		@Override
-		public IMessage onMessage(MsgStateUpdate msg, MessageContext ctx) {
+		public IMessage onMessage(MsgInvsStateUpdate msg, MessageContext ctx) {
 			Investigator.INSTANCE.canInvestigate = msg.canInvestigate;
 			return null;
 		}

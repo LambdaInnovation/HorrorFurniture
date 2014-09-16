@@ -12,22 +12,22 @@ package cn.otfurniture.block;
 
 import java.util.List;
 
-import cn.liutils.core.proxy.LIClientProps;
-import cn.otfurniture.OldTownFurniture;
-import cn.otfurniture.proxy.HFClientProps;
-import cn.otfurniture.register.HFBlocks;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import cn.liutils.api.client.ITextureProvider;
+import cn.liutils.core.proxy.LIClientProps;
+import cn.otfurniture.OldTownFurniture;
+import cn.otfurniture.proxy.OFClientProps;
+import cn.otfurniture.register.OFBlocks;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * @author WeAthFolD
@@ -91,12 +91,12 @@ public class BlockLamp extends Block implements ITileEntityProvider, ITexturePro
     }
     
     private Block getReversal() {
-    	return HFBlocks.lamp[isLit ? id - 1 : id + 1];
+    	return OFBlocks.lamp[isLit ? id - 1 : id + 1];
     }
 
 	@Override
 	public ResourceLocation getTexture() {
-		return HFClientProps.TEX_LAMP[id];
+		return OFClientProps.TEX_LAMP[id];
 	}
 
 }

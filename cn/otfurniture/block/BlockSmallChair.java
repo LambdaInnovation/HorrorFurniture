@@ -17,8 +17,9 @@ import net.minecraft.world.World;
 import cn.liutils.api.block.BlockDirectionedMulti;
 import cn.otfurniture.OldTownFurniture;
 import cn.otfurniture.block.BlockSofaLarge.Tile;
-import cn.otfurniture.proxy.HFClientProps;
+import cn.otfurniture.proxy.OFClientProps;
 import cn.otfurniture.tile.TileSittable;
+import cn.liutils.api.client.ITextureProvider;
 
 /**
  * @author WeAthFolD
@@ -78,7 +79,7 @@ public class BlockSmallChair extends BlockDirectionedMulti implements ITexturePr
 
 	@Override
 	public ResourceLocation getTexture() {
-		return HFClientProps.TEX_SCHAIR[id];
+		return OFClientProps.TEX_SCHAIR[id];
 	}
 	
     @Override

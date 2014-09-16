@@ -8,7 +8,7 @@
  *    this list of conditions and the following disclaimer in the documentation
  *    and/or other materials provided with the distribution.
  */
-package cn.otfurniture.client.render;
+package cn.otfurniture.client.renderer;
 
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.client.Minecraft;
@@ -29,15 +29,15 @@ import cn.liutils.api.client.util.RenderUtils;
 import cn.otfurniture.block.BlockBathtub;
 import cn.otfurniture.block.BlockSink;
 import cn.otfurniture.block.BlockSink.Tile;
-import cn.otfurniture.proxy.HFClientProps;
+import cn.otfurniture.proxy.OFClientProps;
 
 /**
  * @author WeAthFolD
  */
-public class RenderSink extends RenderTileModelSided {
+public class RendererSink extends RenderTileModelSided {
 
-	public RenderSink() {
-		super(new TileEntityModelCustom(HFClientProps.MDL_SINK));
+	public RendererSink() {
+		super(new TileEntityModelCustom(OFClientProps.MDL_SINK));
 		this.scale = 0.016F;
 	}
 	

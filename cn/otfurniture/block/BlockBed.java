@@ -2,8 +2,6 @@ package cn.otfurniture.block;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -11,8 +9,11 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import cn.liutils.api.block.BlockDirectionedMulti;
+import cn.liutils.api.client.ITextureProvider;
 import cn.otfurniture.OldTownFurniture;
-import cn.otfurniture.proxy.HFClientProps;
+import cn.otfurniture.proxy.OFClientProps;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockBed extends BlockDirectionedMulti implements ITextureProvider {
 	
@@ -38,7 +39,7 @@ public class BlockBed extends BlockDirectionedMulti implements ITextureProvider 
 
 	@Override
 	public ResourceLocation getTexture() {
-		return HFClientProps.TEX_BED[id];
+		return OFClientProps.TEX_BED[id];
 	}
 	
     @SideOnly(Side.CLIENT)

@@ -3,14 +3,14 @@
  */
 package cn.otfurniture.item;
 
-import cn.otfurniture.OldTownFurniture;
-import cn.otfurniture.investigate.Investigator;
-import cn.otfurniture.network.MsgOpenGui;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import cn.otfurniture.OldTownFurniture;
+import cn.otfurniture.investigate.Investigator;
+import cn.otfurniture.network.MsgInvsOpenGui;
 
 
 /**
@@ -32,7 +32,7 @@ public class ItemSetter extends Item {
     	if(!world.isRemote) {
     		String str = Investigator.INSTANCE.getMessage(world, x, y, z);
         	if(str == null) str = "";
-    		OldTownFurniture.netHandler.sendTo(new MsgOpenGui(str, x, y, z), (EntityPlayerMP) player);
+    		OldTownFurniture.netHandler.sendTo(new MsgInvsOpenGui(str, x, y, z), (EntityPlayerMP) player);
     	}
         return true;
     }

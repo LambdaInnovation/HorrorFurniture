@@ -3,21 +3,22 @@
  */
 package cn.otfurniture.client.gui;
 
-import org.lwjgl.opengl.GL11;
-
-import cn.liutils.api.client.util.HudUtils;
-import cn.liutils.api.client.util.RenderUtils;
-import cn.otfurniture.OldTownFurniture;
-import cn.otfurniture.network.MsgContentUpdate;
-import cn.otfurniture.proxy.HFClientProps;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.ChatAllowedCharacters;
 
+import org.lwjgl.opengl.GL11;
+
+import cn.liutils.api.client.util.HudUtils;
+import cn.liutils.api.client.util.RenderUtils;
+import cn.otfurniture.OldTownFurniture;
+import cn.otfurniture.network.MsgInvsContentUpdate;
+import cn.otfurniture.proxy.OFClientProps;
+
 /**
+ * 调查信息修改的GUI。
  * @author WeAthFolD
- *
  */
 public class GuiModify extends GuiScreen {
 	
@@ -28,6 +29,17 @@ public class GuiModify extends GuiScreen {
 	int editLine = 0;
 	
 	float xSize = 256F, ySize = 90F;
+	
+	public GuiModify(int a, int b, int c, String d) {
+		x = a;
+		y = b;
+		z = c;
+		String[] s = d.split("\n");
+		for(int i = 0; i < maxLines; i++)
+			contents[i] = new String();
+		for(int i = 0; i < s.length && i < maxLines; i++)
+			contents[i] = s[i];
+	}
 	
 	public GuiModify() {
 		for(int i = 0; i < maxLines; i++)
@@ -42,31 +54,18 @@ public class GuiModify extends GuiScreen {
 	}
 	
 	public void onGuiClosed() {
-		System.out.println("Change invoked");
+		//保存修改
 		invokeChange();
 	}
 	
-	/**
-	 * 
-	 */
-	public GuiModify(int a, int b, int c, String d) {
-		x = a;
-		y = b;
-		z = c;
-		String[] s = d.split("\n");
-		for(int i = 0; i < maxLines; i++)
-			contents[i] = new String();
-		for(int i = 0; i < s.length && i < maxLines; i++)
-			contents[i] = s[i];
-	}
-	
 	protected void invokeChange() {
-		OldTownFurniture.netHandler.sendToServer(new MsgContentUpdate(x, y, z, getContent()));
+		OldTownFurniture.netHandler.sendToServer(new MsgInvsContentUpdate(x, y, z, getContent()));
 	}
 	
 	@Override
     protected void keyTyped(char par1, int par2)
     {
+		//处理按键动作。
         if (par2 == 200)
         {
             this.editLine--;
@@ -107,7 +106,7 @@ public class GuiModify extends GuiScreen {
     
     private void drawAtOrigin() {
     	HudUtils.setTextureResolution(256, 256);
-    	RenderUtils.loadTexture(HFClientProps.TEX_GUI_DIALOGUE);
+    	RenderUtils.loadTexture(OFClientProps.TEX_GUI_DIALOGUE);
     	HudUtils.drawTexturedModalRect(0, 0, 0, 0, 256, 90);
     	
     	FontRenderer r = this.fontRendererObj;
@@ -116,6 +115,7 @@ public class GuiModify extends GuiScreen {
     	for(int i = 0; i < maxLines; i++) {
     		String s = contents[i];
     		if((Minecraft.getSystemTime() % 1000) < 500 && editLine == i) {
+    			//“绘制”光标
     			s = s.concat(" |");
     		}
     		r.drawString(s, x0, h, 0xdec2ac);
