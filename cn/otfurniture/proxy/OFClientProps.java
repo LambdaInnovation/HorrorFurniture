@@ -38,8 +38,8 @@ public class OFClientProps {
 			r("leon:textures/models/bathtub0.png"),
 			r("leon:textures/models/bathtub1.png")
 		},
-		TEX_MIRROR = r("leon:textures/models/mirror0.png"),
-		TEX_MIRROR_B[] = {
+		TEX_MIRROR[] = {
+			r("leon:textures/models/mirror0.png"),
 			r("leon:textures/models/mirror1.png"),
 			r("leon:textures/models/mirror2.png"),
 			r("leon:textures/models/mirror3.png"),
@@ -138,7 +138,29 @@ public class OFClientProps {
 		TEX_GUI_LEN = r("leon:textures/gui/scope.png"),
 		TEX_GUI_DIALOGUE = r("leon:textures/gui/dialogue.png"),
 		TEX_CANDLE_HOLDER = r("leon:textures/models/cholder.png"),
-		TEX_WINE = r("leon:textures/models/wine.png");
+		TEX_WINE = r("leon:textures/models/wine.png"),
+		TEX_BCURTAIN[] = {
+			r("leon:textures/models/bcurtain00.png"),
+			r("leon:textures/models/bcurtain01.png"),
+			r("leon:textures/models/bcurtain10.png"),
+			r("leon:textures/models/bcurtain11.png"),
+		},
+		TEX_SCURTAIN[] = {
+			r("leon:textures/models/scurtain00.png"),
+			r("leon:textures/models/scurtain01.png"),
+			r("leon:textures/models/scurtain10.png"),
+			r("leon:textures/models/scurtain11.png"),
+		},
+		TEX_MCURTAIN[] = {
+			r("leon:textures/models/mcurtain00.png"),
+			r("leon:textures/models/mcurtain01.png"),
+			r("leon:textures/models/mcurtain10.png"),
+			r("leon:textures/models/mcurtain11.png"),
+		},
+		TEX_LCURTAIN[] = {
+			r("leon:textures/models/lcurtain00.png"),
+			r("leon:textures/models/lcurtain01.png")
+		};
 		
 	public static IModelCustom
 		MDL_CABINET = AdvancedModelLoader.loadModel(r("leon:models/cabinet.obj")),

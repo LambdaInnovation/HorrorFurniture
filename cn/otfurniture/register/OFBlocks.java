@@ -16,6 +16,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 
 /**
+ * 方块注册类
  * @author WeAthFolD
  *
  */
@@ -49,7 +50,9 @@ public class OFBlocks {
 		piano,
 		cholder,
 		cholderl,
-		wine;
+		wine,
+		mirror[],
+		bcurtain[];
 	
 	public static void init() {
 		//方块初始化和注册
@@ -81,6 +84,8 @@ public class OFBlocks {
 		cholder = reg(BlockCandleHolderSmall.class, "hf_candleholder");
 		cholderl = reg(BlockCandleHolderLarge.class, "hf_candleholderl");
 		wine = reg(BlockWine.class, "hf_wine");
+		mirror = reg(BlockMirror.class, 4, "hf_mirror");
+		bcurtain = reg(BlockSmallCurtain.class, 4, "hf_scurtain");
 		
 		//TileEntity注册
 		GameRegistry.registerTileEntity(BlockCabinet.Tile.class, "hf_tile_cabinet");
@@ -110,6 +115,8 @@ public class OFBlocks {
 		GameRegistry.registerTileEntity(BlockCandleHolderSmall.Tile.class, "hf_cholder");
 		GameRegistry.registerTileEntity(BlockCandleHolderLarge.Tile.class, "hf_cholderl");
 		GameRegistry.registerTileEntity(BlockWine.Tile.class, "hf_wine");
+		GameRegistry.registerTileEntity(BlockMirror.Tile.class, "hf_mirror");
+		GameRegistry.registerTileEntity(BlockSmallCurtain.Tile.class, "hf_scurtain");
 	}
 	
 	private static Block[] reg(Class<? extends Block> cl, int cnt, String key) {

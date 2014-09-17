@@ -64,7 +64,7 @@ public class ClientProxy extends Proxy {
 				new RenderTileEntityModel(new MdlCandleHolderS(), OFClientProps.TEX_CANDLE_HOLDER).setYOffset(1.5));
 		ClientRegistry.bindTileEntitySpecialRenderer(BlockCandleHolderLarge.Tile.class, 
 			new RenderTileModelSided(new MdlCandleHolderL())
-			.setModelTexture(OFClientProps.TEX_CANDLE_HOLDER).setOffset(0.0, 1.5, 0.0).setTechne(true));
+			.setTechne(true).setModelTexture(OFClientProps.TEX_CANDLE_HOLDER).setOffset(0.0, 1.5, 0.0));
 		ClientRegistry.bindTileEntitySpecialRenderer(BlockWine.Tile.class, 
 				new RenderTileEntityModel(new MdlWine(), OFClientProps.TEX_WINE).setYOffset(1.5));
 		ClientRegistry.bindTileEntitySpecialRenderer(BlockSmallChair.Tile.class, 
@@ -96,6 +96,8 @@ public class ClientProxy extends Proxy {
 				new RenderTileModelSided(new TileEntityModelCustom(OFClientProps.MDL_TVSHELF)).setScale(0.07F));
 		ClientRegistry.bindTileEntitySpecialRenderer(BlockBed.Tile.class,
 				new RenderTileModelSided(new TileEntityModelCustom(OFClientProps.MDL_BED)).setScale(0.095F));
+		ClientRegistry.bindTileEntitySpecialRenderer(BlockMirror.Tile.class, new RendererMirror());
+		ClientRegistry.bindTileEntitySpecialRenderer(BlockSmallCurtain.Tile.class, new RendererSmallCurtain());
 		
 		super.init();
 	}
