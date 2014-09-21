@@ -25,7 +25,7 @@ import cn.otfurniture.register.OFBlocks;
  * 大量的抄代码
  * @author WeAthFolD
  */
-public class BlockPiano extends BlockDirectionedMulti {
+public class BlockPiano extends BlockPianoBase {
 	
 	public static class Tile extends TileEntityNote {
 	    /**
@@ -64,7 +64,7 @@ public class BlockPiano extends BlockDirectionedMulti {
 	 * @param mat
 	 */
 	public BlockPiano() {
-		super(Material.iron);
+		super();
 		setCreativeTab(OldTownFurniture.cct);
 		setBlockName("hf_piano");
 		setBlockTextureName("leon:piano");
@@ -134,6 +134,7 @@ public class BlockPiano extends BlockDirectionedMulti {
         }
         else
         {
+        	
         	int meta = world.getBlockMetadata(x, y, z) >> 2;
           	if(meta != 3 && meta != 2)
           		return false;
@@ -187,26 +188,5 @@ public class BlockPiano extends BlockDirectionedMulti {
         world.spawnParticle("note", (double)x + 0.5D, (double)y + 1.2D, (double)z + 0.5D, (double)b / 24.0D, 0.0D, 0.0D);
         return true;
     }
-	
-    @SideOnly(Side.CLIENT)
-    public Vec3 getOffsetRotated(int dir) {
-    	ForgeDirection d;
-    	if(dir == 5) return Vec3.createVectorHelper(1, 0, 0);
-    	if(dir == 3) return Vec3.createVectorHelper(1, 0, 1);
-    	if(dir == 4) return Vec3.createVectorHelper(0, 0, 1);
-    	return Vec3.createVectorHelper(0, 0, 0);
-    }
-
-	/* (non-Javadoc)
-	 * @see cn.liutils.api.block.BlockDirectionedMulti#addSubBlocks(java.util.List)
-	 */
-	@Override
-	public void addSubBlocks(List<SubBlockPos> list) {
-		list.add(new SubBlockPos(1, 0, 0, 1));
-		list.add(new SubBlockPos(1, 0, 1, 2));
-		list.add(new SubBlockPos(0, 0, 1, 3));
-		list.add(new SubBlockPos(0, 1, 0, 4));
-		list.add(new SubBlockPos(1, 1, 0, 5));
-	}
 
 }

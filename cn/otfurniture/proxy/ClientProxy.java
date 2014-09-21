@@ -136,6 +136,7 @@ public class ClientProxy extends Proxy {
 		ClientRegistry.bindTileEntitySpecialRenderer(BlockSmallCurtain.Tile.class, new RendererSmallCurtain());
 		ClientRegistry.bindTileEntitySpecialRenderer(BlockCurtain2.Tile.class, new RendererCurtain2());
 		ClientRegistry.bindTileEntitySpecialRenderer(BlockCurtain4.Tile.class, new RendererCurtain4());
+		ClientRegistry.bindTileEntitySpecialRenderer(BlockPianoRecorded.Tile.class, new RendererPiano());
 		
 		super.init();
 	}

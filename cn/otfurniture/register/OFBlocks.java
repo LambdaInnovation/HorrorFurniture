@@ -54,7 +54,8 @@ public class OFBlocks {
 		scurtain[],
 		bcurtain[],
 		mcurtain[],
-		lcurtain[];
+		lcurtain[],
+		pianopb[];
 	
 	public static void init() {
 		//方块初始化和注册
@@ -91,6 +92,7 @@ public class OFBlocks {
 		bcurtain = reg(BlockBathCurtain.class, 4, "hf_bcurtain");
 		mcurtain = reg(BlockMediumCurtain.class, 4, "hf_mcurtain");
 		lcurtain = reg(BlockCurtain4.class, 2, "hf_lcurtain");
+		pianopb = reg(BlockPianoRecorded.class, 1, "hf_pianop");
 		
 		//TileEntity注册
 		GameRegistry.registerTileEntity(BlockCabinet.Tile.class, "hf_tile_cabinet");
@@ -125,6 +127,7 @@ public class OFBlocks {
 		GameRegistry.registerTileEntity(BlockBathCurtain.Tile.class, "hf_bcurtain");
 		GameRegistry.registerTileEntity(BlockCurtain4.Tile.class, "hf_lcurtain");
 		GameRegistry.registerTileEntity(BlockLamp.Tile.class, "hf_slamp");
+		GameRegistry.registerTileEntity(BlockPianoRecorded.Tile.class, "hf_pianop");
 	}
 	
 	private static Block[] reg(Class<? extends Block> cl, int cnt, String key) {

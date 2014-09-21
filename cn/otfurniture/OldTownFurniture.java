@@ -111,8 +111,8 @@ public class OldTownFurniture {
 		netHandler.registerMessage(MsgInvsContentUpdate.Handler.class, MsgInvsContentUpdate.class, 3, Side.SERVER);
 		
 		//Blocks and Items
-		OFBlocks.init();
 		OFItems.init();
+		OFBlocks.init();
 		
 		proxy.preInit();
 	}
