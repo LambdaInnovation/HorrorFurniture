@@ -11,13 +11,12 @@ import cn.liutils.api.client.render.RenderTileSided;
 import cn.liutils.api.client.util.RenderUtils;
 
 /**
- * 浴帘渲染
+ * 2x2型窗帘的渲染~
  * @author WeathFolD
- *
  */
-public class RendererSmallCurtain extends RenderTileSided {
+public class RendererCurtain2 extends RenderTileSided {
 
-	public RendererSmallCurtain() {
+	public RendererCurtain2() {
 	}
 
 	@Override
@@ -32,14 +31,14 @@ public class RendererSmallCurtain extends RenderTileSided {
 			
 			t.startDrawingQuads();
 			t.addVertexWithUV(0.0, 0.0, 0.0, 0.0, 1.0);
-			t.addVertexWithUV(1.0, 0.0, 0.0, 1.0, 1.0);
-			t.addVertexWithUV(1.0, 1.0, 0.0, 1.0, 0.0);
-			t.addVertexWithUV(0.0, 1.0, 0.0, 0.0, 0.0);
+			t.addVertexWithUV(2.0, 0.0, 0.0, 1.0, 1.0);
+			t.addVertexWithUV(2.0, 2.0, 0.0, 1.0, 0.0);
+			t.addVertexWithUV(0.0, 2.0, 0.0, 0.0, 0.0);
 			t.draw();
 			
 		} GL11.glPopMatrix();
-		GL11.glDisable(GL11.GL_BLEND);
 		GL11.glEnable(GL11.GL_CULL_FACE);
+		GL11.glDisable(GL11.GL_BLEND);
 	}
 
 }

@@ -12,17 +12,21 @@ package cn.otfurniture.block;
 
 import java.util.List;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import cn.liutils.api.block.BlockDirectionedMulti;
 import cn.liutils.api.client.ITextureProvider;
+import cn.liutils.api.util.BlockPos;
 import cn.otfurniture.OldTownFurniture;
 import cn.otfurniture.proxy.OFClientProps;
 
@@ -47,6 +51,12 @@ public class BlockBathtub extends BlockDirectionedMulti implements ITextureProvi
 	    {
 	    	watered = nbt.getBoolean("watered");
 	    	super.writeToNBT(nbt);
+	    }
+	    
+	    @SideOnly(Side.CLIENT)
+	    public AxisAlignedBB getRenderBoundingBox()
+	    {
+	        return INFINITE_EXTENT_AABB;
 	    }
 	}
 	
@@ -89,6 +99,13 @@ public class BlockBathtub extends BlockDirectionedMulti implements ITextureProvi
     {
     	ItemStack stack = pl.getCurrentEquippedItem();
     	if(stack == null) return false;
+    	{
+    		int meta = world.getBlockMetadata(x, y, z);
+    		int[] crds = this.getOrigin(world, x, y, z, meta);
+    		
+    		x = crds[0];
+    		z = crds[2];
+    	}
     	
     	Tile te = (Tile) world.getTileEntity(x, y, z);
     	if(!te.watered && stack.getItem() == Items.water_bucket) { //倒水

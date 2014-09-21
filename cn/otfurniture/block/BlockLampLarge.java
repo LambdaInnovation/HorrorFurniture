@@ -18,6 +18,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
@@ -35,7 +36,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockLampLarge extends BlockDirectionedMulti implements ITextureProvider {
 	
 	public static class Tile extends TileEntity {
-		
+	    @SideOnly(Side.CLIENT)
+	    public AxisAlignedBB getRenderBoundingBox()
+	    {
+	        return INFINITE_EXTENT_AABB;
+	    }
 	}
 
 	public final int id;
@@ -86,7 +91,7 @@ public class BlockLampLarge extends BlockDirectionedMulti implements ITexturePro
     	Block reverse = getReverse();
     	world.setBlock(x, y, z, reverse, meta & 0x03, 0x03);
     	world.setBlock(x, y + 1, z, reverse, meta & 0x03 | 4, 0x03);
-    	System.out.println("Set metadat " + ( meta & 0x03 | 4));
+    	System.out.println("Set metadata " + (meta & 0x03) + " " + ( meta & 0x03 | 4));
     	System.out.println("Upper metadata : " + world.getBlockMetadata(x, y + 1, z));
         return true;
     }

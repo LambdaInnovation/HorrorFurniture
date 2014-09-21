@@ -11,6 +11,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import cn.liutils.api.block.BlockDirectionedMulti;
@@ -23,7 +24,11 @@ import cn.otfurniture.OldTownFurniture;
 public class BlockFileShelf extends BlockDirectionedMulti {
 	
 	public static class Tile extends TileEntityChest {
-		
+	    @SideOnly(Side.CLIENT)
+	    public AxisAlignedBB getRenderBoundingBox()
+	    {
+	        return INFINITE_EXTENT_AABB;
+	    }
 	}
 
 	public BlockFileShelf() {

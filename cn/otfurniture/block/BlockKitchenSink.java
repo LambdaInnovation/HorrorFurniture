@@ -7,6 +7,7 @@ import java.util.List;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
@@ -26,7 +27,6 @@ public class BlockKitchenSink extends BlockDirectionedMulti implements ITextureP
 	int id;
 	
 	public static class Tile extends TileEntity {
-		
 	}
 	
 	public BlockKitchenSink(int id) {

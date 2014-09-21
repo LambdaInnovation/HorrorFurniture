@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
@@ -18,7 +19,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockBed extends BlockDirectionedMulti implements ITextureProvider {
 	
 	public static class Tile extends TileEntity {
-		
+	    @SideOnly(Side.CLIENT)
+	    public AxisAlignedBB getRenderBoundingBox()
+	    {
+	        return INFINITE_EXTENT_AABB;
+	    }
 	}
 
 	int id;

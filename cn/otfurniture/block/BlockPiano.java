@@ -13,6 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityNote;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -51,6 +52,12 @@ public class BlockPiano extends BlockDirectionedMulti {
 	            world.addBlockEvent(x, y, z, OFBlocks.piano, b0, this.note);
 	        }
 	    }
+	    
+	    @SideOnly(Side.CLIENT)
+	    public AxisAlignedBB getRenderBoundingBox()
+	    {
+	        return INFINITE_EXTENT_AABB;
+	    }
 	}
 
 	/**
@@ -80,7 +87,7 @@ public class BlockPiano extends BlockDirectionedMulti {
     public void onBlockClicked(World world, int x, int y, int z, EntityPlayer player)
     {
     	int meta = world.getBlockMetadata(x, y, z) >> 2;
-    	if(meta != 0 && meta != 1)
+    	if(meta != 2 && meta != 3)
     		return;
         if (!world.isRemote)
         {
@@ -102,7 +109,7 @@ public class BlockPiano extends BlockDirectionedMulti {
         boolean flag = world.isBlockIndirectlyGettingPowered(x, y, z);
         TileEntityNote tileentitynote = (TileEntityNote)world.getTileEntity(x, y, z);
         int meta = world.getBlockMetadata(x, y, z) >> 2;
-        if(meta != 0 && meta != 1)
+        if(meta != 3 && meta != 2)
         	return;
         
         if (tileentitynote != null && tileentitynote.previousRedstoneState != flag)
@@ -128,7 +135,7 @@ public class BlockPiano extends BlockDirectionedMulti {
         else
         {
         	int meta = world.getBlockMetadata(x, y, z) >> 2;
-          	if(meta != 0 && meta != 1)
+          	if(meta != 3 && meta != 2)
           		return false;
             Tile tileentitynote = (Tile)world.getTileEntity(x, y, z);
 

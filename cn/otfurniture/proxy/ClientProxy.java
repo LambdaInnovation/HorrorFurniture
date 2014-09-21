@@ -22,6 +22,8 @@ import cn.otfurniture.client.model.MdlCandleHolderL;
 import cn.otfurniture.client.model.MdlCandleHolderS;
 import cn.otfurniture.client.model.MdlWine;
 import cn.otfurniture.client.renderer.*;
+import cn.otfurniture.event.OTEventListener;
+import cn.otfurniture.event.OTTickEventListener;
 import cpw.mods.fml.client.registry.ClientRegistry;
 
 /**
@@ -48,6 +50,40 @@ public class ClientProxy extends Proxy {
 	 */
 	@Override
 	public void init() {
+		//----------Wireframe calcellation-------------
+		
+		OTEventListener.addHighlightIgnoring(BlockBathtub.class);
+		OTEventListener.addHighlightIgnoring(BlockCabinet.class);
+		OTEventListener.addHighlightIgnoring(BlockCandleHolderLarge.class);
+		OTEventListener.addHighlightIgnoring(BlockCandleHolderSmall.class);
+		OTEventListener.addHighlightIgnoring(BlockChair.class);
+		OTEventListener.addHighlightIgnoring(BlockClock.class);
+		OTEventListener.addHighlightIgnoring(BlockDesk.class);
+		OTEventListener.addHighlightIgnoring(BlockFileShelf.class);
+		OTEventListener.addHighlightIgnoring(BlockHanger.class);
+		OTEventListener.addHighlightIgnoring(BlockKitchenShelf.class);
+		OTEventListener.addHighlightIgnoring(BlockKitchenShelfSmall.class);
+		OTEventListener.addHighlightIgnoring(BlockKitchenSink.class);
+		OTEventListener.addHighlightIgnoring(BlockLamp.class);
+		OTEventListener.addHighlightIgnoring(BlockLampLarge.class);
+		OTEventListener.addHighlightIgnoring(BlockOilLamp.class);
+		OTEventListener.addHighlightIgnoring(BlockPiano.class);
+		OTEventListener.addHighlightIgnoring(BlockShelf.class);
+		OTEventListener.addHighlightIgnoring(BlockSink.class);
+		OTEventListener.addHighlightIgnoring(BlockSmallChair.class);
+		OTEventListener.addHighlightIgnoring(BlockSofaSmall.class);
+		OTEventListener.addHighlightIgnoring(BlockSofaMedium.class);
+		OTEventListener.addHighlightIgnoring(BlockSofaLarge.class);
+		OTEventListener.addHighlightIgnoring(BlockTShelf.class);
+		OTEventListener.addHighlightIgnoring(BlockTV.class);
+		OTEventListener.addHighlightIgnoring(BlockTVShelf.class);
+		OTEventListener.addHighlightIgnoring(BlockWine.class);
+		OTEventListener.addHighlightIgnoring(BlockWritingDesk.class);
+		OTEventListener.addHighlightIgnoring(BlockBed.class);
+		
+		//-----------------------------------
+		
+		
 		ClientRegistry.bindTileEntitySpecialRenderer(BlockShelf.Tile.class, new RendererShelf());
 		ClientRegistry.bindTileEntitySpecialRenderer(BlockBathtub.Tile.class, new RendererBathtub());
 		ClientRegistry.bindTileEntitySpecialRenderer(BlockTV.Tile.class, new RendererTV());
@@ -56,7 +92,7 @@ public class ClientProxy extends Proxy {
 		ClientRegistry.bindTileEntitySpecialRenderer(BlockLampLarge.Tile.class, new RendererLampLarge());
 		ClientRegistry.bindTileEntitySpecialRenderer(BlockChair.Tile.class, new RendererChair());
 		//这个在debug状态注册会出现迷之错误，所以暂时敲掉
-		//ClientRegistry.bindTileEntitySpecialRenderer(BlockClock.Tile.class, new RenderClock());
+		ClientRegistry.bindTileEntitySpecialRenderer(BlockClock.Tile.class, new RendererClock());
 		ClientRegistry.bindTileEntitySpecialRenderer(BlockKitchenShelf.Tile.class, new RendererKitchenShelf());
 		ClientRegistry.bindTileEntitySpecialRenderer(BlockKitchenShelfSmall.Tile.class, new RendererKSShelf());
 		ClientRegistry.bindTileEntitySpecialRenderer(BlockPiano.Tile.class, new RendererPiano());
@@ -74,7 +110,7 @@ public class ClientProxy extends Proxy {
 		ClientRegistry.bindTileEntitySpecialRenderer(BlockCabinet.Tile.class,
 				new RenderTileModelSided(new TileEntityModelCustom(OFClientProps.MDL_CABINET)).setScale(0.03F));
 		ClientRegistry.bindTileEntitySpecialRenderer(BlockSofaSmall.Tile.class,
-				new RenderTileModelSided(new TileEntityModelCustom(OFClientProps.MDL_SOFA[0])).setScale(0.01F));
+				new RenderTileModelSided(new TileEntityModelCustom(OFClientProps.MDL_SOFA[0])).setScale(0.013F));
 		ClientRegistry.bindTileEntitySpecialRenderer(BlockSofaMedium.Tile.class,
 				new RenderTileModelSided(new TileEntityModelCustom(OFClientProps.MDL_SOFA[1])).setScale(0.0165F));
 		ClientRegistry.bindTileEntitySpecialRenderer(BlockSofaLarge.Tile.class,
@@ -98,6 +134,8 @@ public class ClientProxy extends Proxy {
 				new RenderTileModelSided(new TileEntityModelCustom(OFClientProps.MDL_BED)).setScale(0.095F));
 		ClientRegistry.bindTileEntitySpecialRenderer(BlockMirror.Tile.class, new RendererMirror());
 		ClientRegistry.bindTileEntitySpecialRenderer(BlockSmallCurtain.Tile.class, new RendererSmallCurtain());
+		ClientRegistry.bindTileEntitySpecialRenderer(BlockCurtain2.Tile.class, new RendererCurtain2());
+		ClientRegistry.bindTileEntitySpecialRenderer(BlockCurtain4.Tile.class, new RendererCurtain4());
 		
 		super.init();
 	}

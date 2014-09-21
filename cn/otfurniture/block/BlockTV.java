@@ -18,6 +18,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import cn.liutils.api.block.BlockDirectionedMulti;
@@ -83,6 +84,7 @@ public class BlockTV extends BlockDirectionedMulti {
     {
 		System.out.println(world.isRemote);
 		Tile te = (Tile) world.getTileEntity(x, y, z);
+		System.out.println("Rev");
 		if(te.isOpen) te.close();
 		else te.open();
 		return true;

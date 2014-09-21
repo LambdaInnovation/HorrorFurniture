@@ -9,8 +9,10 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import cn.liutils.api.block.BlockDirectionedMulti;
@@ -25,7 +27,11 @@ import cn.otfurniture.proxy.OFClientProps;
 public class BlockMirror extends BlockDirectionedMulti implements ITextureProvider {
 	
 	public static class Tile extends TileEntity {
-		
+	    @SideOnly(Side.CLIENT)
+	    public AxisAlignedBB getRenderBoundingBox()
+	    {
+	        return INFINITE_EXTENT_AABB;
+	    }
 	}
 
 	public final int id;
@@ -80,6 +86,21 @@ public class BlockMirror extends BlockDirectionedMulti implements ITextureProvid
 	@Override
 	public ResourceLocation getTexture() {
 		return OFClientProps.TEX_MIRROR[id];
+	}
+	
+	@Override
+	public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
+		int dir = getFacingDirection(getMetadata(world, x, y, z)).ordinal();
+		float a = 0.1F, b = 0.9F;
+		if(dir == 5) {
+			this.setBlockBounds(0.0F, 0.0F, 0.0F, a, 1.0F, 1.0F);
+		} else if(dir == 4) {
+			this.setBlockBounds(b, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
+		} else if(dir == 3) {
+			this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, a);
+		} else {
+			this.setBlockBounds(0.0F, 0.0F, b, 1.0F, 1.0F, 1.0F);
+		}
 	}
 
 }

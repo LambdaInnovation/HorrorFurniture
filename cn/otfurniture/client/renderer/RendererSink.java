@@ -50,8 +50,6 @@ public class RendererSink extends RenderTileModelSided {
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		GL11.glPushMatrix(); {
 			
-			GL11.glRotatef(rotations[meta], 0F, 1F, 0F);
-			
 			if(((Tile)te).watered){
 				IIcon i = BlockLiquid.getLiquidIcon("water_still");
 				ResourceLocation rs = Minecraft.getMinecraft().getTextureManager().getResourceLocation(0);
@@ -83,6 +81,8 @@ public class RendererSink extends RenderTileModelSided {
 			RenderUtils.loadTexture(this.getTexture(te));
 			GL11.glScalef(scale, scale, scale);
 			theModel.render(te, 0F, 0F);
+			//我已经醉了
+			GL11.glRotatef(rotations[meta], 0F, 1F, 0F);
 		} GL11.glPopMatrix();
 	}
 

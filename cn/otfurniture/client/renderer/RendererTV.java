@@ -39,6 +39,7 @@ public class RendererTV extends RenderTileModelSided {
 		BlockTV b = (BlockTV) te.getBlockType();
 		Tile t = (Tile) te;
 		ResourceLocation tex;
+		
 		if(b.id == 1) {
 			if(t.isOpen) {
 				int ind = t.openedTick / 2;
@@ -56,11 +57,13 @@ public class RendererTV extends RenderTileModelSided {
 		
 		GL11.glPushMatrix(); {
 			
-			GL11.glRotatef(rotations[meta], 0F, 1F, 0F);
-			GL11.glScalef(scale, scale, scale);
 			RenderUtils.loadTexture(tex);
+			System.out.println("Rotation : " + rotations[meta]);
+			GL11.glScalef(scale, scale, scale);
+			//谁告诉我OpenGL的渲染顺序到底是怎么样啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊！
 			GL11.glRotatef(180F, 0F, 1F, 0F);
 			theModel.render(te, 0F, 0F);
+			GL11.glRotatef(rotations[meta], 0F, 1F, 0F);
 			
 		} GL11.glPopMatrix();
 	}

@@ -10,24 +10,30 @@
  */
 package cn.otfurniture.event;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.MovingObjectPosition.MovingObjectType;
+import net.minecraftforge.client.event.DrawBlockHighlightEvent;
 import cn.otfurniture.OldTownFurniture;
 import cn.otfurniture.investigate.Investigator;
 import cn.otfurniture.network.MsgInvsStateUpdate;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent.Phase;
 import cpw.mods.fml.common.gameevent.TickEvent.PlayerTickEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * Tick事件侦听
  * @author WeAthFolD
  */
 public class OTTickEventListener {
-	
+	 
 	@SubscribeEvent
 	public void playerTick(PlayerTickEvent event) {
 		if(event.phase == Phase.END) return;

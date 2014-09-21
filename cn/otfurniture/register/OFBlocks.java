@@ -18,7 +18,6 @@ import net.minecraft.block.Block;
 /**
  * 方块注册类
  * @author WeAthFolD
- *
  */
 public class OFBlocks {
 
@@ -52,7 +51,10 @@ public class OFBlocks {
 		cholderl,
 		wine,
 		mirror[],
-		bcurtain[];
+		scurtain[],
+		bcurtain[],
+		mcurtain[],
+		lcurtain[];
 	
 	public static void init() {
 		//方块初始化和注册
@@ -85,7 +87,10 @@ public class OFBlocks {
 		cholderl = reg(BlockCandleHolderLarge.class, "hf_candleholderl");
 		wine = reg(BlockWine.class, "hf_wine");
 		mirror = reg(BlockMirror.class, 4, "hf_mirror");
-		bcurtain = reg(BlockSmallCurtain.class, 4, "hf_scurtain");
+		scurtain = reg(BlockSmallCurtain.class, 4, "hf_scurtain");
+		bcurtain = reg(BlockBathCurtain.class, 4, "hf_bcurtain");
+		mcurtain = reg(BlockMediumCurtain.class, 4, "hf_mcurtain");
+		lcurtain = reg(BlockCurtain4.class, 2, "hf_lcurtain");
 		
 		//TileEntity注册
 		GameRegistry.registerTileEntity(BlockCabinet.Tile.class, "hf_tile_cabinet");
@@ -117,6 +122,9 @@ public class OFBlocks {
 		GameRegistry.registerTileEntity(BlockWine.Tile.class, "hf_wine");
 		GameRegistry.registerTileEntity(BlockMirror.Tile.class, "hf_mirror");
 		GameRegistry.registerTileEntity(BlockSmallCurtain.Tile.class, "hf_scurtain");
+		GameRegistry.registerTileEntity(BlockBathCurtain.Tile.class, "hf_bcurtain");
+		GameRegistry.registerTileEntity(BlockCurtain4.Tile.class, "hf_lcurtain");
+		GameRegistry.registerTileEntity(BlockLamp.Tile.class, "hf_slamp");
 	}
 	
 	private static Block[] reg(Class<? extends Block> cl, int cnt, String key) {
