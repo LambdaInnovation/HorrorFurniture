@@ -3,6 +3,8 @@
  */
 package cn.otfurniture.block;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import scala.util.Random;
 import cn.otfurniture.block.BlockPianoBase.Tile;
 import cn.otfurniture.register.OFItems;
@@ -10,6 +12,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemRecord;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
 /**
@@ -40,6 +43,12 @@ public class BlockPianoRecorded extends BlockPianoBase {
 			}
 		}
 		
+	    @SideOnly(Side.CLIENT)
+	    public AxisAlignedBB getRenderBoundingBox()
+	    {
+	    	return INFINITE_EXTENT_AABB;
+	    }
+		
 	}
 	
 	final int id;
@@ -59,15 +68,17 @@ public class BlockPianoRecorded extends BlockPianoBase {
         {
         	int meta = world.getBlockMetadata(x, y, z);
         	if(meta >> 2 != 2 && meta >> 2 != 3) return false;
+        	
         	int[] crds = this.getOrigin(world, x, y, z, meta);
         	x = crds[0];
         	y = crds[1];
         	z = crds[2];
-        	
-        	world.playAuxSFXAtEntity((EntityPlayer)null, 1005, x, y, z, Item.getIdFromItem(recItem));
+        	System.out.println(x + " " + y + " " + z);
         	
         	Tile te = (Tile) world.getTileEntity(x, y, z);
-        	world.playRecord(te.isPlaying ? null : "records.otp_" + id, x, y, z);
+
+        	world.playAuxSFXAtEntity(null, 1005, x, y, z, te.isPlaying ? 0 : Item.getIdFromItem(recItem));
+        	//world.playRecord(te.isPlaying ? "" : "records.otp_" + id, x, y, z);
         	te.isPlaying = !te.isPlaying;
         	
         	return true;
