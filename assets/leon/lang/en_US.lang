@@ -1,6 +1,6 @@
-#English Language File 2014/8/5 for debugging
+#English Language File 2014/9/7 by KSkun
 #Items
-#(non-items)
+item.hf_wand.name=Wand
 
 #Block
 tile.cabinet0.name=Cabinet A
@@ -11,30 +11,61 @@ tile.cabinet4.name=Cabinet E
 tile.shelf0.name=Shelf A
 tile.shelf1.name=Shelf B
 tile.shelf2.name=Shelf C
-tile.sofa0.name=Sofa Big
-tile.sofa1.name=Sofa Medium
-tile.sofa2.name=Sofa Small
+tile.hf_sofas0.name=Sofa 1 (Small)
+tile.sofam0.name=Sofa 1 (Medium)
+tile.sofal0.name=Sofa 1 (Big)
+tile.hf_sofas1.name=Sofa 2 (Small)
+tile.sofam1.name=Sofa 2 (Medium)
+tile.sofal1.name=Sofa 2 (Big)
+tile.hf_sofas2.name=Sofa 3 (Small)
+tile.sofam2.name=Sofa 3 (Medium)
+tile.sofal2.name=Sofa 3 (Big)
 tile.bathtub.name=Bath Tub
-tile.bathtubb.name=Bath Tub(Bloody)
+tile.bathtubb.name=Bath Tub (Bloody)
 tile.tv.name=TV
-tile.tvb.name=TV(Bloody)
+tile.tvb.name=TV (Bloody)
 tile.sink.name=Sink
-tile.sinkb.name=Sink(Bloody)
-tile.chair.name=Chair
-tile.chairb.name=Chair(Bloody)
-tile.desk.name=Desk
-tile.deskb.name=Desk(Bloody)
+tile.sinkb.name=Sink (Bloody)
+tile.chair0.name=Chair 2
+tile.chair1.name=Chair 2 (Bloody)
+tile.chair2.name=Chair 1
+tile.chair3.name=Chair 1 (Bloody)
+tile.desk0.name=Desk 2
+tile.desk1.name=Desk 2 (Bloody)
+tile.desk2.name=Desk 3
+tile.desk3.name=Desk 1
+tile.desk4.name=Desk 1 (Bloody)
 tile.lamp.name=Lamp
-tile.lampb.name=Lamp(Bloody)
+tile.lampb.name=Lamp (Bloody)
 tile.lampl.name=Large Lamp
-tile.lamplb.name=Large Lamp(Bloody)
-tile.desky.name=Yellow Desk
-tile.deskyb.name=Yellow Desk(Bloody)
-tile.deskf.name=Desk(With Fabric)
-tile.mirror0.name=Mirror
-tile.mirror1.name=Mirror(Blood1)
-tile.mirror2.name=Mirror(Blood2)
-tile.mirror3.name=Mirror(Blood3)
+tile.lamplb.name=Large Lamp (Bloody)
+tile.hf_wdesk0.name=Writing Desk
+tile.hf_wdesk1.name=Writing Desk (Bloody)
+tile.hf_ksink0.name=Kitchen Sink
+tile.hf_ksink1.name=Kitchen Sink (Bloody)
+tile.hf_clock0.name=Clock
+tile.hf_clock1.name=Clock (Bloody)
+tile.hf_kshelf0.name=Kitchen Shelf 1
+tile.hf_kshelf1.name=Kitchen Shelf 1 (Bloody)
+tile.hf_kshelf2.name=Kitchen Shelf 2
+tile.hf_kshelf3.name=Kitchen Shelf 2 (Bloody)
+tile.hf_tshelf0.name=Rounded Shelf 1
+tile.hf_tshelf1.name=Rounded Shelf 1 (Bloody)
+tile.hf_tshelf2.name=Rounded Shelf 2
+tile.hf_tshelf3.name=Rounded Shelf 2 (Bloody)
+tile.hf_ksshelf0.name=Kitchen Small Shelf 1
+tile.hf_ksshelf1.name=Kitchen Small Shelf 2
+tile.hf_ksshelf2.name=Kitchen Small Shelf 2 (Bloody)
+tile.hf_schair0.name=Small Chair 1
+tile.hf_schair1.name=Small Chair 2
+tile.hf_schair2.name=Small Chair 2 (Bloody)
+tile.hf_bed0.name=Bed
+tile.hf_bed1.name=Bed (Bloody)
+tile.hf_tvshelf.name=TV Shelf
+tile.hf_oillamp0.name=Oil Lamp
+tile.hf_hanger.name=Hanger
+tile.hf_fileshelf.name=File Shelf
+tile.hf_piano.name=Piano
 
 #CreativeTabs
-itemGroup.Furnitures=Furnitures
+itemGroup.otfurniture=Old Town Furniture
