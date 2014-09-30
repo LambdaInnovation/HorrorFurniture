@@ -53,7 +53,8 @@ public class ClientProxy extends Proxy {
 	@Override
 	public void init() {
 		//----------Wireframe calcellation-------------
-		
+		//Feature disabled for creator edition
+		/*
 		OTEventListener.addHighlightIgnoring(BlockBathtub.class);
 		OTEventListener.addHighlightIgnoring(BlockCabinet.class);
 		OTEventListener.addHighlightIgnoring(BlockCandleHolderLarge.class);
@@ -82,7 +83,7 @@ public class ClientProxy extends Proxy {
 		OTEventListener.addHighlightIgnoring(BlockWine.class);
 		OTEventListener.addHighlightIgnoring(BlockWritingDesk.class);
 		OTEventListener.addHighlightIgnoring(BlockBed.class);
-		
+		*/
 		//-----------------------------------
 		
 		

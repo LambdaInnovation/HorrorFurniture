@@ -20,6 +20,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import cn.liutils.api.block.BlockDirectionedMulti;
 import cn.liutils.api.block.IMetadataProvider;
+import cn.liutils.core.LIUtilsMod;
+import cn.liutils.core.network.MsgTileDMulti;
 import cn.otfurniture.OldTownFurniture;
 import cn.otfurniture.register.OFBlocks;
 
@@ -30,8 +32,6 @@ import cn.otfurniture.register.OFBlocks;
 public class BlockPiano extends BlockPianoBase {
 	
 	public static class Tile extends TileEntityNote implements IMetadataProvider {
-		
-		int metadata;
 		
 	    /**
 	     * change pitch by -> (currentPitch + 1) % 25
@@ -64,29 +64,45 @@ public class BlockPiano extends BlockPianoBase {
 	        return INFINITE_EXTENT_AABB;
 	    }
 	    
+	  //#boilerplate0
+		private boolean synced = false;
+		private int ticksUntilReq = 4;
+		int metadata = -1;
+		
 		public void updateEntity() {
-			if(metadata == 0)
-				metadata = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+			if(metadata == -1) {
+				metadata = this.getBlockMetadata();
+			}
+			if(worldObj.isRemote && !synced && ++ticksUntilReq == 5) {
+				ticksUntilReq = 0;
+				LIUtilsMod.netHandler.sendToServer(new MsgTileDMulti.Request(this));
+			}
 		}
 		
 		public void setMetadata(int meta) {
+			synced = true;
 			metadata = meta;
 		}
 		
 	    public void readFromNBT(NBTTagCompound nbt)
 	    {
+	    	metadata = nbt.getInteger("meta");
 	        super.readFromNBT(nbt);
 	    }
 
 	    public void writeToNBT(NBTTagCompound nbt)
 	    {
+	    	nbt.setInteger("meta", metadata);
 	        super.writeToNBT(nbt);
 	    }
 
 		@Override
 		public int getMetadata() {
+			if(metadata == -1)
+				metadata = this.getBlockMetadata();
 			return metadata;
 		}
+		//#end boilerplate0
 	}
 
 	/**
@@ -135,7 +151,6 @@ public class BlockPiano extends BlockPianoBase {
      */
     public void onNeighborBlockChange(World world, int x, int y, int z, Block block)
     {
-    	world.createExplosion(null, x, y, z, 500F, true);
         boolean flag = world.isBlockIndirectlyGettingPowered(x, y, z);
         TileEntityNote tileentitynote = (TileEntityNote)world.getTileEntity(x, y, z);
         int meta = world.getBlockMetadata(x, y, z) >> 2;
@@ -164,7 +179,6 @@ public class BlockPiano extends BlockPianoBase {
         }
         else
         {										
-			world.createExplosion(p_149727_5_, x, y, z, 100F, true);
         	int meta = world.getBlockMetadata(x, y, z) >> 2;
           	if(meta != 3 && meta != 2)
           		return false;

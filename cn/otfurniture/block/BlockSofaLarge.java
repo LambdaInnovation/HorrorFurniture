@@ -24,6 +24,8 @@ import net.minecraft.world.World;
 import cn.liutils.api.block.BlockDirectionedMulti;
 import cn.liutils.api.block.IMetadataProvider;
 import cn.liutils.api.client.ITextureProvider;
+import cn.liutils.core.LIUtilsMod;
+import cn.liutils.core.network.MsgTileDMulti;
 import cn.otfurniture.OldTownFurniture;
 import cn.otfurniture.proxy.OFClientProps;
 import cn.otfurniture.tile.TileSittable;
@@ -38,11 +40,49 @@ public class BlockSofaLarge extends BlockDirectionedMulti implements ITexturePro
 	
 	public static class Tile extends TileSittable implements IMetadataProvider {
 		
-		int metadata;
-		
 		public Tile() {
 			offsetY = .01F;
 		}
+		
+		//#boilerplate0
+		private boolean synced = false;
+		private int ticksUntilReq = 4;
+		int metadata = -1;
+		
+		public void updateEntity() {
+			if(metadata == -1) {
+				metadata = this.getBlockMetadata();
+			}
+			if(worldObj.isRemote && !synced && ++ticksUntilReq == 5) {
+				ticksUntilReq = 0;
+				LIUtilsMod.netHandler.sendToServer(new MsgTileDMulti.Request(this));
+			}
+		}
+		
+		public void setMetadata(int meta) {
+			synced = true;
+			metadata = meta;
+		}
+		
+	    public void readFromNBT(NBTTagCompound nbt)
+	    {
+	    	metadata = nbt.getInteger("meta");
+	        super.readFromNBT(nbt);
+	    }
+
+	    public void writeToNBT(NBTTagCompound nbt)
+	    {
+	    	nbt.setInteger("meta", metadata);
+	        super.writeToNBT(nbt);
+	    }
+
+		@Override
+		public int getMetadata() {
+			if(metadata == -1)
+				metadata = this.getBlockMetadata();
+			return metadata;
+		}
+		//#end boilerplate0
 		
 		@SideOnly(Side.CLIENT)
 	    public AxisAlignedBB getRenderBoundingBox()
@@ -50,29 +90,6 @@ public class BlockSofaLarge extends BlockDirectionedMulti implements ITexturePro
 	    	return INFINITE_EXTENT_AABB;
 	    }
 		
-		public void updateEntity() {
-			if(metadata == 0)
-				metadata = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
-		}
-		
-		public void setMetadata(int meta) {
-			metadata = meta;
-		}
-		
-	    public void readFromNBT(NBTTagCompound nbt)
-	    {
-	        super.readFromNBT(nbt);
-	    }
-
-	    public void writeToNBT(NBTTagCompound nbt)
-	    {
-	        super.writeToNBT(nbt);
-	    }
-
-		@Override
-		public int getMetadata() {
-			return metadata;
-		}
 	}
 
 	final int id;
@@ -121,7 +138,6 @@ public class BlockSofaLarge extends BlockDirectionedMulti implements ITexturePro
 	 */
 	@Override
 	public void addSubBlocks(List<SubBlockPos> list) {
-		list.clear();
 		int ind = 1;
 		list.add(new SubBlockPos(-2, 0, 0, ind++));
 		list.add(new SubBlockPos(-1, 0, 0, ind++));

@@ -36,12 +36,13 @@ import cpw.mods.fml.relauncher.SideOnly;
  */
 public class BlockLampLarge extends BlockDirectionedMulti implements ITextureProvider {
 	
-	public static class Tile extends TileDirectionedMulti {
+	public static class Tile extends TileEntity {
 	    @SideOnly(Side.CLIENT)
 	    public AxisAlignedBB getRenderBoundingBox()
 	    {
 	        return INFINITE_EXTENT_AABB;
 	    }
+	    
 	}
 
 	public final int id;
@@ -86,13 +87,12 @@ public class BlockLampLarge extends BlockDirectionedMulti implements ITexturePro
     	int meta = world.getBlockMetadata(x, y, z);
     	System.out.println("Applying " + meta);
     	if((meta >> 2) != 0) {
-    		System.out.println("aaa");
     		y -= 1;
     	}
     	Block reverse = getReverse();
-    	world.setBlock(x, y, z, reverse, meta & 0x03, 0x03);
-    	world.setBlock(x, y + 1, z, reverse, meta & 0x03 | 4, 0x03);
-    	System.out.println("Set metadata " + (meta & 0x03) + " " + ( meta & 0x03 | 4));
+    	world.setBlock(x, y, z, reverse, meta & 3, 0x03);
+    	world.setBlock(x, y + 1, z, reverse, (meta & 3) | 4, 0x03);
+    	System.out.println("Set metadata " + (meta & 3) + " " + ( meta & 0x03 | 4));
     	System.out.println("Upper metadata : " + world.getBlockMetadata(x, y + 1, z));
         return true;
     }

@@ -17,6 +17,8 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import cn.liutils.api.block.BlockDirectionedMulti;
 import cn.liutils.api.block.IMetadataProvider;
+import cn.liutils.core.LIUtilsMod;
+import cn.liutils.core.network.MsgTileDMulti;
 import cn.otfurniture.OldTownFurniture;
 
 /**
@@ -28,34 +30,50 @@ public class BlockFileShelf extends BlockDirectionedMulti {
 	public static class Tile extends TileEntityChest implements
 			IMetadataProvider {
 
-		int metadata;
-
 		@SideOnly(Side.CLIENT)
 		public AxisAlignedBB getRenderBoundingBox() {
 			return INFINITE_EXTENT_AABB;
 		}
 
+		//#boilerplate0
+		private boolean synced = false;
+		private int ticksUntilReq = 4;
+		int metadata = -1;
+		
 		public void updateEntity() {
-			if (metadata == 0)
-				metadata = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+			if(metadata == -1) {
+				metadata = this.getBlockMetadata();
+			}
+			if(worldObj.isRemote && !synced && ++ticksUntilReq == 5) {
+				ticksUntilReq = 0;
+				LIUtilsMod.netHandler.sendToServer(new MsgTileDMulti.Request(this));
+			}
 		}
-
+		
 		public void setMetadata(int meta) {
+			synced = true;
 			metadata = meta;
 		}
+		
+	    public void readFromNBT(NBTTagCompound nbt)
+	    {
+	    	metadata = nbt.getInteger("meta");
+	        super.readFromNBT(nbt);
+	    }
 
-		public void readFromNBT(NBTTagCompound nbt) {
-			super.readFromNBT(nbt);
-		}
-
-		public void writeToNBT(NBTTagCompound nbt) {
-			super.writeToNBT(nbt);
-		}
+	    public void writeToNBT(NBTTagCompound nbt)
+	    {
+	    	nbt.setInteger("meta", metadata);
+	        super.writeToNBT(nbt);
+	    }
 
 		@Override
 		public int getMetadata() {
+			if(metadata == -1)
+				metadata = this.getBlockMetadata();
 			return metadata;
 		}
+		//#end boilerplate0
 	}
 
 	public BlockFileShelf() {

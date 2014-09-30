@@ -46,7 +46,6 @@ public class RendererClock extends RenderTileModelSided {
 		GL11.glPushMatrix(); {
 			
 			GL11.glTranslatef(0F, 2.2F, 0F);
-			GL11.glRotatef(rotations[meta], 0F, 1F, 0F);
 			GL11.glScalef(scale, scale, scale);
 			
 			GL11.glPushMatrix(); {
@@ -57,6 +56,8 @@ public class RendererClock extends RenderTileModelSided {
 			
 			//绘制主要部分
 			theModel.renderPart(te, "Main", 0F, 0F);
+			
+			GL11.glRotatef(rotations[meta], 0F, 1F, 0F);
 			
 		} GL11.glPopMatrix();
 		GL11.glEnable(GL11.GL_CULL_FACE);

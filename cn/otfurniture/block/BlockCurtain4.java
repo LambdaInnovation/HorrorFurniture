@@ -9,6 +9,9 @@ import java.util.List;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import cn.liutils.api.block.BlockDirectionedMulti.SubBlockPos;
+import cn.liutils.api.block.TileDirectionedMulti;
+import cn.liutils.core.LIUtilsMod;
+import cn.liutils.core.network.MsgTileDMulti;
 import cn.otfurniture.block.BlockCurtain2.Tile;
 import cn.otfurniture.proxy.OFClientProps;
 import cn.otfurniture.register.OFBlocks;
@@ -31,60 +34,14 @@ import net.minecraftforge.common.util.ForgeDirection;
  */
 public class BlockCurtain4 extends BlockCurtain2 {
 	
-	public static class Tile extends TileEntity {
-		public int tMeta;
-		
-		boolean init = false;
-		
-		public void updateEntity() {
-			
-			if(tMeta == 0)
-				tMeta = getBlockMetadata();
-			
-			if((tMeta >> 2 == 0) && !init) {
-				//System.out.println("Syncing all tMeta " + tMeta);
-				BlockCurtain4 bt = (BlockCurtain4) this.getBlockType();
-				
-				boolean b = true;
-				for(SubBlockPos pos : bt.subBlocks) {
-					if(pos.id == 0) continue;
-					SubBlockPos pos2 = bt.applyRotation(pos, getFacingDirection(tMeta).ordinal());
-					TileEntity te = worldObj.getTileEntity(xCoord + pos2.offX, yCoord + pos2.offY, zCoord + pos2.offZ);
-					if(te != null && te instanceof Tile) {
-						Tile tee = (Tile) te;
-						int meta = tee.tMeta;
-						
-						if(meta >> 2 <= 0) {
-							b = false;
-							tee.tMeta = tMeta + (pos.id << 2);
-							System.out.println("Setting " + pos.id + " " + tee.tMeta);
-						}
-					} else b = false;
-				}
-				
-				init = b;
-			}
-		}
-		
-		@Override
-	    public void readFromNBT(NBTTagCompound nbt)
-	    {
-	        super.readFromNBT(nbt);
-	        tMeta = nbt.getInteger("meta");
-	    }
-
-		@Override
-	    public void writeToNBT(NBTTagCompound nbt)
-	    {
-	    	super.writeToNBT(nbt);
-	    	nbt.setInteger("meta", tMeta);
-	    }
+	public static class Tile extends TileDirectionedMulti {
 		
 	    @SideOnly(Side.CLIENT)
 	    public AxisAlignedBB getRenderBoundingBox()
 	    {
 	        return INFINITE_EXTENT_AABB;
 	    }
+	    
 	}
 
 	public BlockCurtain4(int idl) {
@@ -98,31 +55,11 @@ public class BlockCurtain4 extends BlockCurtain2 {
 		return new Tile();
 	}
 	
-	@Override
-    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase placer, ItemStack stack)
-    {
-		System.out.println("ONBlockPlacedBy");
-        int metadata = MathHelper.floor_double(placer.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
-        
-        ForgeDirection dir = getFacingDirection(metadata);
-        Iterator<SubBlockPos> iter = subBlocks.iterator();
-        iter.next();
-        
-        while(iter.hasNext()) {
-        	SubBlockPos pos = iter.next();
-        	SubBlockPos pos2 = applyRotation(pos, dir.ordinal());
-        	pos2.setMe(world, x, y, z, -4, this);
-        }
-        Tile te = (Tile) world.getTileEntity(x, y, z);
-        te.tMeta = metadata;
-    }
-	
     public boolean onBlockActivated(World wrld, int x, int y, int z, EntityPlayer player, int a,
     		float b, float c, float d)
     {
     	int meta = getMetadata(wrld, x, y, z);
-    	System.out.println(meta + " " + (meta & 3) + " " + (meta >> 2));
-    	if(meta >> 2 < 0) return true;
+    	
     	{
     		//Get back to origin
     		int[] crds = this.getOrigin(wrld, x, y, z, meta);
@@ -135,7 +72,7 @@ public class BlockCurtain4 extends BlockCurtain2 {
     	for(SubBlockPos pos : this.subBlocks) {
     		//Set all the subBlocks
     		SubBlockPos pos2 = this.applyRotation(pos, this.getFacingDirection(meta).ordinal());
-    		pos2.setMe(wrld, x, y, z, -4, getReverse());
+    		pos2.setMe(wrld, x, y, z, meta | (pos.id << 2), getReverse());
     	}
     	
     	//Set origin block
@@ -160,12 +97,6 @@ public class BlockCurtain4 extends BlockCurtain2 {
 		list.add(new SubBlockPos(3, 1, 0, 13));
 		list.add(new SubBlockPos(3, 2, 0, 14));
 		list.add(new SubBlockPos(3, 3, 0, 15));
-	}
-	
-	@Override
-	public int getMetadata(IBlockAccess world, int x, int y, int z) {
-		Tile te = (Tile) world.getTileEntity(x, y, z);
-		return te.tMeta;
 	}
 
 	@Override

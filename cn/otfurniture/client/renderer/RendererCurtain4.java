@@ -26,7 +26,7 @@ public class RendererCurtain4 extends RenderTileSided {
 	@Override
 	public void renderTileEntityAt(TileEntity var1, double var2, double var4,
 			double var6, float var8) {
-		int meta = ((BlockCurtain4.Tile)var1).tMeta;
+		int meta = ((BlockCurtain4.Tile)var1).getMetadata();
 		if(meta >> 2 != 0) return;
 		Vec3 rotate = ((BlockDirectionedMulti)var1.getBlockType()).getOffsetRotated(BlockDirectionedMulti.getFacingDirection(meta).ordinal());
 		GL11.glPushMatrix(); {
