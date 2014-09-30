@@ -21,6 +21,8 @@ import cn.otfurniture.client.key.KeyInvestigate;
 import cn.otfurniture.client.model.MdlCandleHolderL;
 import cn.otfurniture.client.model.MdlCandleHolderS;
 import cn.otfurniture.client.model.MdlWine;
+import cn.otfurniture.client.model.ModelChandelierBig;
+import cn.otfurniture.client.model.ModelChandelierSmall;
 import cn.otfurniture.client.renderer.*;
 import cn.otfurniture.event.OTEventListener;
 import cn.otfurniture.event.OTTickEventListener;
@@ -137,7 +139,11 @@ public class ClientProxy extends Proxy {
 		ClientRegistry.bindTileEntitySpecialRenderer(BlockCurtain2.Tile.class, new RendererCurtain2());
 		ClientRegistry.bindTileEntitySpecialRenderer(BlockCurtain4.Tile.class, new RendererCurtain4());
 		ClientRegistry.bindTileEntitySpecialRenderer(BlockPianoRecorded.Tile.class, new RendererPiano());
-		
+		ClientRegistry.bindTileEntitySpecialRenderer(BlockChandelierSmall.Tile.class,
+				new RenderTileModelSided(new ModelChandelierSmall()).setTechne(true)
+				.setModelTexture(OFClientProps.TEX_CHANDELIER).setOffset(0D, 1.5D, 0D));
+		ClientRegistry.bindTileEntitySpecialRenderer(BlockChandelierLarge.Tile.class,
+				new RendererChandelierLarge());
 		super.init();
 	}
 

@@ -14,6 +14,7 @@ import java.util.List;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ResourceLocation;
@@ -21,6 +22,7 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import cn.liutils.api.block.BlockDirectionedMulti;
+import cn.liutils.api.block.IMetadataProvider;
 import cn.liutils.api.client.ITextureProvider;
 import cn.otfurniture.OldTownFurniture;
 import cn.otfurniture.proxy.OFClientProps;
@@ -34,7 +36,9 @@ import cpw.mods.fml.relauncher.SideOnly;
  */
 public class BlockSofaLarge extends BlockDirectionedMulti implements ITextureProvider {
 	
-	public static class Tile extends TileSittable {
+	public static class Tile extends TileSittable implements IMetadataProvider {
+		
+		int metadata;
 		
 		public Tile() {
 			offsetY = .01F;
@@ -45,6 +49,30 @@ public class BlockSofaLarge extends BlockDirectionedMulti implements ITexturePro
 	    {
 	    	return INFINITE_EXTENT_AABB;
 	    }
+		
+		public void updateEntity() {
+			if(metadata == 0)
+				metadata = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+		}
+		
+		public void setMetadata(int meta) {
+			metadata = meta;
+		}
+		
+	    public void readFromNBT(NBTTagCompound nbt)
+	    {
+	        super.readFromNBT(nbt);
+	    }
+
+	    public void writeToNBT(NBTTagCompound nbt)
+	    {
+	        super.writeToNBT(nbt);
+	    }
+
+		@Override
+		public int getMetadata() {
+			return metadata;
+		}
 	}
 
 	final int id;

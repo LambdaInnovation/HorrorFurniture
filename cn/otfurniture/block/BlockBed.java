@@ -10,6 +10,7 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import cn.liutils.api.block.BlockDirectionedMulti;
+import cn.liutils.api.block.TileDirectionedMulti;
 import cn.liutils.api.client.ITextureProvider;
 import cn.otfurniture.OldTownFurniture;
 import cn.otfurniture.proxy.OFClientProps;
@@ -18,7 +19,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BlockBed extends BlockDirectionedMulti implements ITextureProvider {
 	
-	public static class Tile extends TileEntity {
+	public static class Tile extends TileDirectionedMulti {
 	    @SideOnly(Side.CLIENT)
 	    public AxisAlignedBB getRenderBoundingBox()
 	    {

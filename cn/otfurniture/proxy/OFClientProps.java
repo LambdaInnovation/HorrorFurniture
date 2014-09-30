@@ -160,7 +160,8 @@ public class OFClientProps {
 		TEX_LCURTAIN[] = {
 			r("leon:textures/models/lcurtain00.png"),
 			r("leon:textures/models/lcurtain01.png")
-		};
+		},
+		TEX_CHANDELIER = r("leon:textures/models/chandelier.png");
 		
 	public static IModelCustom
 		MDL_CABINET = AdvancedModelLoader.loadModel(r("leon:models/cabinet.obj")),

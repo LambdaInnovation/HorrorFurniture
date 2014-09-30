@@ -9,12 +9,14 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import cn.liutils.api.block.BlockDirectionedMulti;
+import cn.liutils.api.block.IMetadataProvider;
 import cn.otfurniture.OldTownFurniture;
 
 /**
@@ -22,13 +24,38 @@ import cn.otfurniture.OldTownFurniture;
  *
  */
 public class BlockFileShelf extends BlockDirectionedMulti {
-	
-	public static class Tile extends TileEntityChest {
-	    @SideOnly(Side.CLIENT)
-	    public AxisAlignedBB getRenderBoundingBox()
-	    {
-	        return INFINITE_EXTENT_AABB;
-	    }
+
+	public static class Tile extends TileEntityChest implements
+			IMetadataProvider {
+
+		int metadata;
+
+		@SideOnly(Side.CLIENT)
+		public AxisAlignedBB getRenderBoundingBox() {
+			return INFINITE_EXTENT_AABB;
+		}
+
+		public void updateEntity() {
+			if (metadata == 0)
+				metadata = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+		}
+
+		public void setMetadata(int meta) {
+			metadata = meta;
+		}
+
+		public void readFromNBT(NBTTagCompound nbt) {
+			super.readFromNBT(nbt);
+		}
+
+		public void writeToNBT(NBTTagCompound nbt) {
+			super.writeToNBT(nbt);
+		}
+
+		@Override
+		public int getMetadata() {
+			return metadata;
+		}
 	}
 
 	public BlockFileShelf() {
@@ -47,17 +74,17 @@ public class BlockFileShelf extends BlockDirectionedMulti {
 	public Vec3 getRenderOffset() {
 		return Vec3.createVectorHelper(0D, 0D, .5D);
 	}
-	
-    @SideOnly(Side.CLIENT)
-    public Vec3 getOffsetRotated(int dir) {
-    	Vec3 v = super.getOffsetRotated(dir);
-    	if(dir == 4 || dir == 5) {
-    		v.zCoord = 0.5;
-    	} else {
-    		v.xCoord = 0.5;
-    	}
-    	return v;
-    }
+
+	@SideOnly(Side.CLIENT)
+	public Vec3 getOffsetRotated(int dir) {
+		Vec3 v = super.getOffsetRotated(dir);
+		if (dir == 4 || dir == 5) {
+			v.zCoord = 0.5;
+		} else {
+			v.xCoord = 0.5;
+		}
+		return v;
+	}
 
 	@Override
 	public void addSubBlocks(List<SubBlockPos> list) {

@@ -16,6 +16,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import cn.liutils.api.block.BlockDirectionedMulti;
+import cn.liutils.api.block.TileDirectionedMulti;
 import cn.liutils.api.client.ITextureProvider;
 import cn.otfurniture.OldTownFurniture;
 import cn.otfurniture.proxy.OFClientProps;
@@ -26,7 +27,7 @@ import cn.otfurniture.proxy.OFClientProps;
  */
 public class BlockMirror extends BlockDirectionedMulti implements ITextureProvider {
 	
-	public static class Tile extends TileEntity {
+	public static class Tile extends TileDirectionedMulti {
 	    @SideOnly(Side.CLIENT)
 	    public AxisAlignedBB getRenderBoundingBox()
 	    {
@@ -42,7 +43,7 @@ public class BlockMirror extends BlockDirectionedMulti implements ITextureProvid
 		this.setStepSound(soundTypeGlass);
 		setCreativeTab(OldTownFurniture.cct);
 		setBlockName("hf_mirror" + i);
-		setBlockTextureName("leon:hf_mirror");
+		setBlockTextureName("leon:mirror" + i);
 	}
 	
     @SideOnly(Side.CLIENT)

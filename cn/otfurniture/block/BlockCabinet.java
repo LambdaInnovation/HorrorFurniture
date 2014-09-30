@@ -16,6 +16,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryLargeChest;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.AxisAlignedBB;
@@ -23,6 +24,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import cn.liutils.api.block.BlockDirectionedMulti;
+import cn.liutils.api.block.IMetadataProvider;
 import cn.liutils.api.client.ITextureProvider;
 import cn.otfurniture.OldTownFurniture;
 import cn.otfurniture.proxy.OFClientProps;
@@ -35,12 +37,39 @@ import cpw.mods.fml.relauncher.SideOnly;
  */
 public class BlockCabinet extends BlockDirectionedMulti implements ITextureProvider {
 	
-	public static class Tile extends TileEntityChest {
+	public static class Tile extends TileEntityChest implements IMetadataProvider {
+		
+		int metadata;
+		
 	    @SideOnly(Side.CLIENT)
 	    public AxisAlignedBB getRenderBoundingBox()
 	    {
 	    	return INFINITE_EXTENT_AABB;
 	    }
+	    
+		public void updateEntity() {
+			if(metadata == 0)
+				metadata = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+		}
+		
+		public void setMetadata(int meta) {
+			metadata = meta;
+		}
+		
+	    public void readFromNBT(NBTTagCompound nbt)
+	    {
+	        super.readFromNBT(nbt);
+	    }
+
+	    public void writeToNBT(NBTTagCompound nbt)
+	    {
+	        super.writeToNBT(nbt);
+	    }
+
+		@Override
+		public int getMetadata() {
+			return metadata;
+		}
 	}
 
 	public final int id;

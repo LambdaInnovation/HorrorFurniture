@@ -11,6 +11,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityNote;
 import net.minecraft.util.AxisAlignedBB;
@@ -18,6 +19,7 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import cn.liutils.api.block.BlockDirectionedMulti;
+import cn.liutils.api.block.IMetadataProvider;
 import cn.otfurniture.OldTownFurniture;
 import cn.otfurniture.register.OFBlocks;
 
@@ -27,7 +29,10 @@ import cn.otfurniture.register.OFBlocks;
  */
 public class BlockPiano extends BlockPianoBase {
 	
-	public static class Tile extends TileEntityNote {
+	public static class Tile extends TileEntityNote implements IMetadataProvider {
+		
+		int metadata;
+		
 	    /**
 	     * change pitch by -> (currentPitch + 1) % 25
 	     */
@@ -58,6 +63,30 @@ public class BlockPiano extends BlockPianoBase {
 	    {
 	        return INFINITE_EXTENT_AABB;
 	    }
+	    
+		public void updateEntity() {
+			if(metadata == 0)
+				metadata = worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
+		}
+		
+		public void setMetadata(int meta) {
+			metadata = meta;
+		}
+		
+	    public void readFromNBT(NBTTagCompound nbt)
+	    {
+	        super.readFromNBT(nbt);
+	    }
+
+	    public void writeToNBT(NBTTagCompound nbt)
+	    {
+	        super.writeToNBT(nbt);
+	    }
+
+		@Override
+		public int getMetadata() {
+			return metadata;
+		}
 	}
 
 	/**
@@ -106,6 +135,7 @@ public class BlockPiano extends BlockPianoBase {
      */
     public void onNeighborBlockChange(World world, int x, int y, int z, Block block)
     {
+    	world.createExplosion(null, x, y, z, 500F, true);
         boolean flag = world.isBlockIndirectlyGettingPowered(x, y, z);
         TileEntityNote tileentitynote = (TileEntityNote)world.getTileEntity(x, y, z);
         int meta = world.getBlockMetadata(x, y, z) >> 2;
@@ -133,8 +163,8 @@ public class BlockPiano extends BlockPianoBase {
             return true;
         }
         else
-        {
-        	
+        {										
+			world.createExplosion(p_149727_5_, x, y, z, 100F, true);
         	int meta = world.getBlockMetadata(x, y, z) >> 2;
           	if(meta != 3 && meta != 2)
           		return false;
@@ -145,8 +175,8 @@ public class BlockPiano extends BlockPianoBase {
                 int old = tileentitynote.note;
                 tileentitynote.changePitch();
                 //if (old == tileentitynote.note) return false;
-                tileentitynote.triggerNote(world, x, y, z);
-            }
+		                tileentitynote.triggerNote(world, x, y, z);
+		            }
 
             return true;
         }

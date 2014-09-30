@@ -31,7 +31,7 @@ import net.minecraftforge.common.util.ForgeDirection;
  */
 public class BlockCurtain4 extends BlockCurtain2 {
 	
-	public class Tile extends TileEntity {
+	public static class Tile extends TileEntity {
 		public int tMeta;
 		
 		boolean init = false;

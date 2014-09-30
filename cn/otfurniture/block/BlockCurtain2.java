@@ -19,6 +19,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import cn.liutils.api.block.BlockDirectionedMulti;
+import cn.liutils.api.block.TileDirectionedMulti;
 import cn.liutils.api.client.ITextureProvider;
 import cn.otfurniture.OldTownFurniture;
 import cpw.mods.fml.relauncher.Side;
@@ -30,7 +31,7 @@ import cpw.mods.fml.relauncher.SideOnly;
  */
 public abstract class BlockCurtain2 extends BlockDirectionedMulti implements ITextureProvider {
 	
-	public static class Tile extends TileEntity {
+	public static class Tile extends TileDirectionedMulti {
 	    @SideOnly(Side.CLIENT)
 	    public AxisAlignedBB getRenderBoundingBox()
 	    {

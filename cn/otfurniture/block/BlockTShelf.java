@@ -15,6 +15,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import cn.liutils.api.block.BlockDirectionedMulti;
+import cn.liutils.api.block.TileDirectionedMulti;
 import cn.otfurniture.OldTownFurniture;
 import cn.otfurniture.proxy.OFClientProps;
 import cn.liutils.api.client.ITextureProvider;
@@ -25,7 +26,7 @@ import cn.liutils.api.client.ITextureProvider;
  */
 public class BlockTShelf extends BlockDirectionedMulti implements ITextureProvider {
 	
-	public static class Tile extends TileEntity {
+	public static class Tile extends TileDirectionedMulti {
 	    @SideOnly(Side.CLIENT)
 	    public AxisAlignedBB getRenderBoundingBox()
 	    {

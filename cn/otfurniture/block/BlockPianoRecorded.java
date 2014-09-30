@@ -6,6 +6,7 @@ package cn.otfurniture.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import scala.util.Random;
+import cn.liutils.api.block.TileDirectionedMulti;
 import cn.otfurniture.block.BlockPianoBase.Tile;
 import cn.otfurniture.register.OFItems;
 import net.minecraft.entity.player.EntityPlayer;
@@ -25,7 +26,7 @@ public class BlockPianoRecorded extends BlockPianoBase {
 		10
 	};
 	
-	public class Tile extends TileEntity {
+	public class Tile extends TileDirectionedMulti {
 		
 		public boolean isPlaying;
 		private int ticksExisted;
