@@ -6,12 +6,7 @@ package cn.otfurniture.block;
 import java.util.List;
 
 import cn.liutils.api.block.BlockDirectionedMulti;
-import cn.liutils.core.proxy.LIClientProps;
 import cn.otfurniture.OldTownFurniture;
-import cn.otfurniture.block.BlockCandleHolderSmall.Tile;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Vec3;
@@ -33,7 +28,7 @@ public class BlockCandleHolderLarge extends BlockDirectionedMulti {
 		setCreativeTab(OldTownFurniture.cct);
 		setHardness(1F);
 		setBlockName("hf_cholder");
-		setBlockTextureName("hf_cholder");
+		setBlockTextureName("leon:cholderl");
 		useRotation = false;
 	}
 

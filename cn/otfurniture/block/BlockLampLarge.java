@@ -23,7 +23,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import cn.liutils.api.block.BlockDirectionedMulti;
-import cn.liutils.api.block.TileDirectionedMulti;
 import cn.liutils.api.client.ITextureProvider;
 import cn.otfurniture.OldTownFurniture;
 import cn.otfurniture.proxy.OFClientProps;
@@ -37,7 +36,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockLampLarge extends BlockDirectionedMulti implements ITextureProvider {
 	
 	public static class Tile extends TileEntity {
-	    @SideOnly(Side.CLIENT)
+	    @Override
+		@SideOnly(Side.CLIENT)
 	    public AxisAlignedBB getRenderBoundingBox()
 	    {
 	        return INFINITE_EXTENT_AABB;
@@ -69,7 +69,8 @@ public class BlockLampLarge extends BlockDirectionedMulti implements ITexturePro
 		return new Tile();
 	}
 	
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public Vec3 getOffsetRotated(int dir) {
     	return Vec3.createVectorHelper(0.5D, 0D, 0.5D);
     }
@@ -82,7 +83,8 @@ public class BlockLampLarge extends BlockDirectionedMulti implements ITexturePro
 		return null;
 	}
 	
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
+    @Override
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
     {
     	int meta = world.getBlockMetadata(x, y, z);
     	System.out.println("Applying " + meta);
@@ -110,7 +112,8 @@ public class BlockLampLarge extends BlockDirectionedMulti implements ITexturePro
 		return OFBlocks.lampl[revs[id]];
 	}
 	
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public void getSubBlocks(Item p_149666_1_, CreativeTabs p_149666_2_, List p_149666_3_)
     {
         if(id == 0 || id == 2) super.getSubBlocks(p_149666_1_, p_149666_2_, p_149666_3_);

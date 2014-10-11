@@ -28,7 +28,8 @@ import cn.otfurniture.proxy.OFClientProps;
 public class BlockMirror extends BlockDirectionedMulti implements ITextureProvider {
 	
 	public static class Tile extends TileDirectionedMulti {
-	    @SideOnly(Side.CLIENT)
+	    @Override
+		@SideOnly(Side.CLIENT)
 	    public AxisAlignedBB getRenderBoundingBox()
 	    {
 	        return INFINITE_EXTENT_AABB;
@@ -46,17 +47,18 @@ public class BlockMirror extends BlockDirectionedMulti implements ITextureProvid
 		setBlockTextureName("leon:mirror" + i);
 	}
 	
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public Vec3 getOffsetRotated(int dir) {
     	ForgeDirection d = ForgeDirection.values()[dir];
     	double a = 0.98, b = 0.02;
     	if(dir == 2)
-    		return makeV(0, 0, a);
+    		return makeV(1, 0, a);
     	if(dir == 3)
-    		return makeV(1, 0, b);
+    		return makeV(0, 0, b);
     	if(dir == 4)
-    		return makeV(a, 0, 1);
-    	return makeV(0, 0, 0);
+    		return makeV(a, 0, 0);
+    	return makeV(b, 0, 1);
     }
     
     private Vec3 makeV(double a, double b, double c) {

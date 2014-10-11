@@ -32,7 +32,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public abstract class BlockCurtain2 extends BlockDirectionedMulti implements ITextureProvider {
 	
 	public static class Tile extends TileDirectionedMulti {
-	    @SideOnly(Side.CLIENT)
+	    @Override
+		@SideOnly(Side.CLIENT)
 	    public AxisAlignedBB getRenderBoundingBox()
 	    {
 	        return INFINITE_EXTENT_AABB;
@@ -68,7 +69,7 @@ public abstract class BlockCurtain2 extends BlockDirectionedMulti implements ITe
     		return makeV(0, 0, b);
     	if(dir == 4)
     		return makeV(a, 0, 0);
-    	return makeV(0, 0, 1);
+    	return makeV(b, 0, 1);
     }
     
     private Vec3 makeV(double a, double b, double c) {
@@ -80,7 +81,8 @@ public abstract class BlockCurtain2 extends BlockDirectionedMulti implements ITe
 		return null;
 	}
 	
-    public boolean onBlockActivated(World wrld, int x, int y, int z, EntityPlayer player, int a,
+    @Override
+	public boolean onBlockActivated(World wrld, int x, int y, int z, EntityPlayer player, int a,
     		float b, float c, float d)
     {
     	int meta = wrld.getBlockMetadata(x, y, z);
@@ -95,7 +97,7 @@ public abstract class BlockCurtain2 extends BlockDirectionedMulti implements ITe
     	
     	for(SubBlockPos pos : this.subBlocks) {
     		//Set all the subBlocks
-    		SubBlockPos pos2 = this.applyRotation(pos, this.getFacingDirection(meta).ordinal());
+    		SubBlockPos pos2 = this.applyRotation(pos, BlockDirectionedMulti.getFacingDirection(meta).ordinal());
     		pos2.setMe(wrld, x, y, z, meta + (pos.id << 2), getReverse());
     	}
     	//Set origin block
@@ -103,7 +105,8 @@ public abstract class BlockCurtain2 extends BlockDirectionedMulti implements ITe
         return true;
     }
     
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public void getSubBlocks(Item p_149666_1_, CreativeTabs p_149666_2_, List p_149666_3_)
     {
     	if(id == 0 || id == 2)

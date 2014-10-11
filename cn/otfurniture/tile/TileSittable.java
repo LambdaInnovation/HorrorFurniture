@@ -34,6 +34,7 @@ public class TileSittable extends TileEntity {
 	public TileSittable() {
 	}
 	
+	@Override
 	public void updateEntity() {
 		if(!worldObj.isRemote && ent == null) {
 			ent = new EntitySittable(worldObj, this.xCoord + .5F, this.yCoord + .5F + offsetY, this.zCoord + .5F);

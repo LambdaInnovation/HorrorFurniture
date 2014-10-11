@@ -10,8 +10,6 @@
  */
 package cn.otfurniture.proxy;
 
-import cpw.mods.fml.common.FMLCommonHandler;
-import cn.otfurniture.event.OTTickEventListener;
 import net.minecraft.command.CommandHandler;
 
 /**

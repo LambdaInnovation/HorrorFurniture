@@ -1,3 +1,4 @@
 {
-"records.otp_0": {"category": "record", "sounds": [{"name": "records/otp_0", "stream": true}]}
+"records.otp_0": {"category": "record", "sounds": [{"name": "records/otp_0", "stream": true}]},
+"investigate": {"category": "master", "sounds": [{"name": "investigate", "stream": false}]}
 }

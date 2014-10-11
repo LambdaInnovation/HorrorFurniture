@@ -26,7 +26,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockKitchenShelf extends BlockDirectionedMulti implements ITextureProvider {
 	
 	public static class Tile extends TileDirectionedMulti {
-	    @SideOnly(Side.CLIENT)
+	    @Override
+		@SideOnly(Side.CLIENT)
 	    public AxisAlignedBB getRenderBoundingBox()
 	    {
 	        return INFINITE_EXTENT_AABB;
@@ -53,7 +54,8 @@ public class BlockKitchenShelf extends BlockDirectionedMulti implements ITexture
 		return Vec3.createVectorHelper(0D, 0D, 0D);
 	}
 	
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public Vec3 getOffsetRotated(int dir) {
     	ForgeDirection d;
     	if(dir == 5) return Vec3.createVectorHelper(1, 0, 0);

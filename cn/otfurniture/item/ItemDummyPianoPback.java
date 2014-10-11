@@ -17,7 +17,8 @@ public class ItemDummyPianoPback extends ItemRecord {
 		super("otp_" + id);
 	}
 	
-    public ResourceLocation getRecordResource(String name)
+    @Override
+	public ResourceLocation getRecordResource(String name)
     {
         return new ResourceLocation("leon:" + name);
     }

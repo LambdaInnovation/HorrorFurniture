@@ -8,7 +8,6 @@ import java.util.List;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
@@ -30,6 +29,7 @@ public class BlockFileShelf extends BlockDirectionedMulti {
 	public static class Tile extends TileEntityChest implements
 			IMetadataProvider {
 
+		@Override
 		@SideOnly(Side.CLIENT)
 		public AxisAlignedBB getRenderBoundingBox() {
 			return INFINITE_EXTENT_AABB;
@@ -40,6 +40,7 @@ public class BlockFileShelf extends BlockDirectionedMulti {
 		private int ticksUntilReq = 4;
 		int metadata = -1;
 		
+		@Override
 		public void updateEntity() {
 			if(metadata == -1) {
 				metadata = this.getBlockMetadata();
@@ -50,18 +51,21 @@ public class BlockFileShelf extends BlockDirectionedMulti {
 			}
 		}
 		
+		@Override
 		public void setMetadata(int meta) {
 			synced = true;
 			metadata = meta;
 		}
 		
-	    public void readFromNBT(NBTTagCompound nbt)
+	    @Override
+		public void readFromNBT(NBTTagCompound nbt)
 	    {
 	    	metadata = nbt.getInteger("meta");
 	        super.readFromNBT(nbt);
 	    }
 
-	    public void writeToNBT(NBTTagCompound nbt)
+	    @Override
+		public void writeToNBT(NBTTagCompound nbt)
 	    {
 	    	nbt.setInteger("meta", metadata);
 	        super.writeToNBT(nbt);
@@ -93,6 +97,7 @@ public class BlockFileShelf extends BlockDirectionedMulti {
 		return Vec3.createVectorHelper(0D, 0D, .5D);
 	}
 
+	@Override
 	@SideOnly(Side.CLIENT)
 	public Vec3 getOffsetRotated(int dir) {
 		Vec3 v = super.getOffsetRotated(dir);

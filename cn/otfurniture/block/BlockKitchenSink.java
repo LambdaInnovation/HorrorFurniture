@@ -7,7 +7,6 @@ import java.util.List;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
@@ -45,7 +44,8 @@ public class BlockKitchenSink extends BlockDirectionedMulti implements ITextureP
 		return new Tile();
 	}
 	
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public Vec3 getOffsetRotated(int dir) {
     	return Vec3.createVectorHelper(0.5D, 0D, 0.5D);
     }

@@ -15,7 +15,6 @@ import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 
-import cn.liutils.api.client.model.ITileEntityModel;
 import cn.liutils.api.client.model.TileEntityModelCustom;
 import cn.liutils.api.client.render.RenderTileModelSided;
 import cn.liutils.api.client.util.RenderUtils;
@@ -34,6 +33,7 @@ public class RendererTV extends RenderTileModelSided {
 		setScale(0.01F);
 	}
 	
+	@Override
 	protected void renderAtOrigin(TileEntity te) {
 		int meta = te.getBlockMetadata();
 		BlockTV b = (BlockTV) te.getBlockType();

@@ -1,4 +1,4 @@
-#简体中文语言文件 2014/9/30 by KSkun
+#简体中文语言文件 2014/9/7 by KSkun
 #物品
 item.hf_wand.name=魔棒
 
@@ -66,19 +66,6 @@ tile.hf_oillamp0.name=煤油灯
 tile.hf_hanger.name=挂钩
 tile.hf_fileshelf.name=文件柜
 tile.hf_piano.name=钢琴
-tile.hf_cholder.name=烛台
-tile.hf_wine.name=红酒
-tile.hf_mirror0.name=镜子 1
-tile.hf_mirror1.name=镜子 2
-tile.hf_mirror2.name=镜子 3
-tile.hf_mirror3.name=镜子 4
-tile.hf_scurtain.name=小窗帘
-tile.hf_mcurtain.name=中窗帘
-tile.hf_lcurtain0.name=大窗帘
-tile.hf_bcurtain.name=浴帘
-tile.chandeilers.name=吊灯 (小)
-tile.chandeilerl.name=吊灯 (大)
-tile.pianor0.name=可以播放乐谱的钢琴
 
 #创造模式物品栏
 itemGroup.otfurniture=老镇家具厂~

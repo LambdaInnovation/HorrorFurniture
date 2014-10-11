@@ -3,30 +3,21 @@
  */
 package cn.otfurniture.block;
 
-import java.util.Iterator;
 import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import cn.liutils.api.block.BlockDirectionedMulti.SubBlockPos;
+import cn.liutils.api.block.BlockDirectionedMulti;
 import cn.liutils.api.block.TileDirectionedMulti;
-import cn.liutils.core.LIUtilsMod;
-import cn.liutils.core.network.MsgTileDMulti;
-import cn.otfurniture.block.BlockCurtain2.Tile;
 import cn.otfurniture.proxy.OFClientProps;
 import cn.otfurniture.register.OFBlocks;
 import net.minecraft.block.Block;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
 
 /**
  * @author WeathFolD
@@ -36,7 +27,8 @@ public class BlockCurtain4 extends BlockCurtain2 {
 	
 	public static class Tile extends TileDirectionedMulti {
 		
-	    @SideOnly(Side.CLIENT)
+	    @Override
+		@SideOnly(Side.CLIENT)
 	    public AxisAlignedBB getRenderBoundingBox()
 	    {
 	        return INFINITE_EXTENT_AABB;
@@ -55,7 +47,8 @@ public class BlockCurtain4 extends BlockCurtain2 {
 		return new Tile();
 	}
 	
-    public boolean onBlockActivated(World wrld, int x, int y, int z, EntityPlayer player, int a,
+    @Override
+	public boolean onBlockActivated(World wrld, int x, int y, int z, EntityPlayer player, int a,
     		float b, float c, float d)
     {
     	int meta = getMetadata(wrld, x, y, z);
@@ -71,7 +64,7 @@ public class BlockCurtain4 extends BlockCurtain2 {
     	
     	for(SubBlockPos pos : this.subBlocks) {
     		//Set all the subBlocks
-    		SubBlockPos pos2 = this.applyRotation(pos, this.getFacingDirection(meta).ordinal());
+    		SubBlockPos pos2 = this.applyRotation(pos, BlockDirectionedMulti.getFacingDirection(meta).ordinal());
     		pos2.setMe(wrld, x, y, z, meta | (pos.id << 2), getReverse());
     	}
     	

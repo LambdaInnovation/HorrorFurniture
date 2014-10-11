@@ -28,7 +28,7 @@ public class BlockCandleHolderSmall extends BlockContainer {
 		setCreativeTab(OldTownFurniture.cct);
 		setHardness(1F);
 		setBlockName("hf_cholder");
-		setBlockTextureName("hf_cholder");
+		setBlockTextureName("leon:cholders");
 	}
 
 	@Override

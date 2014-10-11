@@ -35,6 +35,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockSofaMedium extends BlockDirectionedMulti implements ITextureProvider {
 	
 	public static class Tile extends TileSittable {
+		@Override
 		@SideOnly(Side.CLIENT)
 	    public AxisAlignedBB getRenderBoundingBox()
 	    {

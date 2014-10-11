@@ -35,7 +35,8 @@ public class BlockClock extends BlockDirectionedMulti implements ITextureProvide
 	}
 
 	public static class Tile extends TileEntity {
-	    @SideOnly(Side.CLIENT)
+	    @Override
+		@SideOnly(Side.CLIENT)
 	    public AxisAlignedBB getRenderBoundingBox()
 	    {
 	        return INFINITE_EXTENT_AABB;
@@ -58,6 +59,7 @@ public class BlockClock extends BlockDirectionedMulti implements ITextureProvide
 		list.add(new SubBlockPos(0, 2, 0, 1));
 	}
 	
+	@Override
 	@SideOnly(Side.CLIENT)
 	public Vec3 getOffsetRotated(int dir) {
 		  return Vec3.createVectorHelper(.5D, 0D, .5D);

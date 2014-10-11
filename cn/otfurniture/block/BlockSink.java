@@ -37,7 +37,8 @@ public class BlockSink extends BlockDirectionedMulti implements ITextureProvider
 	public static class Tile extends TileEntity {
 		public boolean watered;
 		
-	    @SideOnly(Side.CLIENT)
+	    @Override
+		@SideOnly(Side.CLIENT)
 	    public AxisAlignedBB getRenderBoundingBox()
 	    {
 	        return INFINITE_EXTENT_AABB;
@@ -65,7 +66,8 @@ public class BlockSink extends BlockDirectionedMulti implements ITextureProvider
 		return new Tile();
 	}
 	
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public Vec3 getOffsetRotated(int dir) {
     	return Vec3.createVectorHelper(0.5D, 0D, 0.5D);
     }
@@ -79,7 +81,8 @@ public class BlockSink extends BlockDirectionedMulti implements ITextureProvider
 	public void addSubBlocks(List<SubBlockPos> list) {
 	}
 	
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer pl, int side, float a, float b, float c)
+    @Override
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer pl, int side, float a, float b, float c)
     {
     	ItemStack stack = pl.getCurrentEquippedItem();
     	if(stack == null) return false;

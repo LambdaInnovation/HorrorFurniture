@@ -15,11 +15,10 @@ import org.lwjgl.opengl.GL11;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
-import cn.liutils.api.client.model.ITileEntityModel;
+import net.minecraftforge.common.util.ForgeDirection;
 import cn.liutils.api.client.model.TileEntityModelCustom;
 import cn.liutils.api.client.render.RenderTileModelSided;
 import cn.liutils.api.client.render.Vertex;
@@ -46,17 +45,17 @@ public class RendererBathtub extends RenderTileModelSided {
 		super.renderTileEntityAt(var1, var2, var4, var6, var8);
 	}
 	
+	@Override
 	protected void renderAtOrigin(TileEntity te) {
 		int meta = te.getBlockMetadata();
 		if(meta >> 2 != 0) return;
 		
 		float waterHeight = 0.4F;
 		BlockBathtub block = (BlockBathtub) te.getBlockType();
+		
 		//GL11.glEnable(GL11.GL_BLEND);
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		GL11.glPushMatrix(); {
-			
-			GL11.glRotatef(rotations[meta], 0F, 1F, 0F);
 			
 			if(((Tile)te).watered){ //绘制水（血）
 				IIcon i = BlockLiquid.getLiquidIcon("water_still");
@@ -76,9 +75,9 @@ public class RendererBathtub extends RenderTileModelSided {
 				Tessellator t = Tessellator.instance;
 				
 		        int l = 16777215;
-		        float f = (float)(l >> 16 & 255) / 255.0F;
-		        float f1 = (float)(l >> 8 & 255) / 255.0F;
-		        float f2 = (float)(l & 255) / 255.0F;
+		        float f = (l >> 16 & 255) / 255.0F;
+		        float f1 = (l >> 8 & 255) / 255.0F;
+		        float f2 = (l & 255) / 255.0F;
 				if(block.id == 1)
 					GL11.glColor4f(.8F, 0F, 0F, 1F);
 				else GL11.glColor4f(f, f1, f2, 1.0F);
@@ -98,6 +97,8 @@ public class RendererBathtub extends RenderTileModelSided {
 			RenderUtils.loadTexture(this.getTexture(te));
 			GL11.glScalef(scale, scale, scale);
 			theModel.render(te, 0F, 0F);
+			
+			GL11.glRotatef(rotations[meta], 0F, 1F, 0F);
 		} GL11.glPopMatrix();
 	}
 

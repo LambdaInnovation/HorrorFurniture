@@ -35,6 +35,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockSofaSmall extends BlockDirectionedMulti implements ITextureProvider{ 
 	
 	public static class Tile extends TileSittable {
+		@Override
 		@SideOnly(Side.CLIENT)
 	    public AxisAlignedBB getRenderBoundingBox()
 	    {
@@ -62,7 +63,8 @@ public class BlockSofaSmall extends BlockDirectionedMulti implements ITexturePro
 		return Vec3.createVectorHelper(.5D, 0D, .5D);
 	}
 	
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public Vec3 getOffsetRotated(int dir) {
     	return Vec3.createVectorHelper(.5D, 0D, .5D);
     }

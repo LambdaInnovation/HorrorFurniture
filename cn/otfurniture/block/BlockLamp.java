@@ -40,7 +40,8 @@ public class BlockLamp extends Block implements ITileEntityProvider, ITexturePro
 	public final boolean isLit, isBloody;
 	
 	public static class Tile extends TileEntity {
-	    @SideOnly(Side.CLIENT)
+	    @Override
+		@SideOnly(Side.CLIENT)
 	    public AxisAlignedBB getRenderBoundingBox()
 	    {
 	        return INFINITE_EXTENT_AABB;
@@ -83,13 +84,15 @@ public class BlockLamp extends Block implements ITileEntityProvider, ITexturePro
 		return new Tile();
 	}
 	
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs ct, List list)
     {
         if(!isLit) super.getSubBlocks(item, ct, list);
     }
     
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int w, float a, float b, float c)
+    @Override
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int w, float a, float b, float c)
     {
     	world.setBlock(x, y, z, getReversal());
         return true;

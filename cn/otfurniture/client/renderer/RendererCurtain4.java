@@ -10,7 +10,6 @@ import cn.liutils.api.client.render.RenderTileSided;
 import cn.liutils.api.client.util.RenderUtils;
 import cn.otfurniture.block.BlockCurtain4;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Vec3;
 

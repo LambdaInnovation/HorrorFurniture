@@ -3,7 +3,6 @@
  */
 package cn.otfurniture.network;
 
-import cn.otfurniture.OldTownFurniture;
 import cn.otfurniture.investigate.Investigator;
 import io.netty.buffer.ByteBuf;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;

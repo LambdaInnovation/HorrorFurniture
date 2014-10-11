@@ -13,9 +13,7 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import cn.liutils.api.block.BlockDirectionedMulti;
-import cn.liutils.api.block.BlockDirectionedMulti.SubBlockPos;
 import cn.otfurniture.OldTownFurniture;
-import cn.otfurniture.block.BlockChandelierSmall.Tile;
 
 /**
  * @author WeathFolD
@@ -57,7 +55,8 @@ public class BlockChandelierLarge extends BlockDirectionedMulti {
 		list.add(new SubBlockPos(0, 0, 1, 3));
 	}
 	
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public Vec3 getOffsetRotated(int dir) {
     	ForgeDirection d;
     	if(dir == 5) return Vec3.createVectorHelper(1, 0, 0);

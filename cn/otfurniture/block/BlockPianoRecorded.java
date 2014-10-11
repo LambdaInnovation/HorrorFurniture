@@ -7,7 +7,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import scala.util.Random;
 import cn.liutils.api.block.TileDirectionedMulti;
-import cn.otfurniture.block.BlockPianoBase.Tile;
 import cn.otfurniture.register.OFItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -33,6 +32,7 @@ public class BlockPianoRecorded extends BlockPianoBase {
 		private final Random RNG = new Random();
 		private final int offset = RNG.nextInt(200);
 		
+		@Override
 		public void updateEntity() {
 			int meta = this.getBlockMetadata();
 			if(meta >> 2 != 2 && meta >> 2 != 3)
@@ -40,11 +40,12 @@ public class BlockPianoRecorded extends BlockPianoBase {
 			if((++ticksExisted + offset) % timeTable[id] == 0 && RNG.nextDouble() > 0.6) {
 				int[] cd = getOrigin(worldObj, xCoord, yCoord, zCoord, meta);
 				if(((Tile)worldObj.getTileEntity(cd[0], cd[1], cd[2])).isPlaying)
-					worldObj.spawnParticle("note", (double)xCoord + 0.5D, (double)yCoord + 1.2D, (double)zCoord + 0.5D, (double)(RNG.nextDouble() + .5D) / .5D, 0.0D, 0.0D);
+					worldObj.spawnParticle("note", xCoord + 0.5D, yCoord + 1.2D, zCoord + 0.5D, (RNG.nextDouble() + .5D) / .5D, 0.0D, 0.0D);
 			}
 		}
 		
-	    @SideOnly(Side.CLIENT)
+	    @Override
+		@SideOnly(Side.CLIENT)
 	    public AxisAlignedBB getRenderBoundingBox()
 	    {
 	    	return INFINITE_EXTENT_AABB;
@@ -59,10 +60,11 @@ public class BlockPianoRecorded extends BlockPianoBase {
 		id = i;
 		recItem = OFItems.dummyPianoPlayback[i];
 		setBlockName("pianor" + i);
-		setBlockTextureName("leon:piano");
+		setBlockTextureName("leon:pianos");
 	}
 	
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
+    @Override
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
     {
     	//Currently don't support public playing, need to further figure out why
         if (world.isRemote)

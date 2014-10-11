@@ -1,4 +1,4 @@
-#English Language File 2014/9/30 by KSkun
+#English Language File 2014/9/7 by KSkun
 #Items
 item.hf_wand.name=Wand
 
@@ -66,19 +66,6 @@ tile.hf_oillamp0.name=Oil Lamp
 tile.hf_hanger.name=Hanger
 tile.hf_fileshelf.name=File Shelf
 tile.hf_piano.name=Piano
-tile.hf_cholder.name=Candle Holder
-tile.hf_wine.name=Wine
-tile.hf_mirror0.name=Mirror 1
-tile.hf_mirror1.name=Mirror 2
-tile.hf_mirror2.name=Mirror 3
-tile.hf_mirror3.name=Mirror 4
-tile.hf_scurtain.name=Small Curtain
-tile.hf_mcurtain.name=Middle Curtain
-tile.hf_lcurtain0.name=Large Curtain
-tile.hf_bcurtain.name=Bath Curtain
-tile.chandeilers.name=Chandeiler (Small)
-tile.chandeilerl.name=Chandeiler (Large)
-tile.pianor0.name=Piano (With music score)
 
 #CreativeTabs
 itemGroup.otfurniture=Old Town Furniture

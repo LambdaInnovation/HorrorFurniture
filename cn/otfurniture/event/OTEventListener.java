@@ -27,7 +27,6 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
  */
 public class OTEventListener {
 
-	@SideOnly(Side.CLIENT)
 	private static Set<Class<? extends Block>> ignoredBlocks = new HashSet();
 	
 	@SideOnly(Side.CLIENT)
@@ -48,6 +47,7 @@ public class OTEventListener {
 	}
 	
 	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
 	public void renderOverlay(RenderGameOverlayEvent ev) {
 		if(ev.type == ElementType.CROSSHAIRS) {
 			if(Investigator.INSTANCE.canInvestigate) {
@@ -57,6 +57,7 @@ public class OTEventListener {
 		}
 	}
 	
+	@SideOnly(Side.CLIENT)
 	private void drawScope(int w, int h) {
 		float x0 = w / 2F, y0 = h / 2F;
 		

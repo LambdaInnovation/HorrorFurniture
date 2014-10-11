@@ -31,7 +31,8 @@ import cn.otfurniture.register.OFBlocks;
 public class BlockSmallCurtain extends BlockDirectionedMulti implements ITextureProvider {
 	
 	public static final class Tile extends TileEntity {
-	    @SideOnly(Side.CLIENT)
+	    @Override
+		@SideOnly(Side.CLIENT)
 	    public AxisAlignedBB getRenderBoundingBox()
 	    {
 	        return INFINITE_EXTENT_AABB;
@@ -53,14 +54,16 @@ public class BlockSmallCurtain extends BlockDirectionedMulti implements ITexture
 		setBlockTextureName("leon:scurtain" + (id == 0 ? 0 : 1));
 	}
 	
-    public boolean onBlockActivated(World wrld, int x, int y, int z, EntityPlayer player,
+    @Override
+	public boolean onBlockActivated(World wrld, int x, int y, int z, EntityPlayer player,
     		int a, float b, float c, float d) {
     	int meta = wrld.getBlockMetadata(x, y, z);
     	wrld.setBlock(x, y, z, OFBlocks.scurtain[rev_matrix[id]], meta, 0x03);
     	return true;
     }
 	
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public Vec3 getOffsetRotated(int dir) {
     	ForgeDirection d = ForgeDirection.values()[dir];
     	double a = 0.98, b = 0.02;
@@ -91,7 +94,8 @@ public class BlockSmallCurtain extends BlockDirectionedMulti implements ITexture
 	public void addSubBlocks(List<SubBlockPos> list) {
 	}
 	
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs ct, List list)
     {
     	if(id == 0 || id == 2)

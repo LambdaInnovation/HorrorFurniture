@@ -3,22 +3,17 @@
  */
 package cn.otfurniture.block;
 
-import java.util.List;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityNote;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
-import cn.liutils.api.block.BlockDirectionedMulti;
 import cn.liutils.api.block.IMetadataProvider;
 import cn.liutils.core.LIUtilsMod;
 import cn.liutils.core.network.MsgTileDMulti;
@@ -46,7 +41,8 @@ public class BlockPiano extends BlockPianoBase {
 	    /**
 	     * plays the stored note
 	     */
-	    public void triggerNote(World world, int x, int y, int z)
+	    @Override
+		public void triggerNote(World world, int x, int y, int z)
 	    {
 	        if (world.getBlock(x, y + 1, z).getMaterial() == Material.air)
 	        {
@@ -58,7 +54,8 @@ public class BlockPiano extends BlockPianoBase {
 	        }
 	    }
 	    
-	    @SideOnly(Side.CLIENT)
+	    @Override
+		@SideOnly(Side.CLIENT)
 	    public AxisAlignedBB getRenderBoundingBox()
 	    {
 	        return INFINITE_EXTENT_AABB;
@@ -69,6 +66,7 @@ public class BlockPiano extends BlockPianoBase {
 		private int ticksUntilReq = 4;
 		int metadata = -1;
 		
+		@Override
 		public void updateEntity() {
 			if(metadata == -1) {
 				metadata = this.getBlockMetadata();
@@ -79,18 +77,21 @@ public class BlockPiano extends BlockPianoBase {
 			}
 		}
 		
+		@Override
 		public void setMetadata(int meta) {
 			synced = true;
 			metadata = meta;
 		}
 		
-	    public void readFromNBT(NBTTagCompound nbt)
+	    @Override
+		public void readFromNBT(NBTTagCompound nbt)
 	    {
 	    	metadata = nbt.getInteger("meta");
 	        super.readFromNBT(nbt);
 	    }
 
-	    public void writeToNBT(NBTTagCompound nbt)
+	    @Override
+		public void writeToNBT(NBTTagCompound nbt)
 	    {
 	    	nbt.setInteger("meta", metadata);
 	        super.writeToNBT(nbt);
@@ -129,7 +130,8 @@ public class BlockPiano extends BlockPianoBase {
 		return Vec3.createVectorHelper(0D, 0D, 0D);
 	}
 	
-    public void onBlockClicked(World world, int x, int y, int z, EntityPlayer player)
+    @Override
+	public void onBlockClicked(World world, int x, int y, int z, EntityPlayer player)
     {
     	int meta = world.getBlockMetadata(x, y, z) >> 2;
     	if(meta != 2 && meta != 3)
@@ -149,7 +151,8 @@ public class BlockPiano extends BlockPianoBase {
      * Lets the block know when one of its neighbor changes. Doesn't know which neighbor changed (coordinates passed are
      * their own) Args: x, y, z, neighbor Block
      */
-    public void onNeighborBlockChange(World world, int x, int y, int z, Block block)
+    @Override
+	public void onNeighborBlockChange(World world, int x, int y, int z, Block block)
     {
         boolean flag = world.isBlockIndirectlyGettingPowered(x, y, z);
         TileEntityNote tileentitynote = (TileEntityNote)world.getTileEntity(x, y, z);
@@ -171,7 +174,8 @@ public class BlockPiano extends BlockPianoBase {
     /**
      * Called upon block activation (right click on the block.)
      */
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
+    @Override
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
     {
         if (world.isRemote)
         {
@@ -205,7 +209,7 @@ public class BlockPiano extends BlockPianoBase {
         if (net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(e)) return false;
         a = e.instrument.ordinal();
         b = e.getVanillaNoteId(); 
-        float f = (float)Math.pow(2.0D, (double)(b - 12) / 12.0D);
+        float f = (float)Math.pow(2.0D, (b - 12) / 12.0D);
         String s = "harp";
 
         if (a == 1)
@@ -228,8 +232,8 @@ public class BlockPiano extends BlockPianoBase {
             s = "bassattack";
         }
 
-        world.playSoundEffect((double)x + 0.5D, (double)y + 0.5D, (double)z + 0.5D, "note." + s, 3.0F, f);
-        world.spawnParticle("note", (double)x + 0.5D, (double)y + 1.2D, (double)z + 0.5D, (double)b / 24.0D, 0.0D, 0.0D);
+        world.playSoundEffect(x + 0.5D, y + 0.5D, z + 0.5D, "note." + s, 3.0F, f);
+        world.spawnParticle("note", x + 0.5D, y + 1.2D, z + 0.5D, b / 24.0D, 0.0D, 0.0D);
         return true;
     }
 

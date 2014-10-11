@@ -11,7 +11,6 @@
 package cn.otfurniture.register;
 
 import cn.otfurniture.block.*;
-import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 
@@ -57,7 +56,11 @@ public class OFBlocks {
 		lcurtain[],
 		pianopb[],
 		chandeliers,
-		chandelierl;
+		chandelierl,
+		car,
+		deadRabbit,
+		mydoor[],
+		chaos;
 	
 	public static void init() {
 		//方块初始化和注册
@@ -97,6 +100,10 @@ public class OFBlocks {
 		pianopb = reg(BlockPianoRecorded.class, 1, "hf_pianop");
 		chandeliers = reg(BlockChandelierSmall.class, "hf_chds");
 		chandelierl = reg(BlockChandelierLarge.class, "hf_chdl");
+		car = reg(BlockCar.class, "hf_car");
+		deadRabbit = reg(BlockDeadRabbit.class, "hf_dead_rabbit");
+		mydoor = reg(BlockMyDoor.class, 3, "hf_door");
+		chaos = reg(BlockChaos.class, "hf_Chaos");
 		
 		//TileEntity注册
 		GameRegistry.registerTileEntity(BlockCabinet.Tile.class, "hf_tile_cabinet");
@@ -134,6 +141,9 @@ public class OFBlocks {
 		GameRegistry.registerTileEntity(BlockPianoRecorded.Tile.class, "hf_pianop");
 		GameRegistry.registerTileEntity(BlockChandelierSmall.Tile.class, "hf_cdlp");
 		GameRegistry.registerTileEntity(BlockChandelierLarge.Tile.class, "hf_aaa");
+		GameRegistry.registerTileEntity(BlockCar.Tile.class, "hf_car");
+		GameRegistry.registerTileEntity(BlockDeadRabbit.Tile.class, "hf_dead_rabbit");
+		GameRegistry.registerTileEntity(BlockChaos.Tile.class, "hf_chaos");
 	}
 	
 	private static Block[] reg(Class<? extends Block> cl, int cnt, String key) {

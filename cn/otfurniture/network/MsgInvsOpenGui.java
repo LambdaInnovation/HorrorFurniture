@@ -16,6 +16,8 @@ import cpw.mods.fml.common.network.ByteBufUtils;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * 
@@ -76,13 +78,15 @@ public class MsgInvsOpenGui implements IMessage {
 	
 	public static class Handler implements IMessageHandler<MsgInvsOpenGui, IMessage> {
 
+		@SideOnly(Side.CLIENT)
 		@Override
 		public IMessage onMessage(MsgInvsOpenGui msg, MessageContext ctx) {
 			OFGuiHandler.currentContent = msg.content;
 			EntityPlayer player = Minecraft.getMinecraft().thePlayer;
-			System.out.println("Now we are opening GUI");
-			if(player != null)
+			if(player != null) {
+				player.playSound("leon:investigate", 0.5F, 1.0F);
 				player.openGui(OldTownFurniture.INSTANCE, msg.type, player.worldObj, msg.x, msg.y, msg.z);
+			}
 			return null;
 		}
 		
@@ -120,9 +124,9 @@ public class MsgInvsOpenGui implements IMessage {
 					if(message.id == 1) {
 						OldTownFurniture.netHandler.sendTo(new MsgInvsOpenGui(str == null ? "" : str, pos.blockX, pos.blockY, pos.blockZ), ctx.getServerHandler().playerEntity);
 					} else {
-						if(str != null)
+						if(str != null) {
 							OldTownFurniture.netHandler.sendTo(new MsgInvsOpenGui(str), ctx.getServerHandler().playerEntity);
-						else System.out.println("Attempted inv, but didn't find the matching block");
+						} else System.out.println("Attempted invs, but didn't find the matching block");
 					}
 				}
 				return null;

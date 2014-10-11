@@ -161,7 +161,10 @@ public class OFClientProps {
 			r("leon:textures/models/lcurtain00.png"),
 			r("leon:textures/models/lcurtain01.png")
 		},
-		TEX_CHANDELIER = r("leon:textures/models/chandelier.png");
+		TEX_CHANDELIER = r("leon:textures/models/chandelier.png"),
+		TEX_CAR = r("leon:textures/models/car.png"),
+		TEX_CHAOS = r("leon:textures/models/chaos.png"),
+		TEX_DEAD_RABBIT = r("leon:textures/models/deadrabbit.png");
 		
 	public static IModelCustom
 		MDL_CABINET = AdvancedModelLoader.loadModel(r("leon:models/cabinet.obj")),
@@ -195,7 +198,8 @@ public class OFClientProps {
 		MDL_TVSHELF = AdvancedModelLoader.loadModel(r("leon:models/tvshelf.obj")),
 		MDL_OILLAMP = AdvancedModelLoader.loadModel(r("leon:models/oillamp.obj")),
 		MDL_HANGER = AdvancedModelLoader.loadModel(r("leon:models/hanger.obj")),
-		MDL_PIANO = AdvancedModelLoader.loadModel(r("leon:models/piano.obj"));
+		MDL_PIANO = AdvancedModelLoader.loadModel(r("leon:models/piano.obj")),
+		MDL_CAR = AdvancedModelLoader.loadModel(r("leon:models/car.obj"));
 	
 	private static ResourceLocation r(String s) {
 		return new ResourceLocation(s);

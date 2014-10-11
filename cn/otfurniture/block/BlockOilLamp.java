@@ -31,7 +31,8 @@ public class BlockOilLamp extends BlockDirectionedMulti implements
 		ITextureProvider {
 	
 	public static class Tile extends TileEntity {
-	    @SideOnly(Side.CLIENT)
+	    @Override
+		@SideOnly(Side.CLIENT)
 	    public AxisAlignedBB getRenderBoundingBox()
 	    {
 	        return INFINITE_EXTENT_AABB;
@@ -70,7 +71,8 @@ public class BlockOilLamp extends BlockDirectionedMulti implements
 		return OFClientProps.TEX_OILLAMP[lit];
 	}
 	
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public void getSubBlocks(Item p_149666_1_, CreativeTabs p_149666_2_, List p_149666_3_)
     {
         if(lit == 0) super.getSubBlocks(p_149666_1_, p_149666_2_, p_149666_3_);

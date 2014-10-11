@@ -12,7 +12,9 @@ package cn.otfurniture;
 
 import net.minecraft.command.CommandHandler;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraftforge.common.MinecraftForge;
 
 import org.apache.logging.log4j.Logger;
@@ -51,7 +53,7 @@ public class OldTownFurniture {
 	/**
 	 * 公共版本号
 	 */
-	public static final String VERSION = "0.8alpha";
+	public static final String VERSION = "0.9alpha";
 
 	/**
 	 * 静态单例
@@ -63,7 +65,7 @@ public class OldTownFurniture {
 	 * 加载代理
 	 */
 	@SidedProxy(
-		serverSide = "cn.otfurniture.proxy.Psroxy",
+		serverSide = "cn.otfurniture.proxy.Proxy",
 		clientSide = "cn.otfurniture.proxy.ClientProxy")
 	private static Proxy proxy;
 	
@@ -93,7 +95,7 @@ public class OldTownFurniture {
 
 			@Override
 			public Item getTabIconItem() {
-				return Item.getItemFromBlock(OFBlocks.tv[1]);
+				return OFItems.setter;
 			}
 			
 		};
@@ -127,6 +129,8 @@ public class OldTownFurniture {
 	
 	@EventHandler()
 	public void postInit(FMLPostInitializationEvent event) {
+		ItemBlock ib = (ItemBlock) Item.getItemFromBlock(Blocks.wooden_door);
+		System.out.println("WWWW-WWW:" + ib);
 		proxy.postInit();
 	}
 	

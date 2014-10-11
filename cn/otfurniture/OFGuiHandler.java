@@ -5,10 +5,11 @@ package cn.otfurniture;
 
 import cn.otfurniture.client.gui.GuiInvestigate;
 import cn.otfurniture.client.gui.GuiModify;
-import cn.otfurniture.investigate.Investigator;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import cpw.mods.fml.common.network.IGuiHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * OTF的GUIFactory.
@@ -26,6 +27,7 @@ public class OFGuiHandler implements IGuiHandler {
 	}
 
 	@Override
+	@SideOnly(Side.CLIENT)
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world,
 			int x, int y, int z) {
 		return ID == 0 ? new GuiInvestigate(currentContent) : new GuiModify(x, y, z, currentContent);

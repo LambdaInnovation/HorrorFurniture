@@ -8,10 +8,8 @@ import org.lwjgl.opengl.GL11;
 import cn.liutils.api.client.util.HudUtils;
 import cn.liutils.api.client.util.RenderUtils;
 import cn.otfurniture.proxy.OFClientProps;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.world.World;
 
 /**
  * 方块调查界面。简单的显示文字啦~www

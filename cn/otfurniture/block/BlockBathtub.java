@@ -26,7 +26,6 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import cn.liutils.api.block.BlockDirectionedMulti;
 import cn.liutils.api.client.ITextureProvider;
-import cn.liutils.api.util.BlockPos;
 import cn.otfurniture.OldTownFurniture;
 import cn.otfurniture.proxy.OFClientProps;
 
@@ -53,7 +52,8 @@ public class BlockBathtub extends BlockDirectionedMulti implements ITextureProvi
 	    	super.writeToNBT(nbt);
 	    }
 	    
-	    @SideOnly(Side.CLIENT)
+	    @Override
+		@SideOnly(Side.CLIENT)
 	    public AxisAlignedBB getRenderBoundingBox()
 	    {
 	        return INFINITE_EXTENT_AABB;
@@ -95,7 +95,8 @@ public class BlockBathtub extends BlockDirectionedMulti implements ITextureProvi
 		list.add(new SubBlockPos(1, 0, 0, 1));
 	}
 	
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer pl, int side, float a, float b, float c)
+    @Override
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer pl, int side, float a, float b, float c)
     {
     	ItemStack stack = pl.getCurrentEquippedItem();
     	if(stack == null) return false;

@@ -20,7 +20,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 public class BlockBed extends BlockDirectionedMulti implements ITextureProvider {
 	
 	public static class Tile extends TileDirectionedMulti {
-	    @SideOnly(Side.CLIENT)
+	    @Override
+		@SideOnly(Side.CLIENT)
 	    public AxisAlignedBB getRenderBoundingBox()
 	    {
 	        return INFINITE_EXTENT_AABB;
@@ -48,7 +49,8 @@ public class BlockBed extends BlockDirectionedMulti implements ITextureProvider 
 		return OFClientProps.TEX_BED[id];
 	}
 	
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public Vec3 getOffsetRotated(int dir) {
     	ForgeDirection d;
     	if(dir == 5) return Vec3.createVectorHelper(1, 0, 0);

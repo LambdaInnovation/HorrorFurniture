@@ -21,11 +21,8 @@ import cn.otfurniture.client.key.KeyInvestigate;
 import cn.otfurniture.client.model.MdlCandleHolderL;
 import cn.otfurniture.client.model.MdlCandleHolderS;
 import cn.otfurniture.client.model.MdlWine;
-import cn.otfurniture.client.model.ModelChandelierBig;
 import cn.otfurniture.client.model.ModelChandelierSmall;
 import cn.otfurniture.client.renderer.*;
-import cn.otfurniture.event.OTEventListener;
-import cn.otfurniture.event.OTTickEventListener;
 import cpw.mods.fml.client.registry.ClientRegistry;
 
 /**
@@ -135,6 +132,7 @@ public class ClientProxy extends Proxy {
 				new RenderTileModelSided(new TileEntityModelCustom(OFClientProps.MDL_TVSHELF)).setScale(0.07F));
 		ClientRegistry.bindTileEntitySpecialRenderer(BlockBed.Tile.class,
 				new RenderTileModelSided(new TileEntityModelCustom(OFClientProps.MDL_BED)).setScale(0.095F));
+		ClientRegistry.bindTileEntitySpecialRenderer(BlockDeadRabbit.Tile.class, new RendererDeadRabbit());
 		ClientRegistry.bindTileEntitySpecialRenderer(BlockMirror.Tile.class, new RendererMirror());
 		ClientRegistry.bindTileEntitySpecialRenderer(BlockSmallCurtain.Tile.class, new RendererSmallCurtain());
 		ClientRegistry.bindTileEntitySpecialRenderer(BlockCurtain2.Tile.class, new RendererCurtain2());
@@ -145,6 +143,10 @@ public class ClientProxy extends Proxy {
 				.setModelTexture(OFClientProps.TEX_CHANDELIER).setOffset(0D, 1.5D, 0D));
 		ClientRegistry.bindTileEntitySpecialRenderer(BlockChandelierLarge.Tile.class,
 				new RendererChandelierLarge());
+		ClientRegistry.bindTileEntitySpecialRenderer(BlockCar.Tile.class,
+				new RendererCar());
+		ClientRegistry.bindTileEntitySpecialRenderer(BlockChaos.Tile.class,
+				new RendererSmallCurtain().setModelTexture(OFClientProps.TEX_CHAOS));
 		super.init();
 	}
 

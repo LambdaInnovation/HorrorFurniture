@@ -31,7 +31,8 @@ import cn.otfurniture.proxy.OFClientProps;
 public class BlockDesk extends BlockDirectionedMulti implements ITextureProvider {
 	
 	public static class Tile extends TileEntity {
-	    @SideOnly(Side.CLIENT)
+	    @Override
+		@SideOnly(Side.CLIENT)
 	    public AxisAlignedBB getRenderBoundingBox()
 	    {
 	        return INFINITE_EXTENT_AABB;

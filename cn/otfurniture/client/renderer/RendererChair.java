@@ -11,7 +11,6 @@
 package cn.otfurniture.client.renderer;
 
 import net.minecraft.tileentity.TileEntity;
-import cn.liutils.api.client.model.ITileEntityModel;
 import cn.liutils.api.client.model.TileEntityModelCustom;
 import cn.liutils.api.client.render.RenderTileModelSided;
 import cn.liutils.api.client.util.RenderUtils;

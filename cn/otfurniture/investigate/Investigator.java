@@ -3,7 +3,6 @@
  */
 package cn.otfurniture.investigate;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import cpw.mods.fml.relauncher.Side;

@@ -53,6 +53,7 @@ public class GuiModify extends GuiScreen {
 		return sb.toString();
 	}
 	
+	@Override
 	public void onGuiClosed() {
 		//保存修改
 		invokeChange();
@@ -91,6 +92,7 @@ public class GuiModify extends GuiScreen {
         super.keyTyped(par1, par2);
     }
 	
+	@Override
 	public void drawScreen(int par1, int par2, float par3)
     {
     	

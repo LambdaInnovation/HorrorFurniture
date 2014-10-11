@@ -13,11 +13,9 @@ package cn.otfurniture.client.renderer;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.tileentity.TileEntity;
-import cn.liutils.api.client.model.ITileEntityModel;
 import cn.liutils.api.client.model.TileEntityModelCustom;
 import cn.liutils.api.client.render.RenderTileModelSided;
 import cn.liutils.api.client.util.RenderUtils;
-import cn.otfurniture.block.BlockLampLarge;
 import cn.otfurniture.proxy.OFClientProps;
 
 /**

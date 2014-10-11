@@ -16,17 +16,12 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Vec3;
-
 import org.lwjgl.opengl.GL11;
 
-import cn.liutils.api.block.BlockDirectionedMulti;
-import cn.liutils.api.client.model.ITileEntityModel;
 import cn.liutils.api.client.model.TileEntityModelCustom;
 import cn.liutils.api.client.render.RenderTileModelSided;
 import cn.liutils.api.client.render.Vertex;
 import cn.liutils.api.client.util.RenderUtils;
-import cn.otfurniture.block.BlockBathtub;
 import cn.otfurniture.block.BlockSink;
 import cn.otfurniture.block.BlockSink.Tile;
 import cn.otfurniture.proxy.OFClientProps;
@@ -41,6 +36,7 @@ public class RendererSink extends RenderTileModelSided {
 		this.scale = 0.016F;
 	}
 	
+	@Override
 	protected void renderAtOrigin(TileEntity te) {
 		if(te.getBlockMetadata() >> 2 != 0) return;
 		int meta = te.getBlockMetadata();
@@ -64,9 +60,9 @@ public class RendererSink extends RenderTileModelSided {
 				Tessellator t = Tessellator.instance;
 				
 		        int l = 16777215;
-		        float f = (float)(l >> 16 & 255) / 255.0F;
-		        float f1 = (float)(l >> 8 & 255) / 255.0F;
-		        float f2 = (float)(l & 255) / 255.0F;
+		        float f = (l >> 16 & 255) / 255.0F;
+		        float f1 = (l >> 8 & 255) / 255.0F;
+		        float f2 = (l & 255) / 255.0F;
 				if(block.id == 1)
 					GL11.glColor4f(.8F, 0F, 0F, 1F);
 				else GL11.glColor4f(f, f1, f2, 1.0F);

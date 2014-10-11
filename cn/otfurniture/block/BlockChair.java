@@ -15,7 +15,6 @@ import java.util.List;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
@@ -24,7 +23,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import cn.liutils.api.block.BlockDirectionedMulti;
 import cn.otfurniture.OldTownFurniture;
-import cn.otfurniture.block.BlockSofaLarge.Tile;
 import cn.otfurniture.tile.TileSittable;
 
 /**
@@ -34,7 +32,8 @@ import cn.otfurniture.tile.TileSittable;
 public class BlockChair extends BlockDirectionedMulti {
 	
 	public static class Tile extends TileSittable {
-	    @SideOnly(Side.CLIENT)
+	    @Override
+		@SideOnly(Side.CLIENT)
 	    public AxisAlignedBB getRenderBoundingBox()
 	    {
 	        return INFINITE_EXTENT_AABB;
@@ -51,7 +50,8 @@ public class BlockChair extends BlockDirectionedMulti {
 		id = i;
 	}
 	
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public Vec3 getOffsetRotated(int dir) {
     	return Vec3.createVectorHelper(.5D, 0D, .5D);
     }

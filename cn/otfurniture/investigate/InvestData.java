@@ -10,16 +10,12 @@
  */
 package cn.otfurniture.investigate;
 
-import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
 import java.util.HashMap;
 import java.util.Map;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.WorldSavedData;
 import cn.liutils.api.util.BlockPos;
-
-import com.sun.xml.internal.messaging.saaj.util.ByteInputStream;
 
 /**
  * 一个世界的调查信息数据表

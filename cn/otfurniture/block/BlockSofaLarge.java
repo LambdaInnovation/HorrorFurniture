@@ -49,6 +49,7 @@ public class BlockSofaLarge extends BlockDirectionedMulti implements ITexturePro
 		private int ticksUntilReq = 4;
 		int metadata = -1;
 		
+		@Override
 		public void updateEntity() {
 			if(metadata == -1) {
 				metadata = this.getBlockMetadata();
@@ -59,18 +60,21 @@ public class BlockSofaLarge extends BlockDirectionedMulti implements ITexturePro
 			}
 		}
 		
+		@Override
 		public void setMetadata(int meta) {
 			synced = true;
 			metadata = meta;
 		}
 		
-	    public void readFromNBT(NBTTagCompound nbt)
+	    @Override
+		public void readFromNBT(NBTTagCompound nbt)
 	    {
 	    	metadata = nbt.getInteger("meta");
 	        super.readFromNBT(nbt);
 	    }
 
-	    public void writeToNBT(NBTTagCompound nbt)
+	    @Override
+		public void writeToNBT(NBTTagCompound nbt)
 	    {
 	    	nbt.setInteger("meta", metadata);
 	        super.writeToNBT(nbt);
@@ -84,6 +88,7 @@ public class BlockSofaLarge extends BlockDirectionedMulti implements ITexturePro
 		}
 		//#end boilerplate0
 		
+		@Override
 		@SideOnly(Side.CLIENT)
 	    public AxisAlignedBB getRenderBoundingBox()
 	    {
@@ -121,7 +126,8 @@ public class BlockSofaLarge extends BlockDirectionedMulti implements ITexturePro
 		return Vec3.createVectorHelper(0, 0, 0.5);
 	}
 	
-    @SideOnly(Side.CLIENT)
+    @Override
+	@SideOnly(Side.CLIENT)
     public Vec3 getOffsetRotated(int dir) {
     	Vec3 pos = getRenderOffset();
     	if(dir == 3) 

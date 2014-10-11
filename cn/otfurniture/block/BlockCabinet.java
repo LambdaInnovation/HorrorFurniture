@@ -41,7 +41,8 @@ public class BlockCabinet extends BlockDirectionedMulti implements ITextureProvi
 	
 	public static class Tile extends TileEntityChest implements IMetadataProvider {
 		
-	    @SideOnly(Side.CLIENT)
+	    @Override
+		@SideOnly(Side.CLIENT)
 	    public AxisAlignedBB getRenderBoundingBox()
 	    {
 	    	return INFINITE_EXTENT_AABB;
@@ -52,6 +53,7 @@ public class BlockCabinet extends BlockDirectionedMulti implements ITextureProvi
 		private int ticksUntilReq = 4;
 		int metadata = -1;
 		
+		@Override
 		public void updateEntity() {
 			if(metadata == -1) {
 				metadata = this.getBlockMetadata();
@@ -62,18 +64,21 @@ public class BlockCabinet extends BlockDirectionedMulti implements ITextureProvi
 			}
 		}
 		
+		@Override
 		public void setMetadata(int meta) {
 			synced = true;
 			metadata = meta;
 		}
 		
-	    public void readFromNBT(NBTTagCompound nbt)
+	    @Override
+		public void readFromNBT(NBTTagCompound nbt)
 	    {
 	    	metadata = nbt.getInteger("meta");
 	        super.readFromNBT(nbt);
 	    }
 
-	    public void writeToNBT(NBTTagCompound nbt)
+	    @Override
+		public void writeToNBT(NBTTagCompound nbt)
 	    {
 	    	nbt.setInteger("meta", metadata);
 	        super.writeToNBT(nbt);
@@ -117,7 +122,8 @@ public class BlockCabinet extends BlockDirectionedMulti implements ITextureProvi
 		return Vec3.createVectorHelper(1D, 0D, 0.5D);
 	}
 	
-    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
+    @Override
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9)
     {
         if (world.isRemote)
         {
