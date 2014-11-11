@@ -12,7 +12,7 @@ package cn.otfurniture.client.renderer;
 
 import net.minecraft.tileentity.TileEntity;
 import cn.liutils.api.client.model.TileEntityModelCustom;
-import cn.liutils.api.client.render.RenderTileModelSided;
+import cn.liutils.api.client.render.RenderDirMultiModelled;
 import cn.liutils.api.client.util.RenderUtils;
 import cn.otfurniture.block.BlockChair;
 import cn.otfurniture.proxy.OFClientProps;
@@ -21,7 +21,7 @@ import cn.otfurniture.proxy.OFClientProps;
  * @author WeAthFolD
  *
  */
-public class RendererChair extends RenderTileModelSided {
+public class RendererChair extends RenderDirMultiModelled {
 
 	/**
 	 * @param mdl

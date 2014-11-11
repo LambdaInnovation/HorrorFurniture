@@ -42,6 +42,8 @@ public class BlockKitchenShelf extends BlockDirectionedMulti implements ITexture
 		setBlockName("hf_kshelf" + i);
 		setBlockTextureName("leon:kshelf" + id);
 		setCreativeTab(OldTownFurniture.cct);
+		addSubBlock(1, 0, 0);
+		addSubBlock(0, 0, 1);
 	}
 
 	@Override
@@ -63,12 +65,6 @@ public class BlockKitchenShelf extends BlockDirectionedMulti implements ITexture
     	if(dir == 4) return Vec3.createVectorHelper(0, 0, 1);
     	return Vec3.createVectorHelper(0, 0, 0);
     }
-
-	@Override
-	public void addSubBlocks(List<SubBlockPos> list) {
-		list.add(new SubBlockPos(1, 0, 0, 1));
-		list.add(new SubBlockPos(0, 0, 1, 2));
-	}
 
 	@Override
 	public ResourceLocation getTexture() {

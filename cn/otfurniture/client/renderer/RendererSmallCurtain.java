@@ -3,11 +3,12 @@
  */
 package cn.otfurniture.client.renderer;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.tileentity.TileEntity;
-import cn.liutils.api.client.render.RenderTileSided;
+
+import org.lwjgl.opengl.GL11;
+
+import cn.liutils.api.client.render.RenderTileDirMulti;
 import cn.liutils.api.client.util.RenderUtils;
 
 /**
@@ -15,7 +16,7 @@ import cn.liutils.api.client.util.RenderUtils;
  * @author WeathFolD
  *
  */
-public class RendererSmallCurtain extends RenderTileSided {
+public class RendererSmallCurtain extends RenderTileDirMulti {
 
 	public RendererSmallCurtain() {
 	}

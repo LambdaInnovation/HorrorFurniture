@@ -16,7 +16,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
 import cn.liutils.api.client.model.TileEntityModelCustom;
-import cn.liutils.api.client.render.RenderTileModelSided;
+import cn.liutils.api.client.render.RenderDirMultiModelled;
 import cn.liutils.api.client.util.RenderUtils;
 import cn.otfurniture.block.BlockTV;
 import cn.otfurniture.block.BlockTV.Tile;
@@ -26,7 +26,7 @@ import cn.otfurniture.proxy.OFClientProps;
  * @author WeAthFolD
  *
  */
-public class RendererTV extends RenderTileModelSided {
+public class RendererTV extends RenderDirMultiModelled {
 
 	public RendererTV() {
 		super(new TileEntityModelCustom(OFClientProps.MDL_TV));

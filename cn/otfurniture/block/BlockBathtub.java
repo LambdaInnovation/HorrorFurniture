@@ -72,6 +72,7 @@ public class BlockBathtub extends BlockDirectionedMulti implements ITextureProvi
 		setHardness(2F);
 		setBlockName("bathtub" + (id == 1 ? "b" : ""));
 		setBlockTextureName("leon:bathtub" + (id == 1 ? "b" : ""));
+		addSubBlock(1, 0, 0);
 	}
 
 	/* (non-Javadoc)
@@ -85,14 +86,6 @@ public class BlockBathtub extends BlockDirectionedMulti implements ITextureProvi
 	@Override
 	public Vec3 getRenderOffset() {
 		return Vec3.createVectorHelper(1D, 0D, 0.5D);
-	}
-
-	/* (non-Javadoc)
-	 * @see cn.liutils.api.block.BlockDirectionedMulti#addSubBlocks(java.util.List)
-	 */
-	@Override
-	public void addSubBlocks(List<SubBlockPos> list) {
-		list.add(new SubBlockPos(1, 0, 0, 1));
 	}
 	
     @Override

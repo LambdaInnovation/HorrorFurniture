@@ -48,6 +48,7 @@ public class BlockChair extends BlockDirectionedMulti {
 		setBlockName("chair" + i);
 		setBlockTextureName("leon:chair" + i);
 		id = i;
+		addSubBlock(0, 1, 0);
 	}
 	
     @Override
@@ -70,14 +71,6 @@ public class BlockChair extends BlockDirectionedMulti {
 	@Override
 	public Vec3 getRenderOffset() {
 		return null;
-	}
-
-	/* (non-Javadoc)
-	 * @see cn.liutils.api.block.BlockDirectionedMulti#addSubBlocks(java.util.List)
-	 */
-	@Override
-	public void addSubBlocks(List<SubBlockPos> list) {
-		list.add(new SubBlockPos(0, 1, 0, 1));
 	}
 	
     @Override

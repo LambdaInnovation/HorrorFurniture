@@ -39,6 +39,7 @@ public class BlockTVShelf extends BlockDirectionedMulti implements
 		setCreativeTab(OldTownFurniture.cct);
 		setBlockName("hf_tvshelf");
 		setBlockTextureName("leon:tvshelf");
+		addSubBlock(1, 0, 0);
 	}
 
 	@Override
@@ -55,11 +56,6 @@ public class BlockTVShelf extends BlockDirectionedMulti implements
 	@Override
 	public Vec3 getRenderOffset() {
 		return Vec3.createVectorHelper(1D, 0D, .5D);
-	}
-
-	@Override
-	public void addSubBlocks(List<SubBlockPos> list) {
-		list.add(new SubBlockPos(1, 0, 0, 1));
 	}
 
 }

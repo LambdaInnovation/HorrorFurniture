@@ -32,6 +32,8 @@ public class BlockClock extends BlockDirectionedMulti implements ITextureProvide
 		setBlockName("hf_clock" + id);
 		setCreativeTab(OldTownFurniture.cct);
 		setHardness(3.0F);
+		addSubBlock(0, 1, 0);
+		addSubBlock(0, 2, 0);
 	}
 
 	public static class Tile extends TileEntity {
@@ -51,12 +53,6 @@ public class BlockClock extends BlockDirectionedMulti implements ITextureProvide
 	@Override
 	public Vec3 getRenderOffset() {
 		return null;
-	}
-
-	@Override
-	public void addSubBlocks(List<SubBlockPos> list) {
-		list.add(new SubBlockPos(0, 1, 0, 1));
-		list.add(new SubBlockPos(0, 2, 0, 1));
 	}
 	
 	@Override

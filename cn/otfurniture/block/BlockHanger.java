@@ -41,6 +41,8 @@ public class BlockHanger extends BlockDirectionedMulti implements ITextureProvid
 		setCreativeTab(OldTownFurniture.cct);
 		setBlockName("hf_hanger");
 		setBlockTextureName("leon:hanger");
+		addSubBlock(0, 1, 0);
+		addSubBlock(0, 2, 0);
 	}
 
 	/* (non-Javadoc)
@@ -60,14 +62,5 @@ public class BlockHanger extends BlockDirectionedMulti implements ITextureProvid
 	public Vec3 getRenderOffset() {
 		return Vec3.createVectorHelper(.5, 0.0, .5);
 	}
-
-	/* (non-Javadoc)
-	 * @see cn.liutils.api.block.BlockDirectionedMulti#addSubBlocks(java.util.List)
-	 */
-	@Override
-	public void addSubBlocks(List<SubBlockPos> list) {
-		list.add(new SubBlockPos(0, 1, 0, 1));
-		list.add(new SubBlockPos(0, 2, 0, 1));
-	}
-
+	
 }

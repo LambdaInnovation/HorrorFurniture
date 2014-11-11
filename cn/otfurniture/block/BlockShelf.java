@@ -45,6 +45,7 @@ public class BlockShelf extends BlockDirectionedMulti {
 		this.id = id;
 		setBlockName("shelf" + id);
 		setBlockTextureName("leon:shelf");
+		addSubBlock(1, 0, 0);
 	}
 
 	@Override
@@ -56,12 +57,5 @@ public class BlockShelf extends BlockDirectionedMulti {
 	public Vec3 getRenderOffset() {
 		return Vec3.createVectorHelper(1.0, 0.0, 0.5);
 	}
-
-	@Override
-	public void addSubBlocks(List<SubBlockPos> list) {
-		list.add(new SubBlockPos(1, 0, 0, 1));
-	}
-	
-   
 
 }

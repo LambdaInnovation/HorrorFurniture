@@ -36,6 +36,9 @@ public class BlockChandelierLarge extends BlockDirectionedMulti {
 		setBlockName("chandeilerl");
 		setBlockTextureName("leon:cdl");
 		useRotation = false;
+		addSubBlock(1, 0, 0);
+		addSubBlock(1, 0, 1);
+		addSubBlock(0, 0, 1);
 	}
 
 	@Override
@@ -46,13 +49,6 @@ public class BlockChandelierLarge extends BlockDirectionedMulti {
 	@Override
 	public Vec3 getRenderOffset() {
 		return null;
-	}
-	
-	@Override
-	public void addSubBlocks(List<SubBlockPos> list) {
-		list.add(new SubBlockPos(1, 0, 0, 1));
-		list.add(new SubBlockPos(1, 0, 1, 2));
-		list.add(new SubBlockPos(0, 0, 1, 3));
 	}
 	
     @Override

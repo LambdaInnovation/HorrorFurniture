@@ -60,10 +60,6 @@ public class BlockChaos extends BlockDirectionedMulti {
 	public Vec3 getRenderOffset() {
 		return null;
 	}
-
-	@Override
-	public void addSubBlocks(List<SubBlockPos> list) {
-	}
 	
 	@Override
 	public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {

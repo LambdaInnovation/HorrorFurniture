@@ -5,14 +5,14 @@ package cn.otfurniture.client.renderer;
 
 import net.minecraft.tileentity.TileEntity;
 import cn.liutils.api.client.model.TileEntityModelCustom;
-import cn.liutils.api.client.render.RenderTileModelSided;
+import cn.liutils.api.client.render.RenderDirMultiModelled;
 import cn.otfurniture.proxy.OFClientProps;
 
 /**
  * @author FolD
  *
  */
-public class RendererPiano extends RenderTileModelSided {
+public class RendererPiano extends RenderDirMultiModelled {
 
 	public RendererPiano() {
 		super(new TileEntityModelCustom(OFClientProps.MDL_PIANO));

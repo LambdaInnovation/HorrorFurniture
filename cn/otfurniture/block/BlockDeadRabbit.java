@@ -51,8 +51,4 @@ public class BlockDeadRabbit extends BlockDirectionedMulti {
 		return Vec3.createVectorHelper(0, 0, 0);
 	}
 
-	@Override
-	public void addSubBlocks(List<SubBlockPos> list) {
-	}
-
 }

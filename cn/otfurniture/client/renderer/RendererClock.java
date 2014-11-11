@@ -18,7 +18,8 @@ import org.lwjgl.opengl.GL11;
 
 import cn.liutils.api.client.ITextureProvider;
 import cn.liutils.api.client.model.TileEntityModelCustom;
-import cn.liutils.api.client.render.RenderTileModelSided;
+import cn.liutils.api.client.render.RenderDirMultiModelled;
+import cn.liutils.api.client.render.RenderTileDirMulti;
 import cn.liutils.api.client.util.RenderUtils;
 import cn.otfurniture.proxy.OFClientProps;
 
@@ -26,7 +27,7 @@ import cn.otfurniture.proxy.OFClientProps;
  * @author WeAthFolD
  *
  */
-public class RendererClock extends RenderTileModelSided {
+public class RendererClock extends RenderDirMultiModelled {
 
 	public RendererClock() {
 		super(new TileEntityModelCustom(OFClientProps.MDL_CLOCK));

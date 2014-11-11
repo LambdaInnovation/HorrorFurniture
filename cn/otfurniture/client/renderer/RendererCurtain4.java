@@ -3,21 +3,22 @@
  */
 package cn.otfurniture.client.renderer;
 
-import org.lwjgl.opengl.GL11;
-
-import cn.liutils.api.block.BlockDirectionedMulti;
-import cn.liutils.api.client.render.RenderTileSided;
-import cn.liutils.api.client.util.RenderUtils;
-import cn.otfurniture.block.BlockCurtain4;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Vec3;
+
+import org.lwjgl.opengl.GL11;
+
+import cn.liutils.api.block.BlockDirectionedMulti;
+import cn.liutils.api.client.render.RenderTileDirMulti;
+import cn.liutils.api.client.util.RenderUtils;
+import cn.otfurniture.block.BlockCurtain4;
 
 /**
  * 4x4型窗帘的渲染。
  * @author WeathFolD
  */
-public class RendererCurtain4 extends RenderTileSided {
+public class RendererCurtain4 extends RenderTileDirMulti {
 
 	public RendererCurtain4() {
 	}
@@ -27,6 +28,7 @@ public class RendererCurtain4 extends RenderTileSided {
 			double var6, float var8) {
 		int meta = ((BlockCurtain4.Tile)var1).getMetadata();
 		if(meta >> 2 != 0) return;
+//		System.out.println("R " + var1.xCoord + "," + var1.yCoord + "," + var1.zCoord);
 		Vec3 rotate = ((BlockDirectionedMulti)var1.getBlockType()).getOffsetRotated(BlockDirectionedMulti.getFacingDirection(meta).ordinal());
 		GL11.glPushMatrix(); {
 			GL11.glTranslated(var2 + offX + rotate.xCoord, var4 + offY + rotate.yCoord, var6 + offZ + rotate.zCoord);

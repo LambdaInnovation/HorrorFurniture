@@ -45,6 +45,7 @@ public class BlockMirror extends BlockDirectionedMulti implements ITextureProvid
 		setCreativeTab(OldTownFurniture.cct);
 		setBlockName("hf_mirror" + i);
 		setBlockTextureName("leon:mirror" + i);
+		addSubBlock(0, 1, 0);
 	}
 	
     @Override
@@ -53,12 +54,12 @@ public class BlockMirror extends BlockDirectionedMulti implements ITextureProvid
     	ForgeDirection d = ForgeDirection.values()[dir];
     	double a = 0.98, b = 0.02;
     	if(dir == 2)
-    		return makeV(1, 0, a);
+    		return makeV(.5, 0, a);
     	if(dir == 3)
-    		return makeV(0, 0, b);
+    		return makeV(0.5, 0, b);
     	if(dir == 4)
-    		return makeV(a, 0, 0);
-    	return makeV(b, 0, 1);
+    		return makeV(a, 0, 0.5);
+    	return makeV(b, 0, .5);
     }
     
     private Vec3 makeV(double a, double b, double c) {
@@ -73,13 +74,6 @@ public class BlockMirror extends BlockDirectionedMulti implements ITextureProvid
 	@Override
 	public Vec3 getRenderOffset() {
 		return null;
-	}
-
-	@Override
-	public void addSubBlocks(List<SubBlockPos> list) {
-		list.add(new SubBlockPos(0, 1, 0, 1));
-		list.add(new SubBlockPos(1, 1, 0, 2));
-		list.add(new SubBlockPos(1, 0, 0, 3));
 	}
 	
 	private int sgn(int x) {

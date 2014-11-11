@@ -10,11 +10,12 @@
  */
 package cn.otfurniture.client.renderer;
 
+import net.minecraft.tileentity.TileEntity;
+
 import org.lwjgl.opengl.GL11;
 
-import net.minecraft.tileentity.TileEntity;
 import cn.liutils.api.client.model.TileEntityModelCustom;
-import cn.liutils.api.client.render.RenderTileModelSided;
+import cn.liutils.api.client.render.RenderDirMultiModelled;
 import cn.liutils.api.client.util.RenderUtils;
 import cn.otfurniture.proxy.OFClientProps;
 
@@ -22,7 +23,7 @@ import cn.otfurniture.proxy.OFClientProps;
  * @author WeAthFolD
  *
  */
-public class RendererLampLarge extends RenderTileModelSided {
+public class RendererLampLarge extends RenderDirMultiModelled {
 
 	public RendererLampLarge() {
 		super(new TileEntityModelCustom(OFClientProps.MDL_LAMPL));

@@ -22,6 +22,7 @@ import cn.liutils.api.block.BlockDirectionedMulti;
 import cn.liutils.api.block.TileDirectionedMulti;
 import cn.liutils.api.client.ITextureProvider;
 import cn.otfurniture.OldTownFurniture;
+import cn.otfurniture.register.OFBlocks;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -51,6 +52,13 @@ public abstract class BlockCurtain2 extends BlockDirectionedMulti implements ITe
 		id = idl;
 		setCreativeTab(OldTownFurniture.cct);
 		setStepSound(soundTypeCloth);
+		addBlocks();
+	}
+	
+	protected void addBlocks() { //如果一个类要被subTyped，它注定不能在构造器里添加子方块
+		addSubBlock(0, 1, 0);
+		addSubBlock(1, 1, 0);
+		addSubBlock(1, 0, 0);
 	}
 
 	@Override
@@ -85,7 +93,8 @@ public abstract class BlockCurtain2 extends BlockDirectionedMulti implements ITe
 	public boolean onBlockActivated(World wrld, int x, int y, int z, EntityPlayer player, int a,
     		float b, float c, float d)
     {
-    	int meta = wrld.getBlockMetadata(x, y, z);
+    	Block reverse = getReverse();
+    	int meta = getMetadata(wrld, x, y, z);
     	{
     		//Get back to origin
     		int[] crds = this.getOrigin(wrld, x, y, z, meta);
@@ -95,13 +104,15 @@ public abstract class BlockCurtain2 extends BlockDirectionedMulti implements ITe
     		meta &= 0x03;
     	}
     	
-    	for(SubBlockPos pos : this.subBlocks) {
+    	for(SubBlockPos pos : this.getSubBlocks()) {
     		//Set all the subBlocks
     		SubBlockPos pos2 = this.applyRotation(pos, BlockDirectionedMulti.getFacingDirection(meta).ordinal());
-    		pos2.setMe(wrld, x, y, z, meta + (pos.id << 2), getReverse());
+    		pos2.setMe(wrld, x, y, z, meta + (pos2.id << 2), reverse);
+    		setMetadata(wrld, x + pos2.offX, y + pos2.offY, z + pos2.offZ, meta + (pos2.id << 2));
     	}
     	//Set origin block
-    	wrld.setBlock(x, y, z, getReverse(), meta, 0x03);
+    	wrld.setBlock(x, y, z, reverse, meta, 0x03);
+    	setMetadata(wrld, x, y, z, meta);
         return true;
     }
     
@@ -112,16 +123,6 @@ public abstract class BlockCurtain2 extends BlockDirectionedMulti implements ITe
     	if(id == 0 || id == 2)
     		p_149666_3_.add(new ItemStack(p_149666_1_, 1, 0));
     }
-
-	/* (non-Javadoc)
-	 * @see cn.liutils.api.block.BlockDirectionedMulti#addSubBlocks(java.util.List)
-	 */
-	@Override
-	public void addSubBlocks(List<SubBlockPos> list) {
-		list.add(new SubBlockPos(0, 1, 0, 1));
-		list.add(new SubBlockPos(1, 1, 0, 2));
-		list.add(new SubBlockPos(1, 0, 0, 3));
-	}
 	
 	@SideOnly(Side.CLIENT)
 	public abstract ResourceLocation[] getTextures();
@@ -147,5 +148,4 @@ public abstract class BlockCurtain2 extends BlockDirectionedMulti implements ITe
 			this.setBlockBounds(0.0F, 0.0F, b, 1.0F, 1.0F, 1.0F);
 		}
 	}
-
 }

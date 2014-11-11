@@ -34,14 +34,20 @@ public class BlockPianoRecorded extends BlockPianoBase {
 		
 		@Override
 		public void updateEntity() {
+			super.updateEntity();
 			int meta = this.getBlockMetadata();
 			if(meta >> 2 != 2 && meta >> 2 != 3)
 				return;
 			if((++ticksExisted + offset) % timeTable[id] == 0 && RNG.nextDouble() > 0.6) {
 				int[] cd = getOrigin(worldObj, xCoord, yCoord, zCoord, meta);
-				if(((Tile)worldObj.getTileEntity(cd[0], cd[1], cd[2])).isPlaying)
+				Tile te = typesafe(worldObj.getTileEntity(cd[0], cd[1], cd[2]));
+				if(te != null && isPlaying)
 					worldObj.spawnParticle("note", xCoord + 0.5D, yCoord + 1.2D, zCoord + 0.5D, (RNG.nextDouble() + .5D) / .5D, 0.0D, 0.0D);
 			}
+		}
+		
+		private Tile typesafe(TileEntity te) {
+			return (Tile) (te instanceof Tile ? te : null);
 		}
 		
 	    @Override
@@ -69,14 +75,14 @@ public class BlockPianoRecorded extends BlockPianoBase {
     	//Currently don't support public playing, need to further figure out why
         if (world.isRemote)
         {
-        	int meta = world.getBlockMetadata(x, y, z);
+        	int meta = getMetadata(world, x, y, z);
         	if(meta >> 2 != 2 && meta >> 2 != 3) return false;
         	
         	int[] crds = this.getOrigin(world, x, y, z, meta);
         	x = crds[0];
         	y = crds[1];
         	z = crds[2];
-        	System.out.println(x + " " + y + " " + z);
+//        	System.out.println(x + " " + y + " " + z);
         	
         	Tile te = (Tile) world.getTileEntity(x, y, z);
 

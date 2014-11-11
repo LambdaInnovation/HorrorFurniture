@@ -24,8 +24,8 @@ import net.minecraft.world.World;
 import cn.liutils.api.block.BlockDirectionedMulti;
 import cn.liutils.api.block.IMetadataProvider;
 import cn.liutils.api.client.ITextureProvider;
-import cn.liutils.core.LIUtilsMod;
-import cn.liutils.core.network.MsgTileDMulti;
+import cn.liutils.core.LIUtils;
+import cn.liutils.core.network.MsgTileDirMulti;
 import cn.otfurniture.OldTownFurniture;
 import cn.otfurniture.proxy.OFClientProps;
 import cn.otfurniture.tile.TileSittable;
@@ -56,7 +56,7 @@ public class BlockSofaLarge extends BlockDirectionedMulti implements ITexturePro
 			}
 			if(worldObj.isRemote && !synced && ++ticksUntilReq == 5) {
 				ticksUntilReq = 0;
-				LIUtilsMod.netHandler.sendToServer(new MsgTileDMulti.Request(this));
+				LIUtils.netHandler.sendToServer(new MsgTileDirMulti.Request(this));
 			}
 		}
 		
@@ -108,6 +108,9 @@ public class BlockSofaLarge extends BlockDirectionedMulti implements ITexturePro
 		setBlockName("sofal" + id);
 		setBlockTextureName("leon:sofal" + id);
 		setCreativeTab(OldTownFurniture.cct);
+		addSubBlock(-1, 0, 0);
+		addSubBlock(1, 0, 0);
+		addSubBlock(2, 0, 0);
 	}
 
 	/* (non-Javadoc)
@@ -138,24 +141,15 @@ public class BlockSofaLarge extends BlockDirectionedMulti implements ITexturePro
 			return Vec3.createVectorHelper(0, pos.yCoord, pos.zCoord);
 		return Vec3.createVectorHelper(pos.zCoord, pos.yCoord, 0);
     }
-
-	/* (non-Javadoc)
-	 * @see cn.liutils.api.block.BlockDirectionedMulti#addSubBlocks(java.util.List)
-	 */
-	@Override
-	public void addSubBlocks(List<SubBlockPos> list) {
-		int ind = 1;
-		list.add(new SubBlockPos(-2, 0, 0, ind++));
-		list.add(new SubBlockPos(-1, 0, 0, ind++));
-		list.add(new SubBlockPos(1, 0, 0, ind++));
-		list.add(new SubBlockPos(2, 0, 0, ind++));
-	}
 	
     @Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int meta, float a, float b, float c)
-    {
+    { 
     	if(world.isRemote) return false;
-    	Tile te = (Tile) world.getTileEntity(x, y, z);
+    	TileEntity t = world.getTileEntity(x, y, z);
+    	if(t == null || !(t instanceof Tile))
+    		return false;
+    	Tile te = (Tile) t;
     	te.onTileActivated(player);
         return true;
     }

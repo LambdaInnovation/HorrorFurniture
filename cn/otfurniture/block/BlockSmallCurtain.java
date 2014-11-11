@@ -89,10 +89,6 @@ public class BlockSmallCurtain extends BlockDirectionedMulti implements ITexture
 	public Vec3 getRenderOffset() {
 		return null;
 	}
-
-	@Override
-	public void addSubBlocks(List<SubBlockPos> list) {
-	}
 	
     @Override
 	@SideOnly(Side.CLIENT)

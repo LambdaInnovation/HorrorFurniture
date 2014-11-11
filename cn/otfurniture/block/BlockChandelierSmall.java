@@ -46,9 +46,4 @@ public class BlockChandelierSmall extends BlockDirectionedMulti {
 		return Vec3.createVectorHelper(0.5D, 0D, 0.5D);
 	}
 
-	@Override
-	public void addSubBlocks(List<SubBlockPos> list) {
-		
-	}
-
 }

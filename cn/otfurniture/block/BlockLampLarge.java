@@ -59,6 +59,7 @@ public class BlockLampLarge extends BlockDirectionedMulti implements ITexturePro
 		String s = "lampl" + (i <= 1 ? "" : "b");
 		setBlockName(s);
 		setBlockTextureName("leon:" + s);
+		addSubBlock(0, 1, 0);
 	}
 
 	/* (non-Javadoc)
@@ -98,14 +99,6 @@ public class BlockLampLarge extends BlockDirectionedMulti implements ITexturePro
     	System.out.println("Upper metadata : " + world.getBlockMetadata(x, y + 1, z));
         return true;
     }
-
-	/* (non-Javadoc)
-	 * @see cn.liutils.api.block.BlockDirectionedMulti#addSubBlocks(java.util.List)
-	 */
-	@Override
-	public void addSubBlocks(List<SubBlockPos> list) {
-		list.add(new SubBlockPos(0, 1, 0, 1));
-	}
 	
 	private static final int[] revs = { 1, 0, 3, 2 };
 	private Block getReverse() {

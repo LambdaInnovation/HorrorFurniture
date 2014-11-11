@@ -47,6 +47,7 @@ public class BlockDesk extends BlockDirectionedMulti implements ITextureProvider
 		id = i;
 		setBlockName("desk" + i);
 		setBlockTextureName("leon:desk" + i);
+		addSubBlock(1, 0, 0);
 	}
 	
 	@Override
@@ -57,11 +58,6 @@ public class BlockDesk extends BlockDirectionedMulti implements ITextureProvider
 	@Override
 	public Vec3 getRenderOffset() {
 		return Vec3.createVectorHelper(1., 0.0, 0.5);
-	}
-	
-	@Override
-	public void addSubBlocks(List<SubBlockPos> list) {
-		list.add(new SubBlockPos(1, 0, 0, 1));
 	}
 
 	@Override

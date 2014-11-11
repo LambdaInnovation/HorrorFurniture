@@ -76,10 +76,6 @@ public class BlockSink extends BlockDirectionedMulti implements ITextureProvider
 	public Vec3 getRenderOffset() {
 		return null;
 	}
-
-	@Override
-	public void addSubBlocks(List<SubBlockPos> list) {
-	}
 	
     @Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer pl, int side, float a, float b, float c)

@@ -5,8 +5,6 @@ package cn.otfurniture.block;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -16,9 +14,11 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import cn.liutils.api.block.BlockDirectionedMulti;
 import cn.liutils.api.block.IMetadataProvider;
-import cn.liutils.core.LIUtilsMod;
-import cn.liutils.core.network.MsgTileDMulti;
+import cn.liutils.core.LIUtils;
+import cn.liutils.core.network.MsgTileDirMulti;
 import cn.otfurniture.OldTownFurniture;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * @author FolD
@@ -47,7 +47,7 @@ public class BlockFileShelf extends BlockDirectionedMulti {
 			}
 			if(worldObj.isRemote && !synced && ++ticksUntilReq == 5) {
 				ticksUntilReq = 0;
-				LIUtilsMod.netHandler.sendToServer(new MsgTileDMulti.Request(this));
+				LIUtils.netHandler.sendToServer(new MsgTileDirMulti.Request(this));
 			}
 		}
 		
@@ -85,6 +85,11 @@ public class BlockFileShelf extends BlockDirectionedMulti {
 		setCreativeTab(OldTownFurniture.cct);
 		setBlockName("hf_fileshelf");
 		setBlockTextureName("leon:fshelf");
+		addSubBlock(1, 0, 0);
+		addSubBlock(1, 1, 0);
+		addSubBlock(0, 1, 0);
+		addSubBlock(-1, 0, 0);
+		addSubBlock(-1, 1, 0);
 	}
 
 	@Override
@@ -107,15 +112,6 @@ public class BlockFileShelf extends BlockDirectionedMulti {
 			v.xCoord = 0.5;
 		}
 		return v;
-	}
-
-	@Override
-	public void addSubBlocks(List<SubBlockPos> list) {
-		list.add(new SubBlockPos(1, 0, 0, 1));
-		list.add(new SubBlockPos(1, 1, 0, 2));
-		list.add(new SubBlockPos(0, 1, 0, 3));
-		list.add(new SubBlockPos(-1, 0, 0, 4));
-		list.add(new SubBlockPos(-1, 1, 0, 5));
 	}
 
 }

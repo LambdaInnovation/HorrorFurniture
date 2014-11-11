@@ -16,10 +16,11 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 
 import cn.liutils.api.client.model.TileEntityModelCustom;
-import cn.liutils.api.client.render.RenderTileModelSided;
+import cn.liutils.api.client.render.RenderDirMultiModelled;
 import cn.liutils.api.client.render.Vertex;
 import cn.liutils.api.client.util.RenderUtils;
 import cn.otfurniture.block.BlockSink;
@@ -29,7 +30,7 @@ import cn.otfurniture.proxy.OFClientProps;
 /**
  * @author WeAthFolD
  */
-public class RendererSink extends RenderTileModelSided {
+public class RendererSink extends RenderDirMultiModelled {
 
 	public RendererSink() {
 		super(new TileEntityModelCustom(OFClientProps.MDL_SINK));

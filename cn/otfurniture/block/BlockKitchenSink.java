@@ -58,14 +58,6 @@ public class BlockKitchenSink extends BlockDirectionedMulti implements ITextureP
 		return null;
 	}
 
-	/* (non-Javadoc)
-	 * @see cn.liutils.api.block.BlockDirectionedMulti#addSubBlocks(java.util.List)
-	 */
-	@Override
-	public void addSubBlocks(List<SubBlockPos> list) {
-		
-	}
-
 	@Override
 	public ResourceLocation getTexture() {
 		return OFClientProps.TEX_KSINK[id];

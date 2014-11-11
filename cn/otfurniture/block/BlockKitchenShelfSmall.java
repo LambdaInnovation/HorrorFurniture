@@ -57,11 +57,6 @@ public class BlockKitchenShelfSmall extends BlockDirectionedMulti implements ITe
     	return Vec3.createVectorHelper(.5, 0, .5);
     }
 
-
-	@Override
-	public void addSubBlocks(List<SubBlockPos> list) {
-	}
-
 	@Override
 	public ResourceLocation getTexture() {
 		return OFClientProps.TEX_KSSHELF[id];

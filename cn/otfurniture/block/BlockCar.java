@@ -37,6 +37,24 @@ public class BlockCar extends BlockDirectionedMulti {
 		setCreativeTab(OldTownFurniture.cct);
 		setBlockName("hf_car");
 		setBlockTextureName("leon:car");
+		addSubBlock(0, 1, 0);
+		addSubBlock(1, 0, 0);
+		addSubBlock(1, 1, 0);
+		addSubBlock(2, 0, 0);
+		addSubBlock(-1, 0, 0);
+		addSubBlock(2, 1, 0);
+		addSubBlock(-2, 0, 0);
+		addSubBlock(3, 0, 0);
+		
+		addSubBlock(0, 0, 1);
+		addSubBlock(0, 1, 1);
+		addSubBlock(1, 0, 1);
+		addSubBlock(1, 1, 1);
+		addSubBlock(2, 0, 1);
+		addSubBlock(-1, 0, 1);
+		addSubBlock(2, 1, 1);
+		addSubBlock(-2, 0, 1);
+		addSubBlock(3, 0, 1);
 	}
 	
     @Override
@@ -59,28 +77,6 @@ public class BlockCar extends BlockDirectionedMulti {
 	@Override
 	public Vec3 getRenderOffset() {
 		return Vec3.createVectorHelper(0.0, 0.0, 0.0);
-	}
-
-	@Override
-	public void addSubBlocks(List<SubBlockPos> list) {
-		list.add(new SubBlockPos(0, 1, 0, 1));
-		list.add(new SubBlockPos(1, 0, 0, 2));
-		list.add(new SubBlockPos(1, 1, 0, 3));
-		list.add(new SubBlockPos(2, 0, 0, 4));
-		list.add(new SubBlockPos(-1, 0, 0, 5));
-		list.add(new SubBlockPos(2, 1, 0, 6));
-		list.add(new SubBlockPos(-2, 0, 0, 7));
-		list.add(new SubBlockPos(3, 0, 0, 8));
-		
-		list.add(new SubBlockPos(0, 0, 1, 9));
-		list.add(new SubBlockPos(0, 1, 1, 10));
-		list.add(new SubBlockPos(1, 0, 1, 11));
-		list.add(new SubBlockPos(1, 1, 1, 12));
-		list.add(new SubBlockPos(2, 0, 1, 13));
-		list.add(new SubBlockPos(-1, 0, 1, 14));
-		list.add(new SubBlockPos(2, 1, 1, 15));
-		list.add(new SubBlockPos(-2, 0, 1, 16));
-		list.add(new SubBlockPos(3, 0, 1, 17));
 	}
 
 }

@@ -3,10 +3,11 @@
  */
 package cn.otfurniture.client.renderer;
 
+import net.minecraft.tileentity.TileEntity;
+
 import org.lwjgl.opengl.GL11;
 
-import net.minecraft.tileentity.TileEntity;
-import cn.liutils.api.client.render.RenderTileModelSided;
+import cn.liutils.api.client.render.RenderDirMultiModelled;
 import cn.otfurniture.client.model.ModelChandelierBig;
 import cn.otfurniture.proxy.OFClientProps;
 
@@ -14,7 +15,7 @@ import cn.otfurniture.proxy.OFClientProps;
  * 
  * @author WeathFolD
  */
-public class RendererChandelierLarge extends RenderTileModelSided {
+public class RendererChandelierLarge extends RenderDirMultiModelled {
 
 	public RendererChandelierLarge() {
 		super(new ModelChandelierBig());

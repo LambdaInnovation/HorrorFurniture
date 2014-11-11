@@ -43,6 +43,9 @@ public class BlockTShelf extends BlockDirectionedMulti implements ITextureProvid
 		setBlockName("hf_tshelf" + i);
 		setBlockTextureName("leon:tshelf" + (id == 3 ? 1 : 0));
 		setHardness(1.0F);
+		addSubBlock(0, 1, 0);
+		addSubBlock(1, 1, 0);
+		addSubBlock(1, 0, 0);
 	}
 
 	/* (non-Javadoc)
@@ -59,16 +62,6 @@ public class BlockTShelf extends BlockDirectionedMulti implements ITextureProvid
 	@Override
 	public Vec3 getRenderOffset() {
 		return Vec3.createVectorHelper(1, 0, 0.5);
-	}
-
-	/* (non-Javadoc)
-	 * @see cn.liutils.api.block.BlockDirectionedMulti#addSubBlocks(java.util.List)
-	 */
-	@Override
-	public void addSubBlocks(List<SubBlockPos> list) {
-		list.add(new SubBlockPos(0, 1, 0, 1));
-		list.add(new SubBlockPos(1, 1, 0, 2));
-		list.add(new SubBlockPos(1, 0, 0, 3));
 	}
 
 	@Override

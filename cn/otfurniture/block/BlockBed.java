@@ -35,7 +35,9 @@ public class BlockBed extends BlockDirectionedMulti implements ITextureProvider 
 		setCreativeTab(OldTownFurniture.cct);
 		setBlockName("hf_bed" + i);
 		setBlockTextureName("leon:bed" + i);
-		
+		addSubBlock(1, 0, 0);
+		addSubBlock(1, 0, 1);
+		addSubBlock(0, 0, 1);
 		id = i;
 	}
 
@@ -62,13 +64,6 @@ public class BlockBed extends BlockDirectionedMulti implements ITextureProvider 
 	@Override
 	public Vec3 getRenderOffset() {
 		return null;
-	}
-
-	@Override
-	public void addSubBlocks(List<SubBlockPos> list) {
-		list.add(new SubBlockPos(1, 0, 0, 1));
-		list.add(new SubBlockPos(1, 0, 1, 2));
-		list.add(new SubBlockPos(0, 0, 1, 3));
 	}
 
 }

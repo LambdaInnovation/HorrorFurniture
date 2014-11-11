@@ -29,6 +29,11 @@ public class BlockPianoBase extends BlockDirectionedMulti {
 		super(Material.iron);
 		setCreativeTab(OldTownFurniture.cct);
 		setHardness(4.0F);
+		addSubBlock(1, 0, 0);
+		addSubBlock(1, 0, 1);
+		addSubBlock(0, 0, 1);
+		addSubBlock(0, 1, 0);
+		addSubBlock(1, 1, 0);
 	}
 
 	@Override
@@ -50,18 +55,5 @@ public class BlockPianoBase extends BlockDirectionedMulti {
     	if(dir == 4) return Vec3.createVectorHelper(0, 0, 1);
     	return Vec3.createVectorHelper(0, 0, 0);
     }
-
-	/* (non-Javadoc)
-	 * @see cn.liutils.api.block.BlockDirectionedMulti#addSubBlocks(java.util.List)
-	 */
-	@Override
-	public void addSubBlocks(List<SubBlockPos> list) {
-		list.add(new SubBlockPos(1, 0, 0, 1));
-		list.add(new SubBlockPos(1, 0, 1, 2));
-		list.add(new SubBlockPos(0, 0, 1, 3));
-		list.add(new SubBlockPos(0, 1, 0, 4));
-		list.add(new SubBlockPos(1, 1, 0, 5));
-	}
-
 
 }

@@ -23,7 +23,7 @@ import net.minecraft.world.World;
  * @author WeathFolD
  *
  */
-public class BlockCurtain4 extends BlockCurtain2 {
+public final class BlockCurtain4 extends BlockCurtain2 {
 	
 	public static class Tile extends TileDirectionedMulti {
 		
@@ -43,53 +43,27 @@ public class BlockCurtain4 extends BlockCurtain2 {
 	}
 	
 	@Override
-	public TileEntity createNewTileEntity(World var1, int var2) {
-		return new Tile();
+	protected void addBlocks() {
+		addSubBlock(0, 1, 0);
+		addSubBlock(0, 2, 0);
+		addSubBlock(0, 3, 0);
+		addSubBlock(1, 0, 0);
+		addSubBlock(1, 1, 0);
+		addSubBlock(1, 2, 0);
+		addSubBlock(1, 3, 0);
+		addSubBlock(2, 0, 0);
+		addSubBlock(2, 1, 0);
+		addSubBlock(2, 2, 0);
+		addSubBlock(2, 3, 0);
+		addSubBlock(3, 0, 0);
+		addSubBlock(3, 1, 0);
+		addSubBlock(3, 2, 0);
+		addSubBlock(3, 3, 0);
 	}
 	
-    @Override
-	public boolean onBlockActivated(World wrld, int x, int y, int z, EntityPlayer player, int a,
-    		float b, float c, float d)
-    {
-    	int meta = getMetadata(wrld, x, y, z);
-    	
-    	{
-    		//Get back to origin
-    		int[] crds = this.getOrigin(wrld, x, y, z, meta);
-    		x = crds[0];
-    		y = crds[1];
-    		z = crds[2];
-    		meta &= 0x03;
-    	}
-    	
-    	for(SubBlockPos pos : this.subBlocks) {
-    		//Set all the subBlocks
-    		SubBlockPos pos2 = this.applyRotation(pos, BlockDirectionedMulti.getFacingDirection(meta).ordinal());
-    		pos2.setMe(wrld, x, y, z, meta | (pos.id << 2), getReverse());
-    	}
-    	
-    	//Set origin block
-    	wrld.setBlock(x, y, z, getReverse(), meta, 0x03);
-        return true;
-    }
-	
 	@Override
-	public void addSubBlocks(List<SubBlockPos> list) {
-		list.add(new SubBlockPos(0, 1, 0, 1));
-		list.add(new SubBlockPos(0, 2, 0, 2));
-		list.add(new SubBlockPos(0, 3, 0, 3));
-		list.add(new SubBlockPos(1, 0, 0, 4));
-		list.add(new SubBlockPos(1, 1, 0, 5));
-		list.add(new SubBlockPos(1, 2, 0, 6));
-		list.add(new SubBlockPos(1, 3, 0, 7));
-		list.add(new SubBlockPos(2, 0, 0, 8));
-		list.add(new SubBlockPos(2, 1, 0, 9));
-		list.add(new SubBlockPos(2, 2, 0, 10));
-		list.add(new SubBlockPos(2, 3, 0, 11));
-		list.add(new SubBlockPos(3, 0, 0, 12));
-		list.add(new SubBlockPos(3, 1, 0, 13));
-		list.add(new SubBlockPos(3, 2, 0, 14));
-		list.add(new SubBlockPos(3, 3, 0, 15));
+	public TileEntity createNewTileEntity(World var1, int var2) {
+		return new Tile();
 	}
 
 	@Override

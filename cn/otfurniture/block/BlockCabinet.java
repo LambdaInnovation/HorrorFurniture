@@ -26,8 +26,8 @@ import net.minecraft.world.World;
 import cn.liutils.api.block.BlockDirectionedMulti;
 import cn.liutils.api.block.IMetadataProvider;
 import cn.liutils.api.client.ITextureProvider;
-import cn.liutils.core.LIUtilsMod;
-import cn.liutils.core.network.MsgTileDMulti;
+import cn.liutils.core.LIUtils;
+import cn.liutils.core.network.MsgTileDirMulti;
 import cn.otfurniture.OldTownFurniture;
 import cn.otfurniture.proxy.OFClientProps;
 import cpw.mods.fml.relauncher.Side;
@@ -60,7 +60,7 @@ public class BlockCabinet extends BlockDirectionedMulti implements ITextureProvi
 			}
 			if(worldObj.isRemote && !synced && ++ticksUntilReq == 5) {
 				ticksUntilReq = 0;
-				LIUtilsMod.netHandler.sendToServer(new MsgTileDMulti.Request(this));
+				LIUtils.netHandler.sendToServer(new MsgTileDirMulti.Request(this));
 			}
 		}
 		
@@ -103,13 +103,9 @@ public class BlockCabinet extends BlockDirectionedMulti implements ITextureProvi
 		setBlockName("cabinet" + id);
 		setBlockTextureName("leon:cabinet" + id);
 		setCreativeTab(OldTownFurniture.cct);
-	}
-	
-	@Override
-	public void addSubBlocks(List<SubBlockPos> list) {
-		list.add(new SubBlockPos(0, 1, 0, 1));
-		list.add(new SubBlockPos(1, 1, 0, 2));
-		list.add(new SubBlockPos(1, 0, 0, 3));
+		addSubBlock(0, 1, 0);
+		addSubBlock(1, 1, 0);
+		addSubBlock(1, 0, 0);
 	}
 
 	@Override
@@ -153,7 +149,7 @@ public class BlockCabinet extends BlockDirectionedMulti implements ITextureProvi
         	z = crds[2];
         }
         //Get #1's pos and fetch two TileEntities
-        int[] crds2 = offset(x, y, z, world.getBlockMetadata(x, y, z), 1);
+        int[] crds2 = offset(x, y, z, world.getBlockMetadata(x, y, z));
         TileEntity 
         	t = world.getTileEntity(x, y, z),
         	t2 = world.getTileEntity(crds2[0], crds2[1], crds2[2]);

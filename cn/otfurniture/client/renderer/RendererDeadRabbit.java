@@ -3,7 +3,7 @@
  */
 package cn.otfurniture.client.renderer;
 
-import cn.liutils.api.client.render.RenderTileModelSided;
+import cn.liutils.api.client.render.RenderDirMultiModelled;
 import cn.otfurniture.client.model.ModelDeadRabbit;
 import cn.otfurniture.proxy.OFClientProps;
 
@@ -11,7 +11,7 @@ import cn.otfurniture.proxy.OFClientProps;
  * @author WeathFolD
  *
  */
-public class RendererDeadRabbit extends RenderTileModelSided {
+public class RendererDeadRabbit extends RenderDirMultiModelled {
 
 	/**
 	 * @param mdl

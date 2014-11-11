@@ -61,14 +61,6 @@ public class BlockSmallChair extends BlockDirectionedMulti implements ITexturePr
 	public Vec3 getRenderOffset() {
 		return null;
 	}
-
-	/* (non-Javadoc)
-	 * @see cn.liutils.api.block.BlockDirectionedMulti#addSubBlocks(java.util.List)
-	 */
-	@Override
-	public void addSubBlocks(List<SubBlockPos> list) {
-		
-	}
 	
     @Override
 	@SideOnly(Side.CLIENT)

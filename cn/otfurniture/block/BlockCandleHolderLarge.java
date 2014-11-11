@@ -46,8 +46,4 @@ public class BlockCandleHolderLarge extends BlockDirectionedMulti {
 	public Vec3 getRenderOffset() {
 		return Vec3.createVectorHelper(.5, 0, .5);
 	}
-
-	@Override
-	public void addSubBlocks(List<SubBlockPos> list) {
-	}
 }

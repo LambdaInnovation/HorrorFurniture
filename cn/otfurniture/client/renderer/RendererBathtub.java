@@ -10,17 +10,17 @@
  */
 package cn.otfurniture.client.renderer;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.util.ForgeDirection;
+
+import org.lwjgl.opengl.GL11;
+
 import cn.liutils.api.client.model.TileEntityModelCustom;
-import cn.liutils.api.client.render.RenderTileModelSided;
+import cn.liutils.api.client.render.RenderDirMultiModelled;
 import cn.liutils.api.client.render.Vertex;
 import cn.liutils.api.client.util.RenderUtils;
 import cn.otfurniture.block.BlockBathtub;
@@ -31,7 +31,7 @@ import cn.otfurniture.proxy.OFClientProps;
  * 浴缸的渲染
  * @author WeAthFolD
  */
-public class RendererBathtub extends RenderTileModelSided {
+public class RendererBathtub extends RenderDirMultiModelled {
 
 	public RendererBathtub() {
 		super(new TileEntityModelCustom(OFClientProps.MDL_BATHTUB));

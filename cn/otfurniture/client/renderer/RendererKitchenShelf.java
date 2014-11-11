@@ -11,13 +11,13 @@
 package cn.otfurniture.client.renderer;
 
 import cn.liutils.api.client.model.TileEntityModelCustom;
-import cn.liutils.api.client.render.RenderTileModelSided;
+import cn.liutils.api.client.render.RenderDirMultiModelled;
 import cn.otfurniture.proxy.OFClientProps;
 
 /**
  * @author WeAthFolD
  */
-public class RendererKitchenShelf extends RenderTileModelSided {
+public class RendererKitchenShelf extends RenderDirMultiModelled {
 
 	public RendererKitchenShelf() {
 		super(new TileEntityModelCustom(OFClientProps.MDL_KSHELF));

@@ -41,6 +41,8 @@ public class BlockWritingDesk extends BlockDirectionedMulti implements ITextureP
 		setBlockName("hf_wdesk" + id);
 		setBlockTextureName("leon:wdesk" + id);
 		setCreativeTab(OldTownFurniture.cct);
+		addSubBlock(-1, 0, 0);
+		addSubBlock(1, 0, 0);
 	}
 
 	@Override
@@ -63,15 +65,6 @@ public class BlockWritingDesk extends BlockDirectionedMulti implements ITextureP
 	@Override
 	public Vec3 getRenderOffset() {
 		return Vec3.createVectorHelper(0D, 0D, .5D);
-	}
-
-	/* (non-Javadoc)
-	 * @see cn.liutils.api.block.BlockDirectionedMulti#addSubBlocks(java.util.List)
-	 */
-	@Override
-	public void addSubBlocks(List<SubBlockPos> list) {
-		list.add(new SubBlockPos(-1, 0, 0, 1));
-		list.add(new SubBlockPos(1, 0, 0, 2));
 	}
 
 	@Override

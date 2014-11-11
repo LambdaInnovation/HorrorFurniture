@@ -77,10 +77,6 @@ public class BlockSofaSmall extends BlockDirectionedMulti implements ITexturePro
     	te.onTileActivated(player);
         return true;
     }
-
-	@Override
-	public void addSubBlocks(List<SubBlockPos> list) {
-	}
 	
     @Override
     public void setBlockBoundsBasedOnState(IBlockAccess p_149719_1_, int p_149719_2_, int p_149719_3_, int p_149719_4_) {

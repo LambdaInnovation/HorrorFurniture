@@ -3,18 +3,19 @@
  */
 package cn.otfurniture.client.renderer;
 
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.tileentity.TileEntity;
-import cn.liutils.api.client.render.RenderTileSided;
+
+import org.lwjgl.opengl.GL11;
+
+import cn.liutils.api.client.render.RenderTileDirMulti;
 import cn.liutils.api.client.util.RenderUtils;
 
 /**
  * 2x2型窗帘的渲染~
  * @author WeathFolD
  */
-public class RendererCurtain2 extends RenderTileSided {
+public class RendererCurtain2 extends RenderTileDirMulti {
 
 	public RendererCurtain2() {
 	}

@@ -92,13 +92,6 @@ public class BlockOilLamp extends BlockDirectionedMulti implements
     	world.setBlock(x, y, z, getReversal());
         return true;
     }
-
-	/* (non-Javadoc)
-	 * @see cn.liutils.api.block.BlockDirectionedMulti#addSubBlocks(java.util.List)
-	 */
-	@Override
-	public void addSubBlocks(List<SubBlockPos> list) {
-	}
 	
 	 private Block getReversal() {
 		 return OFBlocks.oillamp[lit == 0 ? 1 : 0];

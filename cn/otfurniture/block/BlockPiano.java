@@ -3,8 +3,6 @@
  */
 package cn.otfurniture.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,10 +13,12 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 import cn.liutils.api.block.IMetadataProvider;
-import cn.liutils.core.LIUtilsMod;
-import cn.liutils.core.network.MsgTileDMulti;
+import cn.liutils.core.LIUtils;
+import cn.liutils.core.network.MsgTileDirMulti;
 import cn.otfurniture.OldTownFurniture;
 import cn.otfurniture.register.OFBlocks;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 /**
  * 大量的抄代码
@@ -73,7 +73,7 @@ public class BlockPiano extends BlockPianoBase {
 			}
 			if(worldObj.isRemote && !synced && ++ticksUntilReq == 5) {
 				ticksUntilReq = 0;
-				LIUtilsMod.netHandler.sendToServer(new MsgTileDMulti.Request(this));
+				LIUtils.netHandler.sendToServer(new MsgTileDirMulti.Request(this));
 			}
 		}
 		
@@ -155,7 +155,10 @@ public class BlockPiano extends BlockPianoBase {
 	public void onNeighborBlockChange(World world, int x, int y, int z, Block block)
     {
         boolean flag = world.isBlockIndirectlyGettingPowered(x, y, z);
-        TileEntityNote tileentitynote = (TileEntityNote)world.getTileEntity(x, y, z);
+        TileEntity te = world.getTileEntity(x, y, z);
+        if(te == null || !(te instanceof TileEntityNote))
+        	return;
+        TileEntityNote tileentitynote = (TileEntityNote)te;
         int meta = world.getBlockMetadata(x, y, z) >> 2;
         if(meta != 3 && meta != 2)
         	return;
