@@ -3,8 +3,6 @@
  */
 package cn.otfurniture.block;
 
-import java.util.List;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;

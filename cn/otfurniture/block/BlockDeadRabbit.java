@@ -3,8 +3,6 @@
  */
 package cn.otfurniture.block;
 
-import java.util.List;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Vec3;
@@ -22,9 +20,6 @@ public class BlockDeadRabbit extends BlockDirectionedMulti {
 		
 	}
 
-	/**
-	 * @param mat
-	 */
 	public BlockDeadRabbit() {
 		super(Material.cake);
 		this.setStepSound(soundTypeSnow);
@@ -35,17 +30,11 @@ public class BlockDeadRabbit extends BlockDirectionedMulti {
 		setCreativeTab(OldTownFurniture.cct);
 	}
 
-	/* (non-Javadoc)
-	 * @see net.minecraft.block.ITileEntityProvider#createNewTileEntity(net.minecraft.world.World, int)
-	 */
 	@Override
 	public TileEntity createNewTileEntity(World var1, int var2) {
 		return new Tile();
 	}
 
-	/* (non-Javadoc)
-	 * @see cn.liutils.api.block.BlockDirectionedMulti#getRenderOffset()
-	 */
 	@Override
 	public Vec3 getRenderOffset() {
 		return Vec3.createVectorHelper(0, 0, 0);

@@ -106,9 +106,6 @@ public class BlockPiano extends BlockPianoBase {
 		//#end boilerplate0
 	}
 
-	/**
-	 * @param mat
-	 */
 	public BlockPiano() {
 		super();
 		setCreativeTab(OldTownFurniture.cct);
@@ -117,9 +114,6 @@ public class BlockPiano extends BlockPianoBase {
 		setHardness(4.0F);
 	}
 
-	/* (non-Javadoc)
-	 * @see net.minecraft.block.ITileEntityProvider#createNewTileEntity(net.minecraft.world.World, int)
-	 */
 	@Override
 	public TileEntity createNewTileEntity(World var1, int var2) {
 		return new Tile();

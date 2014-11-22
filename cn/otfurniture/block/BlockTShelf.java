@@ -3,8 +3,6 @@
  */
 package cn.otfurniture.block;
 
-import java.util.List;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
@@ -48,17 +46,11 @@ public class BlockTShelf extends BlockDirectionedMulti implements ITextureProvid
 		addSubBlock(1, 0, 0);
 	}
 
-	/* (non-Javadoc)
-	 * @see net.minecraft.block.ITileEntityProvider#createNewTileEntity(net.minecraft.world.World, int)
-	 */
 	@Override
 	public TileEntity createNewTileEntity(World var1, int var2) {
 		return new Tile();
 	}
 
-	/* (non-Javadoc)
-	 * @see cn.liutils.api.block.BlockDirectionedMulti#getRenderOffset()
-	 */
 	@Override
 	public Vec3 getRenderOffset() {
 		return Vec3.createVectorHelper(1, 0, 0.5);

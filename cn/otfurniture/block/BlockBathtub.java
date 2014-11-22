@@ -10,8 +10,6 @@
  */
 package cn.otfurniture.block;
 
-import java.util.List;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
@@ -62,9 +60,6 @@ public class BlockBathtub extends BlockDirectionedMulti implements ITextureProvi
 	
 	public final int id;
 
-	/**
-	 * @param mat
-	 */
 	public BlockBathtub(int i) {
 		super(Material.rock);
 		id = i;
@@ -73,11 +68,9 @@ public class BlockBathtub extends BlockDirectionedMulti implements ITextureProvi
 		setBlockName("bathtub" + (id == 1 ? "b" : ""));
 		setBlockTextureName("leon:bathtub" + (id == 1 ? "b" : ""));
 		addSubBlock(1, 0, 0);
+		setBlockBounds(0, 0, 0, 1, 0.65F, 1);
 	}
 
-	/* (non-Javadoc)
-	 * @see net.minecraft.block.ITileEntityProvider#createNewTileEntity(net.minecraft.world.World, int)
-	 */
 	@Override
 	public TileEntity createNewTileEntity(World var1, int var2) {
 		return new Tile();
@@ -101,7 +94,10 @@ public class BlockBathtub extends BlockDirectionedMulti implements ITextureProvi
     		z = crds[2];
     	}
     	
-    	Tile te = (Tile) world.getTileEntity(x, y, z);
+    	TileEntity t = world.getTileEntity(x, y, z);
+    	if(t == null || !(t instanceof Tile))
+    		return false;
+    	Tile te = (Tile) t;
     	if(!te.watered && stack.getItem() == Items.water_bucket) { //倒水
     		te.watered = true;
     		if(!pl.capabilities.isCreativeMode)

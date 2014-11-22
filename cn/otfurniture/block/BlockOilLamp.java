@@ -41,9 +41,6 @@ public class BlockOilLamp extends BlockDirectionedMulti implements
 
 	final int lit;
 	
-	/**
-	 * @param mat
-	 */
 	public BlockOilLamp(int i) {
 		super(Material.iron);
 		lit = i;
@@ -55,17 +52,11 @@ public class BlockOilLamp extends BlockDirectionedMulti implements
 		setBlockBounds(.4F, 0F, .4F, .6F, 1F, .6F);
 	}
 
-	/* (non-Javadoc)
-	 * @see net.minecraft.block.ITileEntityProvider#createNewTileEntity(net.minecraft.world.World, int)
-	 */
 	@Override
 	public TileEntity createNewTileEntity(World var1, int var2) {
 		return new Tile();
 	}
 
-	/* (non-Javadoc)
-	 * @see cn.horniture.block.ITextureProvider#getTexture()
-	 */
 	@Override
 	public ResourceLocation getTexture() {
 		return OFClientProps.TEX_OILLAMP[lit];
@@ -78,9 +69,6 @@ public class BlockOilLamp extends BlockDirectionedMulti implements
         if(lit == 0) super.getSubBlocks(p_149666_1_, p_149666_2_, p_149666_3_);
     }
 
-	/* (non-Javadoc)
-	 * @see cn.liutils.api.block.BlockDirectionedMulti#getRenderOffset()
-	 */
 	@Override
 	public Vec3 getRenderOffset() {
 		return Vec3.createVectorHelper(.5, 0.0, .5);

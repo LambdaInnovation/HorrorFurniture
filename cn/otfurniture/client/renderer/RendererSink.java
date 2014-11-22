@@ -43,7 +43,6 @@ public class RendererSink extends RenderDirMultiModelled {
 		int meta = te.getBlockMetadata();
 		float waterHeight = 1.0F;
 		BlockSink block = (BlockSink) te.getBlockType();
-		//GL11.glEnable(GL11.GL_BLEND);
 		GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
 		GL11.glPushMatrix(); {
 			
@@ -78,7 +77,6 @@ public class RendererSink extends RenderDirMultiModelled {
 			RenderUtils.loadTexture(this.getTexture(te));
 			GL11.glScalef(scale, scale, scale);
 			theModel.render(te, 0F, 0F);
-			//我已经醉了
 			GL11.glRotatef(rotations[meta], 0F, 1F, 0F);
 		} GL11.glPopMatrix();
 	}

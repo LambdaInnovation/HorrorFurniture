@@ -12,13 +12,12 @@ package cn.otfurniture;
 
 import net.minecraft.command.CommandHandler;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraftforge.common.MinecraftForge;
 
 import org.apache.logging.log4j.Logger;
 
+import cn.liutils.core.LIUtils;
 import cn.otfurniture.entity.EntitySittable;
 import cn.otfurniture.event.OTEventListener;
 import cn.otfurniture.event.OTTickEventListener;
@@ -47,13 +46,13 @@ import cpw.mods.fml.relauncher.Side;
  * Mod主类
  * @author WeAthFolD
  */
-@Mod(modid = "otfurniture", name = "The Old Town Furniture", version = OldTownFurniture.VERSION)
+@Mod(modid = "otfurniture", name = "The Old Town Furniture", version = OldTownFurniture.VERSION, dependencies = LIUtils.DEPENDENCY)
 public class OldTownFurniture {
 	
 	/**
 	 * 公共版本号
 	 */
-	public static final String VERSION = "0.9alpha";
+	public static final String VERSION = "0.9beta";
 
 	/**
 	 * 静态单例
@@ -129,8 +128,6 @@ public class OldTownFurniture {
 	
 	@EventHandler()
 	public void postInit(FMLPostInitializationEvent event) {
-		ItemBlock ib = (ItemBlock) Item.getItemFromBlock(Blocks.wooden_door);
-		System.out.println("WWWW-WWW:" + ib);
 		proxy.postInit();
 	}
 	

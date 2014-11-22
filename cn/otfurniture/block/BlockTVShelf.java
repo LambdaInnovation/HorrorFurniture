@@ -3,8 +3,6 @@
  */
 package cn.otfurniture.block;
 
-import java.util.List;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
@@ -40,6 +38,7 @@ public class BlockTVShelf extends BlockDirectionedMulti implements
 		setBlockName("hf_tvshelf");
 		setBlockTextureName("leon:tvshelf");
 		addSubBlock(1, 0, 0);
+		setBlockBounds(0, 0, 0, 1, 0.75F, 1);
 	}
 
 	@Override

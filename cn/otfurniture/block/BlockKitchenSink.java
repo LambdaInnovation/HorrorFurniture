@@ -3,8 +3,6 @@
  */
 package cn.otfurniture.block;
 
-import java.util.List;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -36,9 +34,6 @@ public class BlockKitchenSink extends BlockDirectionedMulti implements ITextureP
 		setCreativeTab(OldTownFurniture.cct);
 	}
 
-	/* (non-Javadoc)
-	 * @see net.minecraft.block.ITileEntityProvider#createNewTileEntity(net.minecraft.world.World, int)
-	 */
 	@Override
 	public TileEntity createNewTileEntity(World var1, int var2) {
 		return new Tile();
@@ -50,9 +45,6 @@ public class BlockKitchenSink extends BlockDirectionedMulti implements ITextureP
     	return Vec3.createVectorHelper(0.5D, 0D, 0.5D);
     }
 
-	/* (non-Javadoc)
-	 * @see cn.liutils.api.block.BlockDirectionedMulti#getRenderOffset()
-	 */
 	@Override
 	public Vec3 getRenderOffset() {
 		return null;

@@ -10,12 +10,11 @@
  */
 package cn.otfurniture.block;
 
-import java.util.List;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ResourceLocation;
@@ -37,6 +36,20 @@ public class BlockSink extends BlockDirectionedMulti implements ITextureProvider
 	public static class Tile extends TileEntity {
 		public boolean watered;
 		
+		@Override
+	    public void readFromNBT(NBTTagCompound nbt)
+	    {
+			nbt.setBoolean("watered", watered);
+	    	super.readFromNBT(nbt);
+	    }
+	    
+	    @Override
+	    public void writeToNBT(NBTTagCompound nbt)
+	    {
+	    	watered = nbt.getBoolean("watered");
+	    	super.writeToNBT(nbt);
+	    }
+		
 	    @Override
 		@SideOnly(Side.CLIENT)
 	    public AxisAlignedBB getRenderBoundingBox()
@@ -47,9 +60,6 @@ public class BlockSink extends BlockDirectionedMulti implements ITextureProvider
 	
 	public final int id;
 
-	/**
-	 * @param mat
-	 */
 	public BlockSink(int i) {
 		super(Material.rock);
 		id = i;
@@ -58,9 +68,6 @@ public class BlockSink extends BlockDirectionedMulti implements ITextureProvider
 		setBlockTextureName(id == 1 ? "leon:sinkb" : "leon:sink");
 	}
 
-	/* (non-Javadoc)
-	 * @see net.minecraft.block.ITileEntityProvider#createNewTileEntity(net.minecraft.world.World, int)
-	 */
 	@Override
 	public TileEntity createNewTileEntity(World var1, int var2) {
 		return new Tile();
@@ -82,7 +89,10 @@ public class BlockSink extends BlockDirectionedMulti implements ITextureProvider
     {
     	ItemStack stack = pl.getCurrentEquippedItem();
     	if(stack == null) return false;
-    	Tile te = (Tile) world.getTileEntity(x, y, z);
+    	TileEntity t = world.getTileEntity(x, y, z);
+    	if(t == null || !(t instanceof Tile))
+    		return false;
+    	Tile te = (Tile) t;
     	if(!te.watered && stack.getItem() == Items.water_bucket) {
     		te.watered = true;
     		if(!pl.capabilities.isCreativeMode)

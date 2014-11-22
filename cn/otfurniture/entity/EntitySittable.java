@@ -13,8 +13,10 @@ package cn.otfurniture.entity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import cn.otfurniture.tile.TileSittable;
 
 /**
  * TileSittable的支持实体~
@@ -24,12 +26,17 @@ public class EntitySittable extends Entity {
 	
 	public EntityPlayer mountedPlayer;
 	Vec3 startPt;
+	
+	int bx, by, bz;
 
-	public EntitySittable(World wrld, float x, float y, float z) {
+	public EntitySittable(World wrld, float x, float y, float z, int bx, int by, int bz) {
 		super(wrld);
 		setPosition(x, y, z);
 		setSize(0.01F, 0.01F);
 		startPt = Vec3.createVectorHelper(x,y,z);
+		this.bx = bx;
+		this.by = by;
+		this.bz = bz;
 	}
 	
 	public EntitySittable(World wrld) {
@@ -55,12 +62,20 @@ public class EntitySittable extends Entity {
 	
 	@Override
 	public void onUpdate() {
-		if(!worldObj.isRemote)
+		if(!worldObj.isRemote) {
+			TileEntity te = worldObj.getTileEntity(bx, by, bz);
+			if(te == null || !(te instanceof TileSittable) ) {
+				setDead();
+				return;
+			}
 			if(startPt != null) {
 				posX = startPt.xCoord;
 				posY = startPt.yCoord;
 				posZ = startPt.zCoord;
-			} else setDead();
+			} else {
+				setDead();
+			}
+		}
 	}
 
 	@Override
@@ -69,6 +84,7 @@ public class EntitySittable extends Entity {
 
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound nbt) {
+		setDead();
 	}
 
 	@Override

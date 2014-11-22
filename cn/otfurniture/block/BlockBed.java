@@ -1,7 +1,5 @@
 package cn.otfurniture.block;
 
-import java.util.List;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
@@ -38,6 +36,7 @@ public class BlockBed extends BlockDirectionedMulti implements ITextureProvider 
 		addSubBlock(1, 0, 0);
 		addSubBlock(1, 0, 1);
 		addSubBlock(0, 0, 1);
+		setBlockBounds(0, 0, 0, 1, 0.6F, 1);
 		id = i;
 	}
 

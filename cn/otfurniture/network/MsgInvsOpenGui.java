@@ -30,9 +30,6 @@ public class MsgInvsOpenGui implements IMessage {
 	public int type;
 	public int x, y, z;
 
-	/**
-	 * 
-	 */
 	public MsgInvsOpenGui(String str) {
 		content = str;
 		type = 0;
@@ -48,9 +45,6 @@ public class MsgInvsOpenGui implements IMessage {
 	
 	public MsgInvsOpenGui() {}
 
-	/* (non-Javadoc)
-	 * @see cpw.mods.fml.common.network.simpleimpl.IMessage#fromBytes(io.netty.buffer.ByteBuf)
-	 */
 	@Override
 	public void fromBytes(ByteBuf buf) {
 		type = buf.readByte();
@@ -62,9 +56,6 @@ public class MsgInvsOpenGui implements IMessage {
 		content = ByteBufUtils.readUTF8String(buf);
 	}
 
-	/* (non-Javadoc)
-	 * @see cpw.mods.fml.common.network.simpleimpl.IMessage#toBytes(io.netty.buffer.ByteBuf)
-	 */
 	@Override
 	public void toBytes(ByteBuf buf) {
 		buf.writeByte(type);

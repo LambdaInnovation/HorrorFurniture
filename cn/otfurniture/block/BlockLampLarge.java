@@ -47,9 +47,6 @@ public class BlockLampLarge extends BlockDirectionedMulti implements ITexturePro
 
 	public final int id;
 	
-	/**
-	 * @param mat
-	 */
 	public BlockLampLarge(int i) {
 		super(Material.wood);
 		id = i;
@@ -62,9 +59,6 @@ public class BlockLampLarge extends BlockDirectionedMulti implements ITexturePro
 		addSubBlock(0, 1, 0);
 	}
 
-	/* (non-Javadoc)
-	 * @see net.minecraft.block.ITileEntityProvider#createNewTileEntity(net.minecraft.world.World, int)
-	 */
 	@Override
 	public TileEntity createNewTileEntity(World var1, int var2) {
 		return new Tile();
@@ -76,9 +70,6 @@ public class BlockLampLarge extends BlockDirectionedMulti implements ITexturePro
     	return Vec3.createVectorHelper(0.5D, 0D, 0.5D);
     }
 
-	/* (non-Javadoc)
-	 * @see cn.liutils.api.block.BlockDirectionedMulti#getRenderOffset()
-	 */
 	@Override
 	public Vec3 getRenderOffset() {
 		return null;
@@ -88,15 +79,12 @@ public class BlockLampLarge extends BlockDirectionedMulti implements ITexturePro
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer p_149727_5_, int p_149727_6_, float p_149727_7_, float p_149727_8_, float p_149727_9_)
     {
     	int meta = world.getBlockMetadata(x, y, z);
-    	System.out.println("Applying " + meta);
     	if((meta >> 2) != 0) {
     		y -= 1;
     	}
     	Block reverse = getReverse();
     	world.setBlock(x, y, z, reverse, meta & 3, 0x03);
     	world.setBlock(x, y + 1, z, reverse, (meta & 3) | 4, 0x03);
-    	System.out.println("Set metadata " + (meta & 3) + " " + ( meta & 0x03 | 4));
-    	System.out.println("Upper metadata : " + world.getBlockMetadata(x, y + 1, z));
         return true;
     }
 	

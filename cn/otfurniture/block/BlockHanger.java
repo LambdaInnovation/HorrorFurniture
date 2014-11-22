@@ -3,8 +3,6 @@
  */
 package cn.otfurniture.block;
 
-import java.util.List;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
@@ -32,9 +30,7 @@ public class BlockHanger extends BlockDirectionedMulti implements ITextureProvid
 	        return INFINITE_EXTENT_AABB;
 	    }
 	}
-	/**
-	 * @param mat
-	 */
+
 	public BlockHanger() {
 		super(Material.wood);
 		this.useRotation = false;
@@ -43,11 +39,9 @@ public class BlockHanger extends BlockDirectionedMulti implements ITextureProvid
 		setBlockTextureName("leon:hanger");
 		addSubBlock(0, 1, 0);
 		addSubBlock(0, 2, 0);
+		setBlockBounds(0.3F, 0F, 0.3F, 0.7F, 1F, 0.7F);
 	}
 
-	/* (non-Javadoc)
-	 * @see net.minecraft.block.ITileEntityProvider#createNewTileEntity(net.minecraft.world.World, int)
-	 */
 	@Override
 	public TileEntity createNewTileEntity(World var1, int var2) {
 		return new Tile();

@@ -10,6 +10,9 @@
  */
 package cn.otfurniture.proxy;
 
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.tileentity.TileEntity;
+
 import org.lwjgl.input.Keyboard;
 
 import cn.liutils.api.client.model.TileEntityModelCustom;
@@ -31,9 +34,6 @@ import cpw.mods.fml.client.registry.ClientRegistry;
  */
 public class ClientProxy extends Proxy {
 
-	/**
-	 * 
-	 */
 	public ClientProxy() {
 		
 	}
@@ -44,9 +44,6 @@ public class ClientProxy extends Proxy {
 		super.preInit();
 	}
 	
-	/* (non-Javadoc)
-	 * @see cn.horniture.proxy.Proxy#init()
-	 */
 	@Override
 	public void init() {
 		//----------Wireframe calcellation-------------
@@ -84,70 +81,73 @@ public class ClientProxy extends Proxy {
 		//-----------------------------------
 		
 		
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockShelf.Tile.class, new RendererShelf());
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockBathtub.Tile.class, new RendererBathtub());
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockTV.Tile.class, new RendererTV());
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockSink.Tile.class, new RendererSink());
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockLamp.Tile.class, new RendererLamp());
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockLampLarge.Tile.class, new RendererLampLarge());
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockChair.Tile.class, new RendererChair());
-		//这个在debug状态注册会出现迷之错误，所以暂时敲掉
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockClock.Tile.class, new RendererClock());
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockKitchenShelf.Tile.class, new RendererKitchenShelf());
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockKitchenShelfSmall.Tile.class, new RendererKSShelf());
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockPiano.Tile.class, new RendererPiano());
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockCandleHolderSmall.Tile.class, 
-				new RenderTileEntityModel(new MdlCandleHolderS(), OFClientProps.TEX_CANDLE_HOLDER).setYOffset(1.5));
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockCandleHolderLarge.Tile.class, 
-			new RenderDirMultiModelled(new MdlCandleHolderL())
-			.setTechne(true).setModelTexture(OFClientProps.TEX_CANDLE_HOLDER).setOffset(0.0, 1.5, 0.0));
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockWine.Tile.class, 
-				new RenderTileEntityModel(new MdlWine(), OFClientProps.TEX_WINE).setReverse(true).setYOffset(1.5F));
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockSmallChair.Tile.class, 
-				new RenderDirMultiModelled(new TileEntityModelCustom(OFClientProps.MDL_SCHAIR)).setScale(0.14F));
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockDesk.Tile.class,
-				new RenderDirMultiModelled(new TileEntityModelCustom(OFClientProps.MDL_DESK)).setScale(0.04F));
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockCabinet.Tile.class,
-				new RenderDirMultiModelled(new TileEntityModelCustom(OFClientProps.MDL_CABINET)).setScale(0.03F));
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockSofaSmall.Tile.class,
-				new RenderDirMultiModelled(new TileEntityModelCustom(OFClientProps.MDL_SOFA[0])).setScale(0.013F));
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockSofaMedium.Tile.class,
-				new RenderDirMultiModelled(new TileEntityModelCustom(OFClientProps.MDL_SOFA[1])).setScale(0.0165F));
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockSofaLarge.Tile.class,
-				new RenderDirMultiModelled(new TileEntityModelCustom(OFClientProps.MDL_SOFA[2])).setScale(0.019F));
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockFileShelf.Tile.class, 
-				new RenderDirMultiModelled(new TileEntityModelCustom(OFClientProps.MDL_FILE_SHELF))
-				.setScale(0.1F).setModelTexture(OFClientProps.TEX_FSHELF));
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockWritingDesk.Tile.class, 
-				new RenderDirMultiModelled(new TileEntityModelCustom(OFClientProps.MDL_WDESK)).setScale(0.12F));
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockKitchenSink.Tile.class,
-				new RenderDirMultiModelled(new TileEntityModelCustom(OFClientProps.MDL_KSINK)).setScale(0.098F));
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockTShelf.Tile.class,
-				new RenderDirMultiModelled(new TileEntityModelCustom(OFClientProps.MDL_TSHELF)).setScale(0.07F));
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockHanger.Tile.class,
-				new RenderDirMultiModelled(new TileEntityModelCustom(OFClientProps.MDL_HANGER)).setScale(0.1F));
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockOilLamp.Tile.class,
-				new RenderDirMultiModelled(new TileEntityModelCustom(OFClientProps.MDL_OILLAMP)).setScale(0.1F));
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockTVShelf.Tile.class,
-				new RenderDirMultiModelled(new TileEntityModelCustom(OFClientProps.MDL_TVSHELF)).setScale(0.07F));
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockBed.Tile.class,
-				new RenderDirMultiModelled(new TileEntityModelCustom(OFClientProps.MDL_BED)).setScale(0.095F));
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockDeadRabbit.Tile.class, new RendererDeadRabbit());
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockMirror.Tile.class, new RendererMirror());
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockSmallCurtain.Tile.class, new RendererSmallCurtain());
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockCurtain2.Tile.class, new RendererCurtain2());
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockCurtain4.Tile.class, new RendererCurtain4());
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockPianoRecorded.Tile.class, new RendererPiano());
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockChandelierSmall.Tile.class,
-				new RenderDirMultiModelled(new ModelChandelierSmall()).setTechne(true)
-				.setModelTexture(OFClientProps.TEX_CHANDELIER).setOffset(0D, 1.5D, 0D));
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockChandelierLarge.Tile.class,
-				new RendererChandelierLarge());
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockCar.Tile.class,
-				new RendererCar());
-		ClientRegistry.bindTileEntitySpecialRenderer(BlockChaos.Tile.class,
-				new RendererSmallCurtain().setModelTexture(OFClientProps.TEX_CHAOS));
+		bind(BlockShelf.Tile.class, new RendererShelf());
+		bind(BlockBathtub.Tile.class, new RendererBathtub());
+		bind(BlockTV.Tile.class, new RendererTV());
+		bind(BlockSink.Tile.class, new RendererSink());
+		bind(BlockLamp.Tile.class, new RendererLamp());
+		bind(BlockLampLarge.Tile.class, new RendererLampLarge());
+		bind(BlockChair.Tile.class, new RendererChair());
+		bind(BlockClock.Tile.class, new RendererClock());
+		bind(BlockKitchenShelf.Tile.class, new RendererKitchenShelf());
+		bind(BlockKitchenShelfSmall.Tile.class, new RendererKSShelf());
+		bind(BlockPiano.Tile.class, new RendererPiano());
+		bind(BlockCandleHolderSmall.Tile.class, new RenderTileEntityModel(new MdlCandleHolderS(), OFClientProps.TEX_CANDLE_HOLDER)
+			.setYOffset(1.5));
+		bind(BlockCandleHolderLarge.Tile.class, new RenderDirMultiModelled(new MdlCandleHolderL())
+			.setTechne(true)
+			.setModelTexture(OFClientProps.TEX_CANDLE_HOLDER)
+			.setOffset(0.0, 1.5, 0.0));
+		bind(BlockWine.Tile.class, new RenderTileEntityModel(new MdlWine(), OFClientProps.TEX_WINE)
+			.setReverse(true)
+			.setYOffset(1.5F));
+		bind(BlockSmallChair.Tile.class, new RenderDirMultiModelled(new TileEntityModelCustom(OFClientProps.MDL_SCHAIR))
+			.setScale(0.14F));
+		bind(BlockDesk.Tile.class, new RenderDirMultiModelled(new TileEntityModelCustom(OFClientProps.MDL_DESK))
+			.setScale(0.04F));
+		bind(BlockCabinet.Tile.class, new RenderDirMultiModelled(new TileEntityModelCustom(OFClientProps.MDL_CABINET))
+			.setScale(0.03F));
+		bind(BlockSofaSmall.Tile.class, new RenderDirMultiModelled(new TileEntityModelCustom(OFClientProps.MDL_SOFA[0]))
+			.setScale(0.013F));
+		bind(BlockSofaMedium.Tile.class, new RenderDirMultiModelled(new TileEntityModelCustom(OFClientProps.MDL_SOFA[1]))
+			.setScale(0.0165F));
+		bind(BlockSofaLarge.Tile.class, new RenderDirMultiModelled(new TileEntityModelCustom(OFClientProps.MDL_SOFA[2]))
+			.setScale(0.019F));
+		bind(BlockFileShelf.Tile.class, new RenderDirMultiModelled(new TileEntityModelCustom(OFClientProps.MDL_FILE_SHELF))
+			.setScale(0.1F)
+			.setModelTexture(OFClientProps.TEX_FSHELF));
+		bind(BlockWritingDesk.Tile.class, new RenderDirMultiModelled(new TileEntityModelCustom(OFClientProps.MDL_WDESK))
+			.setScale(0.12F));
+		bind(BlockKitchenSink.Tile.class, new RenderDirMultiModelled(new TileEntityModelCustom(OFClientProps.MDL_KSINK))
+			.setScale(0.098F));
+		bind(BlockTShelf.Tile.class, new RenderDirMultiModelled(new TileEntityModelCustom(OFClientProps.MDL_TSHELF))
+			.setScale(0.07F));
+		bind(BlockHanger.Tile.class, new RenderDirMultiModelled(new TileEntityModelCustom(OFClientProps.MDL_HANGER))
+			.setScale(0.1F));
+		bind(BlockOilLamp.Tile.class, new RenderDirMultiModelled(new TileEntityModelCustom(OFClientProps.MDL_OILLAMP))
+			.setScale(0.1F));
+		bind(BlockTVShelf.Tile.class, new RenderDirMultiModelled(new TileEntityModelCustom(OFClientProps.MDL_TVSHELF))
+			.setScale(0.07F));
+		bind(BlockBed.Tile.class, new RenderDirMultiModelled(new TileEntityModelCustom(OFClientProps.MDL_BED))
+			.setScale(0.095F));
+		bind(BlockDeadRabbit.Tile.class, new RendererDeadRabbit());
+		bind(BlockMirror.Tile.class, new RendererMirror());
+		bind(BlockSmallCurtain.Tile.class, new RendererSmallCurtain());
+		bind(BlockCurtain2.Tile.class, new RendererCurtain2());
+		bind(BlockCurtain4.Tile.class, new RendererCurtain4());
+		bind(BlockPianoRecorded.Tile.class, new RendererPiano());
+		bind(BlockChandelierSmall.Tile.class, new RenderDirMultiModelled(new ModelChandelierSmall())
+			.setTechne(true)
+			.setModelTexture(OFClientProps.TEX_CHANDELIER)
+			.setOffset(0D, 1.5D, 0D));
+		bind(BlockChandelierLarge.Tile.class, new RendererChandelierLarge());
+		bind(BlockCar.Tile.class, new RendererCar());
+		bind(BlockChaos.Tile.class, new RendererSmallCurtain().setModelTexture(OFClientProps.TEX_CHAOS));
 		super.init();
+	}
+	
+	private static void bind(Class<? extends TileEntity> c, TileEntitySpecialRenderer r) {
+		ClientRegistry.bindTileEntitySpecialRenderer(c, r);
 	}
 
 }

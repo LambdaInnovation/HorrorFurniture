@@ -32,6 +32,8 @@ import cn.otfurniture.proxy.OFClientProps;
  * @author WeAthFolD
  */
 public class RendererBathtub extends RenderDirMultiModelled {
+	
+	private static final float WATER_HEIGHT = 0.4F;
 
 	public RendererBathtub() {
 		super(new TileEntityModelCustom(OFClientProps.MDL_BATHTUB));
@@ -50,7 +52,6 @@ public class RendererBathtub extends RenderDirMultiModelled {
 		int meta = te.getBlockMetadata();
 		if(meta >> 2 != 0) return;
 		
-		float waterHeight = 0.4F;
 		BlockBathtub block = (BlockBathtub) te.getBlockType();
 		
 		//GL11.glEnable(GL11.GL_BLEND);
@@ -64,14 +65,14 @@ public class RendererBathtub extends RenderDirMultiModelled {
 					RenderUtils.loadTexture(rs);
 				
 				float u0 = i.getMinU(), u1 = i.getMaxU(), v0 = i.getMinV(), v1 = i.getMaxV();
-				Vertex ve1 = new Vertex(-1, waterHeight, -0.5, u0, v0),
-						ve2 = new Vertex(-1, waterHeight, 0.5, u0, v1),
-						ve3 = new Vertex(0, waterHeight, 0.5, u1, v1),
-						ve4 = new Vertex(0, waterHeight, -0.5, u1, v0),
-						ve5 = new Vertex(0, waterHeight, -0.5, u0, v0),
-						ve6 = new Vertex(0, waterHeight, 0.5, u0, v1),
-						ve7 = new Vertex(1, waterHeight, 0.5, u1, v1),
-						ve8 = new Vertex(1, waterHeight, -0.5, u1, v0);
+				Vertex ve1 = new Vertex(-1, WATER_HEIGHT, -0.5, u0, v0),
+						ve2 = new Vertex(-1, WATER_HEIGHT, 0.5, u0, v1),
+						ve3 = new Vertex(0, WATER_HEIGHT, 0.5, u1, v1),
+						ve4 = new Vertex(0, WATER_HEIGHT, -0.5, u1, v0),
+						ve5 = new Vertex(0, WATER_HEIGHT, -0.5, u0, v0),
+						ve6 = new Vertex(0, WATER_HEIGHT, 0.5, u0, v1),
+						ve7 = new Vertex(1, WATER_HEIGHT, 0.5, u1, v1),
+						ve8 = new Vertex(1, WATER_HEIGHT, -0.5, u1, v0);
 				Tessellator t = Tessellator.instance;
 				
 		        int l = 16777215;

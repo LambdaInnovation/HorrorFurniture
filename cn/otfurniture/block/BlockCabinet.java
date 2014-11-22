@@ -10,8 +10,6 @@
  */
 package cn.otfurniture.block;
 
-import java.util.List;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -93,9 +91,6 @@ public class BlockCabinet extends BlockDirectionedMulti implements ITextureProvi
 
 	public final int id;
 	
-	/**
-	 * @param mat
-	 */
 	public BlockCabinet(int id) {
 		super(Material.wood);
 		setHardness(2.0F);
@@ -154,7 +149,7 @@ public class BlockCabinet extends BlockDirectionedMulti implements ITextureProvi
         	t = world.getTileEntity(x, y, z),
         	t2 = world.getTileEntity(crds2[0], crds2[1], crds2[2]);
         
-        if(t == null || !(t instanceof Tile) 
+        if(t == null || !(t instanceof Tile) //Typesafe check
         	|| t2 == null || !(t2 instanceof Tile))
         	return null;
         //Return the inventory

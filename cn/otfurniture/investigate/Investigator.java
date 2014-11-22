@@ -45,11 +45,14 @@ public class Investigator {
 	}
 	
 	/**
-	 * 修改某方块的调查信息。注意当前方块的破坏和替换等动作并没有被侦听。
+	 * 修改某方块的调查信息。注意当前方块的破坏和替换等动作并没有被侦听。<br/>
+	 * 如果str为null，则会抹除信息，请务必注意
 	 */
 	public void modifyMessage(World wrld, int x, int y, int z, String str) {
 		Map<BlockPos, String> map = loadMap(wrld);
-		map.put(new BlockPos(x, y, z), str);
+		if(str != null)
+			map.put(new BlockPos(x, y, z), str);
+		else map.remove(new BlockPos(x, y, z));
 	}
 	
 	/**

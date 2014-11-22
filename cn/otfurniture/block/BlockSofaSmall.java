@@ -10,8 +10,6 @@
  */
 package cn.otfurniture.block;
 
-import java.util.List;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -23,6 +21,7 @@ import net.minecraft.world.World;
 import cn.liutils.api.block.BlockDirectionedMulti;
 import cn.liutils.api.client.ITextureProvider;
 import cn.otfurniture.OldTownFurniture;
+import cn.otfurniture.block.BlockSofaLarge.Tile;
 import cn.otfurniture.proxy.OFClientProps;
 import cn.otfurniture.tile.TileSittable;
 import cpw.mods.fml.relauncher.Side;
@@ -73,8 +72,10 @@ public class BlockSofaSmall extends BlockDirectionedMulti implements ITexturePro
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int meta, float a, float b, float c)
     {
     	if(world.isRemote) return false;
-    	Tile te = (Tile) world.getTileEntity(x, y, z);
-    	te.onTileActivated(player);
+    	TileEntity t = world.getTileEntity(x, y, z);
+    	if(t == null || !(t instanceof Tile))
+    		return false;
+    	((Tile) t).onTileActivated(player);
         return true;
     }
 	

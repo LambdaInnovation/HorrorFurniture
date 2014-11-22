@@ -28,7 +28,6 @@ public class RendererCurtain4 extends RenderTileDirMulti {
 			double var6, float var8) {
 		int meta = ((BlockCurtain4.Tile)var1).getMetadata();
 		if(meta >> 2 != 0) return;
-//		System.out.println("R " + var1.xCoord + "," + var1.yCoord + "," + var1.zCoord);
 		Vec3 rotate = ((BlockDirectionedMulti)var1.getBlockType()).getOffsetRotated(BlockDirectionedMulti.getFacingDirection(meta).ordinal());
 		GL11.glPushMatrix(); {
 			GL11.glTranslated(var2 + offX + rotate.xCoord, var4 + offY + rotate.yCoord, var6 + offZ + rotate.zCoord);

@@ -10,8 +10,6 @@
  */
 package cn.otfurniture.block;
 
-import java.util.List;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
@@ -57,17 +55,11 @@ public class BlockChair extends BlockDirectionedMulti {
     	return Vec3.createVectorHelper(.5D, 0D, .5D);
     }
 
-	/* (non-Javadoc)
-	 * @see net.minecraft.block.ITileEntityProvider#createNewTileEntity(net.minecraft.world.World, int)
-	 */
 	@Override
 	public TileEntity createNewTileEntity(World var1, int var2) {
 		return new Tile();
 	}
 
-	/* (non-Javadoc)
-	 * @see cn.liutils.api.block.BlockDirectionedMulti#getRenderOffset()
-	 */
 	@Override
 	public Vec3 getRenderOffset() {
 		return null;
@@ -78,8 +70,10 @@ public class BlockChair extends BlockDirectionedMulti {
     {
     	int meta = world.getBlockMetadata(x, y, z) >> 2;
     	if(world.isRemote || meta != 0) return false;
-    	Tile te = (Tile) world.getTileEntity(x, y, z);
-    	te.onTileActivated(player);
+    	TileEntity t = world.getTileEntity(x, y, z);
+    	if(t == null || !(t instanceof Tile))
+    		return false;
+    	((Tile) t).onTileActivated(player);
         return true;
     }
 	

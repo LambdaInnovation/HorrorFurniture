@@ -18,7 +18,7 @@ import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 /**
- * 调查
+ * 调查信息同步的Message
  * @author WeAthFolD
  *
  */

@@ -10,8 +10,6 @@
  */
 package cn.otfurniture.block;
 
-import java.util.List;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -45,9 +43,6 @@ public class BlockSofaMedium extends BlockDirectionedMulti implements ITexturePr
 
 	final int id;
 	
-	/**
-	 * @param mat
-	 */
 	public BlockSofaMedium(int i) {
 		super(Material.cloth);
 		id = i;
@@ -62,9 +57,6 @@ public class BlockSofaMedium extends BlockDirectionedMulti implements ITexturePr
 		return new Tile();
 	}
 
-	/* (non-Javadoc)
-	 * @see cn.liutils.api.block.BlockDirectionedMulti#getRenderOffset()
-	 */
 	@Override
 	public Vec3 getRenderOffset() {
 		return Vec3.createVectorHelper(1, 0, .5);
@@ -74,6 +66,9 @@ public class BlockSofaMedium extends BlockDirectionedMulti implements ITexturePr
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int meta, float a, float b, float c)
     {
     	if(world.isRemote) return false;
+    	TileEntity t = world.getTileEntity(x, y, z);
+    	if(t == null || !(t instanceof Tile))
+    		return false;
     	Tile te = (Tile) world.getTileEntity(x, y, z);
     	te.onTileActivated(player);
         return true;

@@ -82,12 +82,10 @@ public class BlockPianoRecorded extends BlockPianoBase {
         	x = crds[0];
         	y = crds[1];
         	z = crds[2];
-//        	System.out.println(x + " " + y + " " + z);
         	
         	Tile te = (Tile) world.getTileEntity(x, y, z);
 
         	world.playAuxSFXAtEntity(null, 1005, x, y, z, te.isPlaying ? 0 : Item.getIdFromItem(recItem));
-        	//world.playRecord(te.isPlaying ? "" : "records.otp_" + id, x, y, z);
         	te.isPlaying = !te.isPlaying;
         	
         	return true;

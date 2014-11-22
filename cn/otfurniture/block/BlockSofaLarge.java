@@ -10,11 +10,8 @@
  */
 package cn.otfurniture.block;
 
-import java.util.List;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ResourceLocation;
@@ -22,10 +19,7 @@ import net.minecraft.util.Vec3;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import cn.liutils.api.block.BlockDirectionedMulti;
-import cn.liutils.api.block.IMetadataProvider;
 import cn.liutils.api.client.ITextureProvider;
-import cn.liutils.core.LIUtils;
-import cn.liutils.core.network.MsgTileDirMulti;
 import cn.otfurniture.OldTownFurniture;
 import cn.otfurniture.proxy.OFClientProps;
 import cn.otfurniture.tile.TileSittable;
@@ -38,55 +32,11 @@ import cpw.mods.fml.relauncher.SideOnly;
  */
 public class BlockSofaLarge extends BlockDirectionedMulti implements ITextureProvider {
 	
-	public static class Tile extends TileSittable implements IMetadataProvider {
+	public static class Tile extends TileSittable {
 		
 		public Tile() {
 			offsetY = .01F;
 		}
-		
-		//#boilerplate0
-		private boolean synced = false;
-		private int ticksUntilReq = 4;
-		int metadata = -1;
-		
-		@Override
-		public void updateEntity() {
-			if(metadata == -1) {
-				metadata = this.getBlockMetadata();
-			}
-			if(worldObj.isRemote && !synced && ++ticksUntilReq == 5) {
-				ticksUntilReq = 0;
-				LIUtils.netHandler.sendToServer(new MsgTileDirMulti.Request(this));
-			}
-		}
-		
-		@Override
-		public void setMetadata(int meta) {
-			synced = true;
-			metadata = meta;
-		}
-		
-	    @Override
-		public void readFromNBT(NBTTagCompound nbt)
-	    {
-	    	metadata = nbt.getInteger("meta");
-	        super.readFromNBT(nbt);
-	    }
-
-	    @Override
-		public void writeToNBT(NBTTagCompound nbt)
-	    {
-	    	nbt.setInteger("meta", metadata);
-	        super.writeToNBT(nbt);
-	    }
-
-		@Override
-		public int getMetadata() {
-			if(metadata == -1)
-				metadata = this.getBlockMetadata();
-			return metadata;
-		}
-		//#end boilerplate0
 		
 		@Override
 		@SideOnly(Side.CLIENT)

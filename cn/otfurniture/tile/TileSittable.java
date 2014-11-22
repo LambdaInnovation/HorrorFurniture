@@ -10,16 +10,16 @@
  */
 package cn.otfurniture.tile;
 
+import cn.liutils.api.block.TileDirectionedMulti;
 import cn.otfurniture.entity.EntitySittable;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
 
 /**
  * 可以坐上去的方块使用的TileEntity
  * @author WeAthFolD
  */
-public class TileSittable extends TileEntity {
+public class TileSittable extends TileDirectionedMulti {
 	
 	/**
 	 * Y位移值，注意默认位置在方块的中央（0.5F）
@@ -37,7 +37,8 @@ public class TileSittable extends TileEntity {
 	@Override
 	public void updateEntity() {
 		if(!worldObj.isRemote && ent == null) {
-			ent = new EntitySittable(worldObj, this.xCoord + .5F, this.yCoord + .5F + offsetY, this.zCoord + .5F);
+			ent = new EntitySittable(worldObj, this.xCoord + .5F, this.yCoord + .5F + offsetY, this.zCoord + .5F,
+					xCoord, yCoord, zCoord);
 			worldObj.spawnEntityInWorld(ent);
 		}
 	}

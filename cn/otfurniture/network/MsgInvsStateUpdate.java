@@ -10,7 +10,8 @@ import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 
 /**
- * @author FolD
+ * 玩家调查状态（用于center放大镜）的更新
+ * @author WeAthFolD
  *
  */
 public class MsgInvsStateUpdate implements IMessage {

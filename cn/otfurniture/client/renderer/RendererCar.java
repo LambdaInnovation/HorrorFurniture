@@ -20,6 +20,7 @@ public class RendererCar extends RenderDirMultiModelled {
 	public RendererCar() {
 		super(new TileEntityModelCustom(OFClientProps.MDL_CAR));
 		this.setModelTexture(OFClientProps.TEX_CAR);
+		this.setScale(0.021F);
 	}
 	
 	@Override

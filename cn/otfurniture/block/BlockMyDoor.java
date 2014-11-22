@@ -13,6 +13,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -51,9 +52,9 @@ public class BlockMyDoor extends BlockDoor {
 	@Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase placer, ItemStack stack)
     {
-		super.onBlockPlacedBy(world, x, y, z, placer, stack);
-		int metadata = world.getBlockMetadata(x, y, z);
-		world.setBlock(x, y + 1, z, this, metadata | 8, 3);
+		int l = (MathHelper.floor_double(placer.rotationYaw * 4.0F / 360.0F + 0.5D) - 1) & 3;
+		world.setBlockMetadataWithNotify(x, y, z, l, 0x03);
+		world.setBlock(x, y + 1, z, this, l | 8, 3);
     }
 	
     @Override

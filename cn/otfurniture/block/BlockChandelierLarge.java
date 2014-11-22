@@ -3,8 +3,6 @@
  */
 package cn.otfurniture.block;
 
-import java.util.List;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
@@ -25,9 +23,6 @@ public class BlockChandelierLarge extends BlockDirectionedMulti {
 
 	}
 
-	/**
-	 * @param mat
-	 */
 	public BlockChandelierLarge() {
 		super(Material.glass);
 		setStepSound(soundTypeGlass);

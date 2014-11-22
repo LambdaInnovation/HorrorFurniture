@@ -37,6 +37,8 @@ public class RendererTV extends RenderDirMultiModelled {
 	protected void renderAtOrigin(TileEntity te) {
 		int meta = te.getBlockMetadata();
 		BlockTV b = (BlockTV) te.getBlockType();
+		if(!(te instanceof Tile))
+			return;
 		Tile t = (Tile) te;
 		ResourceLocation tex;
 		

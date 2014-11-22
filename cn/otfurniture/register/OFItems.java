@@ -14,12 +14,14 @@ import cpw.mods.fml.common.registry.GameRegistry;
  */
 public class OFItems {
 
-	public static Item
-		setter;
+	public static Item 
+		setter,
+		eraser;
 	public static ItemRecord dummyPianoPlayback[];
 	
 	public static void init() {
 		setter = new ItemSetter();
+		eraser = new ItemEraser();
 		
 		dummyPianoPlayback = new ItemRecord[1];
 		for(int i = 0; i < 1; i++) {
@@ -28,6 +30,7 @@ public class OFItems {
 		}
 		
 		GameRegistry.registerItem(setter, "hf_setter");
+		GameRegistry.registerItem(eraser, "hf_eraser");
 	}
 
 }

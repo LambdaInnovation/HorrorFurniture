@@ -3,8 +3,6 @@
  */
 package cn.otfurniture.block;
 
-import java.util.List;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.Vec3;
@@ -22,9 +20,6 @@ public class BlockChandelierSmall extends BlockDirectionedMulti {
 		
 	}
 
-	/**
-	 * @param mat
-	 */
 	public BlockChandelierSmall() {
 		super(Material.glass);
 		setStepSound(soundTypeGlass);

@@ -1,9 +1,11 @@
-/**
+/*
  * 
  */
 package cn.otfurniture.block;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -22,7 +24,6 @@ import cn.liutils.api.block.BlockDirectionedMulti;
 import cn.liutils.api.block.TileDirectionedMulti;
 import cn.liutils.api.client.ITextureProvider;
 import cn.otfurniture.OldTownFurniture;
-import cn.otfurniture.register.OFBlocks;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -44,6 +45,12 @@ public abstract class BlockCurtain2 extends BlockDirectionedMulti implements ITe
 	protected final int[] revMatrix = {
 			1, 0, 3, 2
 	};
+	protected static Set<Integer> boundVanishes;
+	static {
+		boundVanishes = new HashSet<Integer>();
+		boundVanishes.add(0);
+		boundVanishes.add(1);
+	}
 	
 	public final int id;
 
@@ -55,7 +62,7 @@ public abstract class BlockCurtain2 extends BlockDirectionedMulti implements ITe
 		addBlocks();
 	}
 	
-	protected void addBlocks() { //如果一个类要被subTyped，它注定不能在构造器里添加子方块
+	protected void addBlocks() { //如果一个类要被subTyped，它注定不能在构造器里添加子方块，因此设定为可重载
 		addSubBlock(0, 1, 0);
 		addSubBlock(1, 1, 0);
 		addSubBlock(1, 0, 0);
@@ -106,7 +113,8 @@ public abstract class BlockCurtain2 extends BlockDirectionedMulti implements ITe
     	
     	for(SubBlockPos pos : this.getSubBlocks()) {
     		//Set all the subBlocks
-    		SubBlockPos pos2 = this.applyRotation(pos, BlockDirectionedMulti.getFacingDirection(meta).ordinal());
+    		SubBlockPos pos2 = this.applyRotation(pos, 
+    				BlockDirectionedMulti.getFacingDirection(meta).ordinal());
     		pos2.setMe(wrld, x, y, z, meta + (pos2.id << 2), reverse);
     		setMetadata(wrld, x + pos2.offX, y + pos2.offY, z + pos2.offZ, meta + (pos2.id << 2));
     	}
@@ -135,8 +143,27 @@ public abstract class BlockCurtain2 extends BlockDirectionedMulti implements ITe
 	}
 	
 	@Override
+    public AxisAlignedBB getCollisionBoundingBoxFromPool
+    (World world, int x, int y, int z)
+    {
+		int meta = getMetadata(world, x, y, z);
+		if(id % 2 == 0 && boundVanishes.contains(meta >> 2)) { //Bound box vanish
+			return null;
+		}
+		return super.getCollisionBoundingBoxFromPool(world, x, y, z);
+    }
+	
+	@Override
 	public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
-		int dir = getFacingDirection(getMetadata(world, x, y, z)).ordinal();
+		int meta = getMetadata(world, x, y, z);
+		int dir = getFacingDirection(meta).ordinal();
+		if(id % 2 == 0) {
+			int _id = meta >> 2;
+    		if(boundVanishes.contains(_id)) {
+    			this.setBlockBounds(0, 0, 0, 0, 0, 0);
+    			return;
+    		}
+		}
 		float a = 0.1F, b = 0.9F;
 		if(dir == 5) {
 			this.setBlockBounds(0.0F, 0.0F, 0.0F, a, 1.0F, 1.0F);

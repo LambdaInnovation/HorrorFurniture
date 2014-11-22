@@ -36,7 +36,7 @@ public class InvestData extends WorldSavedData {
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
-		System.out.println("ReadFromNBT called");
+//		System.out.println("ReadFromNBT called");
 		for(int i = 0; ; i++) {
 			int[] arr = nbt.getIntArray("crd" + i);
 			if(arr == null || arr.length == 0) break;
@@ -48,7 +48,7 @@ public class InvestData extends WorldSavedData {
 	@Override
 	public void writeToNBT(NBTTagCompound nbt) {
 		int i = 0;
-		System.out.println("WriteToNBT called");
+//		System.out.println("WriteToNBT called");
 		nbt = new NBTTagCompound();
 		for(Map.Entry<BlockPos, String> entry : dataMap.entrySet()) {
 			nbt.setIntArray("crd" + i, new int[] { entry.getKey().x, entry.getKey().y, entry.getKey().z});

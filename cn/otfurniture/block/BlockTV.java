@@ -10,8 +10,6 @@
  */
 package cn.otfurniture.block;
 
-import java.util.List;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.material.Material;
@@ -76,9 +74,10 @@ public class BlockTV extends BlockDirectionedMulti {
 	@Override
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer pl, int side, float a, float b, float c)
     {
-		System.out.println(world.isRemote);
-		Tile te = (Tile) world.getTileEntity(x, y, z);
-		System.out.println("Rev");
+		TileEntity t = world.getTileEntity(x, y, z);
+		if(t == null || !(t instanceof Tile))
+			return false;
+		Tile te = (Tile) t;
 		if(te.isOpen) te.close();
 		else te.open();
 		return true;
