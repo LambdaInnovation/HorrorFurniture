@@ -78,6 +78,7 @@ public class BlockCar extends BlockDirectionedMulti {
 		return Vec3.createVectorHelper(0.0, 0.0, 0.0);
 	}
 	
+	@Override
 	public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z) {
 		int meta = world.getBlockMetadata(x, y, z);
 		switch(meta >> 2) {

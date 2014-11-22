@@ -21,7 +21,6 @@ import net.minecraft.world.World;
 import cn.liutils.api.block.BlockDirectionedMulti;
 import cn.liutils.api.client.ITextureProvider;
 import cn.otfurniture.OldTownFurniture;
-import cn.otfurniture.block.BlockSofaLarge.Tile;
 import cn.otfurniture.proxy.OFClientProps;
 import cn.otfurniture.tile.TileSittable;
 import cpw.mods.fml.relauncher.Side;

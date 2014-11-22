@@ -5,9 +5,7 @@ package cn.otfurniture.item;
 
 import cn.otfurniture.OldTownFurniture;
 import cn.otfurniture.investigate.Investigator;
-import cn.otfurniture.network.MsgInvsOpenGui;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;

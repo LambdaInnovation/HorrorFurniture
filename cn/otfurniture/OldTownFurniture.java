@@ -52,7 +52,7 @@ public class OldTownFurniture {
 	/**
 	 * 公共版本号
 	 */
-	public static final String VERSION = "0.9beta";
+	public static final String VERSION = "0.9";
 
 	/**
 	 * 静态单例

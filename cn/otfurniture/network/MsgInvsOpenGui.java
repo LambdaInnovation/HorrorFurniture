@@ -117,7 +117,8 @@ public class MsgInvsOpenGui implements IMessage {
 					} else {
 						if(str != null) {
 							OldTownFurniture.netHandler.sendTo(new MsgInvsOpenGui(str), ctx.getServerHandler().playerEntity);
-						} else System.out.println("Attempted invs, but didn't find the matching block");
+						}
+//						} else System.out.println("Attempted invs, but didn't find the matching block");
 					}
 				}
 				return null;
